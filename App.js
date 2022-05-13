@@ -6,6 +6,7 @@ const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
+      <Image source={require('./plant-connect-icon.png')} style={styles.tinyLogo} />
       <Text>Planty Dropper</Text>
       <MyCarousel />
       <TextInput
@@ -82,7 +83,8 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
+    marginBottom: 15,
   },
   modalText: {
     marginBottom: 15,
@@ -93,6 +95,12 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  tinyLogo: {
+    width: 100,
+    height: 100,
+    alignSelf: "flex-start",
+    marginLeft: 20,
   },
 });
 

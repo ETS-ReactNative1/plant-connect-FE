@@ -1,7 +1,10 @@
-import * as React from 'react';
+import * as React  from 'react';
 import {
   Text, 
   View,
+  Modal,
+  StyleSheet,
+  Pressable,
   SafeAreaView } from 'react-native';
 
 import Carousel from 'react-native-snap-carousel';
@@ -37,7 +40,7 @@ export default class MyCarousel extends React.Component {
         ],
         seeds: [
             {
-                title:"Sesame",
+                title:"Papaya",
                 text: "Text 1",
             },
             {
@@ -78,11 +81,15 @@ export default class MyCarousel extends React.Component {
                 title:"Potato",
                 text: "Text 5",
             },
-          ]
+          ],
+          modalVisible: false
       }
     }
-
-    _renderItem({item,index}){
+    hideModal() {
+        this.setState({modalVisible: false})
+    }
+    _renderItem({item, index}){
+        // const [modalVisible, setModalVisible] = useState(false);
         return (
           <View style={{
               backgroundColor:'floralwhite',
@@ -93,9 +100,34 @@ export default class MyCarousel extends React.Component {
               marginRight: 25, }}>
             <Text style={{fontSize: 20}}>{item.title}</Text>
             <Text>{item.text}</Text>
+            {/* <Modal
+        animationType="slide"
+        transparent={true}
+        visible={this.modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          this.setState({modalVisible: false});
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => hideModal}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
           </View>
-
-          
+        </View>
+      </Modal> */}
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        // onPress={() => this.setState({modalVisible: true})}
+      >
+        <Text style={styles.textStyle}>learn more!</Text>
+      </Pressable>
+          </View>
 
         )
     }
@@ -137,4 +169,50 @@ export default class MyCarousel extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "green",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    button: {
+      borderRadius: 20,
+      padding: .5,
+      elevation: 2
+    },
+    buttonOpen: {
+      backgroundColor: "#F194FF",
+    },
+    buttonClose: {
+      backgroundColor: "#2196F3",
+    },
+    textStyle: {
+      color: "white",
+      fontWeight: "bold",
+      textAlign: "center",
+    //   marginBottom: 15,
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: "center"
+    },
+    
+  });
 
