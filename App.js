@@ -1,15 +1,33 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View, Image, TextInput } from "react-native";
+import { Alert, Modal, StyleSheet, StatusBar, SafeAreaView, Text, Pressable, View, Image, TextInput } from "react-native";
 import { withTheme } from "styled-components";
 import MyCarousel from "./Components/MyCarousel";
 import DropDownPicker from 'react-native-dropdown-picker';
+import {AntDesign} from '@expo/vector-icons'
+import styled from 'styled-components'
 
 const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
-      <Image source={require('./plant-connect-icon.png')} style={styles.tinyLogo} />
-      <Text>Planty Dropper</Text>
+      <Container>
+        <SafeAreaView>
+        <PlantBackground source={require('./creative-pastel-green-monstera-leaves-abstract-pattern-mykola-tsap.png')} >
+          <MenuBar>
+            <Back>
+              <AntDesign name='arrowleft' size={24} color='#fff' />
+              <Title>Planty Dropper</Title>
+            </Back>
+          </MenuBar>
+          
+        </PlantBackground>
+        </SafeAreaView>
+        {/* <StatusBar barStyle="light-content" /> */}
+        
+        
+      </Container>
+      {/* <Image source={require('./plant-connect-icon.png')} style={styles.tinyLogo} /> */}
+     
       <MyCarousel />
       
       <Modal
@@ -66,6 +84,32 @@ const App = () => {
     </View>
   );
 };
+
+const Container = styled.View`
+  flex: 1;
+  width: 100%;
+  background-color: #fff;
+`
+const PlantBackground = styled.ImageBackground`
+  width: 100%;
+  height: 90%;
+`
+const Title = styled.Text`
+  font-family: 'AvenirNext-Regular';
+  color: '#fff';
+  font-size: 26;
+  padding: 4px;
+  font-weight: 700;
+`
+const MenuBar = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 18px;
+`
+const Back = styled.View`
+  flex-direction: row;
+  align-items: center;
+`
 
 const styles = StyleSheet.create({
   centeredView: {
