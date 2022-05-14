@@ -18,6 +18,7 @@ const App = () => {
 	const [allListings, setAllListings] = useState([])
 
 	const createNewListing = (newListing) => {
+		console.log('newlistboi', newListing)
 		setAllListings([...allListings, newListing])
 	}
 
