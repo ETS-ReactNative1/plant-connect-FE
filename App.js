@@ -5,13 +5,13 @@ import MyCarousel from "./Components/MyCarousel";
 import {AntDesign} from '@expo/vector-icons'
 import styled from 'styled-components'
 import ModalForm from "./Components/ModalForm";
-// import {setModalVisible, modalVisible } from "./Components/ModalForm";
+// import { Context } from "./Contexts/DataContext";
 
 const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
-
   return (
-    <View style={styles.centeredView}>
+    // <Context.Consumer>
+      <View style={styles.centeredView}>
       <Container>
         <SafeAreaView>
         <PlantBackground source={require('./creative-pastel-green-monstera-leaves-abstract-pattern-mykola-tsap.png')} >
@@ -24,7 +24,7 @@ const App = () => {
         </PlantBackground>
         </SafeAreaView>
       </Container>
-     <ModalForm />
+     <ModalForm visible={modalVisible} setModalVisible={setModalVisible}/>
       <MyCarousel />
       
       
@@ -35,6 +35,8 @@ const App = () => {
         <Text style={styles.textStyle}>Post Your Plant!</Text>
       </Pressable>
     </View>
+    // </Context.Consumer>
+    
   );
 };
 

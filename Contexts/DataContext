@@ -1,0 +1,11 @@
+// import React, { useReducer, createContext} from "react";
+// // import { fetchData } from "../apiCalls";
+// // import Error from "../components/Error/Error";
+
+// const Context = createContext({});
+//   const DataProvider = ({ children }) => {
+//     // const [modalVisible, setModalVisible] = useState(false);
+//   return (<Context.Provider value={}></Context.Provider>)
+// };
+
+// export { Context };

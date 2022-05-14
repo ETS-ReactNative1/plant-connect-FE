@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import DropDownPicker from 'react-native-dropdown-picker';
-import {Modal, StyleSheet, StatusBar, SafeAreaView, Text, Pressable, View, Image, TextInput} from "react-native";
+import {Modal, StyleSheet, Text, Pressable, View, TextInput} from "react-native";
 
-export default function ModalForm() {
-  const [modalVisible, setModalVisible] = useState(false);
+export default function ModalForm({visible, setModalVisible}) {
+  
   
   return (
     <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
+        visible={visible}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
+          setModalVisible(false);
         }}
       >
         <View style={styles.centeredView}>
@@ -44,7 +44,7 @@ export default function ModalForm() {
       />
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => setModalVisible(false)}
             >
               <Text style={styles.textStyle}>Submit</Text>
             </Pressable>
