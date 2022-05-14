@@ -14,7 +14,6 @@ export default function ModalForm({
 	setModalVisible,
 	createNewListing,
 }) {
-	const [category, setCategory] = useState('')
 	const [plantName, setPlantName] = useState('')
 	const [description, setDescription] = useState('')
 	const [open, setOpen] = useState(false)
@@ -28,19 +27,18 @@ export default function ModalForm({
 	])
 
 	const submitListing = () => {
+		setModalVisible(false)
 		const newListing = {
 			id: Date.now(),
 			plantName: plantName,
-			category: category,
+			category: value,
 			description: description,
 			quantity: quantity,
 		}
 		createNewListing(newListing)
 		clearInputs()
 	}
-
 	const clearInputs = () => {
-		setCategory('Category')
 		setDescription('')
 		setQuantity(0)
 		setPlantName('')
@@ -61,7 +59,7 @@ export default function ModalForm({
 					<Text>name: {plantName}</Text>
 					<Text>description: {description}</Text>
 					<Text>quantity: {quantity}</Text>
-					<Text>category: {value}</Text>
+					{/* <Text>newListing: {submitListing()}</Text> */}
 
 					<DropDownPicker
 						open={open}
@@ -74,7 +72,6 @@ export default function ModalForm({
 						setOpen={setOpen}
 						setValue={setValue}
 						setItems={setItems}
-						onChangeItem={(category) => setCategory(category)}
 					/>
 					<TextInput
 						style={styles.input}
@@ -96,7 +93,7 @@ export default function ModalForm({
 					/>
 					<Pressable
 						style={[styles.button, styles.buttonClose]}
-						onPress={() => setModalVisible(false)}>
+						onPress={() => submitListing()}>
 						<Text style={styles.textStyle}>Submit</Text>
 					</Pressable>
 				</View>
