@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, StatusBar, SafeAreaView, Text, Pressable, View, Image, TextInput } from "react-native";
+import { Alert, StyleSheet, StatusBar, SafeAreaView, Text, Pressable, View, Image, TextInput } from "react-native";
 import { withTheme } from "styled-components";
 import MyCarousel from "./Components/MyCarousel";
-import DropDownPicker from 'react-native-dropdown-picker';
 import {AntDesign} from '@expo/vector-icons'
 import styled from 'styled-components'
+import ModalForm from "./Components/ModalForm";
+// import {setModalVisible, modalVisible } from "./Components/ModalForm";
 
 const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <View style={styles.centeredView}>
       <Container>
@@ -19,62 +21,13 @@ const App = () => {
               <Title>Planty Dropper</Title>
             </Back>
           </MenuBar>
-          
         </PlantBackground>
         </SafeAreaView>
-        {/* <StatusBar barStyle="light-content" /> */}
-        
-        
       </Container>
-      {/* <Image source={require('./plant-connect-icon.png')} style={styles.tinyLogo} /> */}
-     
+     <ModalForm />
       <MyCarousel />
       
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Please Fill Out Form</Text>
-            <DropDownPicker style={styles.dropdown} placeholder="Category"
-    items={[
-        {label: 'Item 1', value: 'item1'},
-        {label: 'Item 2', value: 'item2'},
-    ]}
-    defaultIndex={0}
-    containerStyle={{height: 40}}
-    onChangeItem={item => console.log(item.label, item.value)}
-/>
-            <TextInput style={styles.input} 
-      // onChangeText={onChangeText}
-        placeholder="Plant Name"
-        // value={text}
-      />
-      <TextInput style={styles.input} 
-      // onChangeText={onChangeText}
-        placeholder="Plant Name"
-        // value={text}
-      />
-      <TextInput style={styles.input} 
-      // onChangeText={onChangeText}
-        placeholder="Plant Name"
-        // value={text}
-      />
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Submit</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+      
       <Pressable
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
@@ -92,7 +45,7 @@ const Container = styled.View`
 `
 const PlantBackground = styled.ImageBackground`
   width: 100%;
-  height: 90%;
+  height: 80%;
 `
 const Title = styled.Text`
   font-family: 'AvenirNext-Regular';
@@ -121,12 +74,14 @@ const styles = StyleSheet.create({
   dropdown: {
     height: 20,
     width: 160,
+    marginLeft: 31,
     borderWidth: 1,
   },
   modalView: {
     margin: 20,
-    height: 400,
-    backgroundColor: "green",
+    height: 500,
+    width: 300,
+    backgroundColor: "#57784E",
     borderRadius: 20,
     alignContent: 'center',
     justifyContent: "space-between",
@@ -134,12 +89,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
-      width: 10,
-      height: 10
+      width: 15,
+      height: 15
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
+    shadowOpacity: 0.7,
+    shadowRadius: 5,
+    elevation: 9
   },
   button: {
     borderRadius: 20,
@@ -164,7 +119,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 12,
+    // margin: 12,
     borderWidth: 1,
     padding: 10,
   },
