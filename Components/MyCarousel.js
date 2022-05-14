@@ -2,7 +2,6 @@ import * as React  from 'react';
 import {
   Text, 
   View,
-  Modal,
   StyleSheet,
   Pressable,
   SafeAreaView } from 'react-native';
@@ -93,34 +92,15 @@ export default class MyCarousel extends React.Component {
         return (
           <View style={{
               backgroundColor:'floralwhite',
-              borderRadius: 5,
+              borderRadius: 12,
               height: 100,
-              padding: 10,
+              marginTop: 15,
+              padding: 15,
               marginLeft: 25,
               marginRight: 25, }}>
             <Text style={{fontSize: 20}}>{item.title}</Text>
             <Text>{item.text}</Text>
-            {/* <Modal
-        animationType="slide"
-        transparent={true}
-        visible={this.modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          this.setState({modalVisible: false});
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => hideModal}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal> */}
+           
       <Pressable
         style={[styles.button, styles.buttonOpen]}
         // onPress={() => this.setState({modalVisible: true})}
@@ -134,8 +114,8 @@ export default class MyCarousel extends React.Component {
 
     render() {
         return (
-          <SafeAreaView style={{flex: 1, backgroundColor:'#57784E', paddingTop: 50, }}>
-            <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center', }}>
+          <SafeAreaView style={{flex: 4, backgroundColor:'#57784E', paddingTop: 1, borderRadius: 12, height: 500}}>
+            <View style={{ flex: .5, flexDirection:'row', justifyContent: 'center', }}>
                     <Carousel
                     layout={"default"}
                     ref={ref => this.carousel = ref}
@@ -145,7 +125,7 @@ export default class MyCarousel extends React.Component {
                     renderItem={this._renderItem}
                     onSnapToItem = { index => this.setState({activeIndex:index}) } />
             </View>
-            <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center', }}>
+            <View style={{ flex: .5, flexDirection:'row', justifyContent: 'center', }}>
                     <Carousel
                     layout={"default"}
                     ref={ref => this.carousel = ref}
@@ -155,7 +135,7 @@ export default class MyCarousel extends React.Component {
                     renderItem={this._renderItem}
                     onSnapToItem = { index => this.setState({activeIndex:index}) } />
             </View>
-            <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center', }}>
+            <View style={{ flex: .4, flexDirection:'row', justifyContent: 'center', }}>
                     <Carousel
                     layout={"default"}
                     ref={ref => this.carousel = ref}
@@ -177,42 +157,12 @@ const styles = StyleSheet.create({
       alignItems: "center",
       marginTop: 22
     },
-    modalView: {
-      margin: 20,
-      backgroundColor: "green",
-      borderRadius: 20,
-      padding: 35,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
-    },
-    button: {
-      borderRadius: 20,
-      padding: .5,
-      elevation: 2
-    },
-    buttonOpen: {
-      backgroundColor: "#F194FF",
-    },
-    buttonClose: {
-      backgroundColor: "#2196F3",
-    },
+  
     textStyle: {
       color: "white",
       fontWeight: "bold",
       textAlign: "center",
     //   marginBottom: 15,
     },
-    modalText: {
-      marginBottom: 15,
-      textAlign: "center"
-    },
-    
   });
 
