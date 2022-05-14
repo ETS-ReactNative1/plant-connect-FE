@@ -3,7 +3,11 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {Modal, StyleSheet, Text, Pressable, View, TextInput} from "react-native";
 
 export default function ModalForm({visible, setModalVisible}) {
-  
+  const [category, setCategory] = useState('')
+  const [plantName, setPlantName] = useState('')
+  const [description, setDescription] = useState('')
+  const [quantity, setQuantity] = useState(0)
+  const [currentListing, setCurrentListing] = useState('')
   
   return (
     <Modal
@@ -17,30 +21,32 @@ export default function ModalForm({visible, setModalVisible}) {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Please Fill Out Form</Text>
-            <DropDownPicker style={styles.dropdown} placeholder="Category"
+            <Text style={styles.modalText}>Post a Plant!</Text>
+            <DropDownPicker style={styles.dropdown} value={category} placeholder="Category"
     items={[
-        {label: 'Item 1', value: 'item1'},
-        {label: 'Item 2', value: 'item2'},
+        {label: 'Plant', value: 'plant'},
+        {label: 'Seeds', value: 'seeds'},
+        {label: 'Clippings', value: 'clippings'},
+
     ]}
     defaultIndex={0}
     containerStyle={{height: 40}}
     onChangeItem={item => console.log(item.label, item.value)}
 />
             <TextInput style={styles.input} 
-      // onChangeText={onChangeText}
+      onChangeText={setPlantName}
         placeholder="Plant Name"
-        // value={text}
+        value={plantName}
       />
       <TextInput style={styles.input} 
-      // onChangeText={onChangeText}
+      onChangeText={setDescription}
         placeholder="Description"
-        // value={text}
+        value={description}
       />
       <TextInput style={styles.input} 
-      // onChangeText={onChangeText}
+      onChangeText={setQuantity}
         placeholder="Quantity"
-        // value={text}
+        value={quantity}
       />
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -54,8 +60,6 @@ export default function ModalForm({visible, setModalVisible}) {
   )
   
 }
-
-
 
 const styles = StyleSheet.create({
     centeredView: {
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
       margin: 20,
       height: 500,
       width: 300,
-      backgroundColor: "#57784E",
+      backgroundColor: "#FFF9EB",
       borderRadius: 20,
       alignContent: 'center',
       justifyContent: "space-between",
@@ -95,10 +99,10 @@ const styles = StyleSheet.create({
       elevation: 2
     },
     buttonOpen: {
-      backgroundColor: "#F194FF",
+      backgroundColor: "#545454",
     },
     buttonClose: {
-      backgroundColor: "#F194FF",
+      backgroundColor: "#545454",
       width: 160,
     },
     textStyle: {
@@ -117,7 +121,7 @@ const styles = StyleSheet.create({
       padding: 10,
     },
     input: {
-      backgroundColor: 'white',
+      backgroundColor: '#C4C4C4',
       width: 160,
       height: 40,
       margin: 1,
