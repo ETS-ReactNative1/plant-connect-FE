@@ -17,8 +17,15 @@ export default function ModalForm({
 	const [category, setCategory] = useState('')
 	const [plantName, setPlantName] = useState('')
 	const [description, setDescription] = useState('')
+	const [open, setOpen] = useState(false)
+	const [value, setValue] = useState(null)
 	const [quantity, setQuantity] = useState(0)
 	const [currentListing, setCurrentListing] = useState('')
+	const [items, setItems] = useState([
+		{ label: 'plant', value: 'plant' },
+		{ label: 'clipping', value: 'clipping' },
+		{ label: 'seeds', value: 'seeds' },
+	])
 
 	const submitListing = () => {
 		const newListing = {
@@ -54,18 +61,20 @@ export default function ModalForm({
 					<Text>name: {plantName}</Text>
 					<Text>description: {description}</Text>
 					<Text>quantity: {quantity}</Text>
+					<Text>category: {value}</Text>
+
 					<DropDownPicker
+						open={open}
 						style={styles.dropdown}
-						value={category}
+						value={value}
 						placeholder='Category'
-						items={[
-							{ label: 'Plant', value: 'plant' },
-							{ label: 'Seeds', value: 'seeds' },
-							{ label: 'Clippings', value: 'clippings' },
-						]}
 						defaultIndex={0}
 						containerStyle={{ height: 40 }}
-						onChangeItem={(item) => setCategory(item.value)}
+						items={items}
+						setOpen={setOpen}
+						setValue={setValue}
+						setItems={setItems}
+						onChangeItem={(category) => setCategory(category)}
 					/>
 					<TextInput
 						style={styles.input}
