@@ -1,168 +1,208 @@
-import * as React  from 'react';
+import * as React from 'react'
+import { useState } from 'react'
 import {
-  Text, 
-  View,
-  StyleSheet,
-  Pressable,
-  SafeAreaView } from 'react-native';
+	Text,
+	View,
+	StyleSheet,
+	Pressable,
+	SafeAreaView,
+	Image,
+	ImageBackground,
+} from 'react-native'
+const url = {
+	uri: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Monstera_Adansonii.jpg',
+}
+import styled from 'styled-components'
 
-import Carousel from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel'
 
-export default class MyCarousel extends React.Component {
+const MyCarousel = () => {
+	const [activeIndex, setActiveIndex] = useState(0)
+	const [plants, setPlants] = useState([
+		{
+			title: 'Monsterra',
+			text: 'Text 1',
+			image:
+				'https://upload.wikimedia.org/wikipedia/commons/1/1c/Monstera_Adansonii.jpg',
+		},
+		{
+			title: 'Snake Plant',
+			text: 'Text 2',
+		},
+		{
+			title: 'Swiss Cheese Plant',
+			text: 'Text 3',
+		},
+		{
+			title: 'Egg Plant',
+			text: 'Text 4',
+		},
+		{
+			title: 'Banana Ficus',
+			text: 'Text 5',
+		},
+	])
+	const [clippings, setClippings] = useState([
+		{
+			title: 'Spider',
+			text: 'Text 1',
+		},
+		{
+			title: 'Ivy',
+			text: 'Text 2',
+		},
+		{
+			title: 'Other',
+			text: 'Text 3',
+		},
+		{
+			title: 'Another other',
+			text: 'Text 4',
+		},
+		{
+			title: 'Potato',
+			text: 'Text 5',
+		},
+	])
+	const [seeds, setSeeds] = useState([
+		{
+			title: 'Papaya',
+			text: 'Text 1',
+		},
+		{
+			title: 'Tomato',
+			text: 'Text 2',
+		},
+		{
+			title: 'Apple',
+			text: 'Text 3',
+		},
+		{
+			title: 'Poppy',
+			text: 'Text 4',
+		},
 
- 
-    constructor(props){
-        super(props);
-        this.state = {
-          activeIndex:0,
-          plants: [
-          {
-              title:"Monsterra",
-              text: "Text 1",
-          },
-          {
-              title:"Snake Plant",
-              text: "Text 2",
-          },
-          {
-              title:"Swiss Cheese Plant",
-              text: "Text 3",
-          },
-          {
-              title:"Egg Plant",
-              text: "Text 4",
-          },
-          {
-              title:"Banana Ficus",
-              text: "Text 5",
-          },
-        ],
-        seeds: [
-            {
-                title:"Papaya",
-                text: "Text 1",
-            },
-            {
-                title:"Tomato",
-                text: "Text 2",
-            },
-            {
-                title:"Apple",
-                text: "Text 3",
-            },
-            {
-                title:"Poppy",
-                text: "Text 4",
-            },
-            {
-                title:"Pumpkin",
-                text: "Text 5",
-            },
-          ],
-          clippings: [
-            {
-                title:"Spider",
-                text: "Text 1",
-            },
-            {
-                title:"Ivy",
-                text: "Text 2",
-            },
-            {
-                title:"Other",
-                text: "Text 3",
-            },
-            {
-                title:"Another other",
-                text: "Text 4",
-            },
-            {
-                title:"Potato",
-                text: "Text 5",
-            },
-          ],
-          modalVisible: false
-      }
-    }
-    hideModal() {
-        this.setState({modalVisible: false})
-    }
-    _renderItem({item, index}){
-        // const [modalVisible, setModalVisible] = useState(false);
-        return (
-          <View style={{
-              backgroundColor:'floralwhite',
-              borderRadius: 12,
-              height: 100,
-              marginTop: 15,
-              padding: 15,
-              marginLeft: 25,
-              marginRight: 25, }}>
-            <Text style={{fontSize: 20}}>{item.title}</Text>
-            <Text>{item.text}</Text>
-           
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        // onPress={() => this.setState({modalVisible: true})}
-      >
-        <Text style={styles.textStyle}>learn more!</Text>
-      </Pressable>
-          </View>
+		{
+			title: 'Pumpkin',
+			text: 'Text 5',
+		},
+	])
+	const [modalVisible, setModalVisible] = useState(false)
 
-        )
-    }
+	const hideModal = () => {
+		setModalVisible(false)
+	}
+	const _renderItem = ({ item, index }) => {
+		return (
+			<View
+				style={{
+					// backgroundColor: 'floralwhite',
+					flex: 1,
+					resizeMode: 'cover',
+					justifyContent: 'center',
+					borderRadius: 12,
+					height: 100,
+					width: 100,
+					marginTop: 15,
+					padding: 15,
+				}}>
+				<ImageBackground
+					imageStyle={styles.cardBackground}
+					source={url}
+					resizeMode='cover'
+					style={styles.cardBackground}>
+					<Text style={{ fontSize: 20 }}>{item.title}</Text>
+					<Text>{item.text}</Text>
+					<Pressable
+						style={[styles.button, styles.buttonOpen]}
+						// onPress={() => this.setState({modalVisible: true})}
+					>
+						<Text style={styles.textStyle}>learn more!</Text>
+					</Pressable>
+				</ImageBackground>
+			</View>
+		)
+	}
 
-    render() {
-        return (
-          <SafeAreaView style={{flex: 4, backgroundColor:'#57784E', paddingTop: 1, borderRadius: 12, height: 500}}>
-            <View style={{ flex: .5, flexDirection:'row', justifyContent: 'center', }}>
-                    <Carousel
-                    layout={"default"}
-                    ref={ref => this.carousel = ref}
-                    data={this.state.plants}
-                    sliderWidth={300}
-                    itemWidth={300}
-                    renderItem={this._renderItem}
-                    onSnapToItem = { index => this.setState({activeIndex:index}) } />
-            </View>
-            <View style={{ flex: .5, flexDirection:'row', justifyContent: 'center', }}>
-                    <Carousel
-                    layout={"default"}
-                    ref={ref => this.carousel = ref}
-                    data={this.state.seeds}
-                    sliderWidth={300}
-                    itemWidth={300}
-                    renderItem={this._renderItem}
-                    onSnapToItem = { index => this.setState({activeIndex:index}) } />
-            </View>
-            <View style={{ flex: .4, flexDirection:'row', justifyContent: 'center', }}>
-                    <Carousel
-                    layout={"default"}
-                    ref={ref => this.carousel = ref}
-                    data={this.state.clippings}
-                    sliderWidth={300}
-                    itemWidth={300}
-                    renderItem={this._renderItem}
-                    onSnapToItem = { index => this.setState({activeIndex:index}) } />
-            </View>
-          </SafeAreaView>
-        );
-    }
+	return (
+		<SafeAreaView
+			style={{
+				flex: 4,
+				backgroundColor: '#57784E',
+				margin: 100,
+				height: 500,
+				width: 350,
+			}}>
+			<View
+				style={{ flex: 0.5, flexDirection: 'row', justifyContent: 'center' }}>
+				<Carousel
+					layout={'default'}
+					ref={(ref) => (carousel = ref)}
+					data={plants}
+					sliderWidth={280}
+					itemWidth={110}
+					padding={0}
+					paddingHorizontal={10}
+					// borderColor='red'
+					// borderWidth={10}
+					renderItem={_renderItem}
+					onSnapToItem={(index) => setActiveIndex(index)}
+				/>
+			</View>
+			<View
+				style={{ flex: 0.5, flexDirection: 'row', justifyContent: 'center' }}>
+				<Carousel
+					layout={'default'}
+					ref={(ref) => (carousel = ref)}
+					data={seeds}
+					sliderWidth={100}
+					itemWidth={100}
+					renderItem={_renderItem}
+					onSnapToItem={(index) => setActiveIndex(index)}
+				/>
+			</View>
+			<View
+				style={{ flex: 0.4, flexDirection: 'row', justifyContent: 'center' }}>
+				<Carousel
+					layout={'default'}
+					ref={(ref) => (carousel = ref)}
+					data={clippings}
+					sliderWidth={100}
+					itemWidth={120}
+					renderItem={_renderItem}
+					onSnapToItem={(index) => setActiveIndex(index)}
+				/>
+			</View>
+		</SafeAreaView>
+	)
 }
 
 const styles = StyleSheet.create({
-    centeredView: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 22
-    },
-  
-    textStyle: {
-      color: "white",
-      fontWeight: "bold",
-      textAlign: "center",
-    //   marginBottom: 15,
-    },
-  });
+	centeredView: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginTop: 22,
+		borderColor: 'red',
+		borderWidth: 10,
+	},
 
+	textStyle: {
+		color: 'white',
+		fontWeight: 'bold',
+		textAlign: 'center',
+		//   marginBottom: 15,
+	},
+	imageStyle: {
+		height: 100,
+	},
+	cardBackground: {
+		width: 100,
+		flex: 1,
+		justifyContent: 'center',
+		height: 100,
+		borderRadius: 6,
+	},
+})
+
+export default MyCarousel
