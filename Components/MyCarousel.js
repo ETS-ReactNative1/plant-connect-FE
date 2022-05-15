@@ -1,7 +1,17 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { Text, View, StyleSheet, Pressable, SafeAreaView } from 'react-native'
-
+import {
+	Text,
+	View,
+	StyleSheet,
+	Pressable,
+	SafeAreaView,
+	Image,
+	ImageBackground,
+} from 'react-native'
+const url = {
+	uri: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Monstera_Adansonii.jpg',
+}
 import styled from 'styled-components'
 
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel'
@@ -95,19 +105,16 @@ const MyCarousel = () => {
 					marginLeft: 25,
 					marginRight: 25,
 				}}>
-				<Text style={{ fontSize: 20 }}>{item.title}</Text>
-				<Text>{item.text}</Text>
-				<ParallaxImage
-					source={{
-						uri: `https://upload.wikimedia.org/wikipedia/commons/1/1c/Monstera_Adansonii.jpg`,
-					}}
-				/>
-				<Pressable
-					style={[styles.button, styles.buttonOpen]}
-					// onPress={() => this.setState({modalVisible: true})}
-				>
-					<Text style={styles.textStyle}>learn more!</Text>
-				</Pressable>
+				<ImageBackground source={url} resizeMode='cover'>
+					<Text style={{ fontSize: 20 }}>{item.title}</Text>
+					<Text>{item.text}</Text>
+					<Pressable
+						style={[styles.button, styles.buttonOpen]}
+						// onPress={() => this.setState({modalVisible: true})}
+					>
+						<Text style={styles.textStyle}>learn more!</Text>
+					</Pressable>
+				</ImageBackground>
 			</View>
 		)
 	}
@@ -125,7 +132,7 @@ const MyCarousel = () => {
 				style={{ flex: 0.5, flexDirection: 'row', justifyContent: 'center' }}>
 				<Carousel
 					layout={'default'}
-					ref={(ref) => (this.carousel = ref)}
+					ref={(ref) => (carousel = ref)}
 					data={plants}
 					sliderWidth={100}
 					itemWidth={120}
@@ -138,7 +145,7 @@ const MyCarousel = () => {
 				style={{ flex: 0.5, flexDirection: 'row', justifyContent: 'center' }}>
 				<Carousel
 					layout={'default'}
-					ref={(ref) => (this.carousel = ref)}
+					ref={(ref) => (carousel = ref)}
 					data={seeds}
 					sliderWidth={300}
 					itemWidth={300}
@@ -150,7 +157,7 @@ const MyCarousel = () => {
 				style={{ flex: 0.4, flexDirection: 'row', justifyContent: 'center' }}>
 				<Carousel
 					layout={'default'}
-					ref={(ref) => (this.carousel = ref)}
+					ref={(ref) => (carousel = ref)}
 					data={clippings}
 					sliderWidth={300}
 					itemWidth={300}
