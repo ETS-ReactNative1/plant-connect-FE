@@ -143,8 +143,8 @@ const MyCarousel = () => {
 					itemWidth={110}
 					padding={0}
 					paddingHorizontal={10}
-					borderColor='red'
-					borderWidth={10}
+					// borderColor='red'
+					// borderWidth={10}
 					renderItem={_renderItem}
 					onSnapToItem={(index) => setActiveIndex(index)}
 				/>

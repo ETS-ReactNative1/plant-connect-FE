@@ -29,7 +29,7 @@ export default function ModalForm({
 	const submitListing = () => {
 		setModalVisible(false)
 		const newListing = {
-			id: Date.now(),
+			listingID: Date.now(),
 			plantName: plantName,
 			category: value,
 			description: description,
