@@ -96,6 +96,7 @@ export default function ModalForm({
 						onPress={() => submitListing()}>
 						<Text style={styles.textStyle}>Submit</Text>
 					</Pressable>
+					
 				</View>
 			</View>
 		</Modal>
