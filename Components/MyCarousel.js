@@ -14,7 +14,7 @@ const url = {
 }
 import styled from 'styled-components'
 
-import Carousel, { ParallaxImage } from 'react-native-snap-carousel'
+import Carousel from 'react-native-snap-carousel'
 
 const MyCarousel = () => {
 	const [activeIndex, setActiveIndex] = useState(0)
@@ -92,20 +92,25 @@ const MyCarousel = () => {
 	const hideModal = () => {
 		setModalVisible(false)
 	}
-	const _renderItem = ({ item, index, parallaxProps }) => {
+	const _renderItem = ({ item, index }) => {
 		return (
 			<View
 				style={{
-					backgroundColor: 'floralwhite',
+					// backgroundColor: 'floralwhite',
+					flex: 1,
+					resizeMode: 'cover',
+					justifyContent: 'center',
 					borderRadius: 12,
 					height: 100,
 					width: 100,
 					marginTop: 15,
 					padding: 15,
-					marginLeft: 25,
-					marginRight: 25,
 				}}>
-				<ImageBackground source={url} resizeMode='cover'>
+				<ImageBackground
+					imageStyle={styles.cardBackground}
+					source={url}
+					resizeMode='cover'
+					style={styles.cardBackground}>
 					<Text style={{ fontSize: 20 }}>{item.title}</Text>
 					<Text>{item.text}</Text>
 					<Pressable
@@ -124,9 +129,9 @@ const MyCarousel = () => {
 			style={{
 				flex: 4,
 				backgroundColor: '#57784E',
-				paddingTop: 1,
-				borderRadius: 12,
+				margin: 100,
 				height: 500,
+				width: 350,
 			}}>
 			<View
 				style={{ flex: 0.5, flexDirection: 'row', justifyContent: 'center' }}>
@@ -134,11 +139,14 @@ const MyCarousel = () => {
 					layout={'default'}
 					ref={(ref) => (carousel = ref)}
 					data={plants}
-					sliderWidth={100}
-					itemWidth={120}
+					sliderWidth={280}
+					itemWidth={110}
+					padding={0}
+					paddingHorizontal={10}
+					borderColor='red'
+					borderWidth={10}
 					renderItem={_renderItem}
 					onSnapToItem={(index) => setActiveIndex(index)}
-					hasParallaxImages={true}
 				/>
 			</View>
 			<View
@@ -147,8 +155,8 @@ const MyCarousel = () => {
 					layout={'default'}
 					ref={(ref) => (carousel = ref)}
 					data={seeds}
-					sliderWidth={300}
-					itemWidth={300}
+					sliderWidth={100}
+					itemWidth={100}
 					renderItem={_renderItem}
 					onSnapToItem={(index) => setActiveIndex(index)}
 				/>
@@ -159,8 +167,8 @@ const MyCarousel = () => {
 					layout={'default'}
 					ref={(ref) => (carousel = ref)}
 					data={clippings}
-					sliderWidth={300}
-					itemWidth={300}
+					sliderWidth={100}
+					itemWidth={120}
 					renderItem={_renderItem}
 					onSnapToItem={(index) => setActiveIndex(index)}
 				/>
@@ -175,6 +183,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginTop: 22,
+		borderColor: 'red',
+		borderWidth: 10,
 	},
 
 	textStyle: {
@@ -186,10 +196,13 @@ const styles = StyleSheet.create({
 	imageStyle: {
 		height: 100,
 	},
+	cardBackground: {
+		width: 100,
+		flex: 1,
+		justifyContent: 'center',
+		height: 100,
+		borderRadius: 6,
+	},
 })
 
-const cardBackground = styled.ImageBackground`
-	width: 100%;
-	height: 100%;
-`
 export default MyCarousel
