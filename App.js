@@ -12,11 +12,11 @@ import MyCarousel from './Components/MyCarousel'
 import { AntDesign } from '@expo/vector-icons'
 import styled from 'styled-components'
 import ModalForm from './Components/ModalForm'
-import CameraView from './Components/CameraView'
 
 
 const App = () => {
 	const [modalVisible, setModalVisible] = useState(false)
+	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [allListings, setAllListings] = useState([])
 
 	const createNewListing = (newListing) => {
@@ -42,6 +42,8 @@ const App = () => {
 			<ModalForm
 				visible={modalVisible}
 				setModalVisible={setModalVisible}
+				cameraModalVisible={cameraModalVisible}
+				setCameraModalVisible={setCameraModalVisible}
 				createNewListing={createNewListing}
 			/>
 			<MyCarousel />
@@ -50,7 +52,8 @@ const App = () => {
 				onPress={() => setModalVisible(true)}>
 				<Text style={styles.textStyle}>Post Your Plant!</Text>
 			</Pressable>
-			<CameraView/>
+			
+			
 		</View>
 	)
 }
