@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import { Button } from 'react-native-web';
 
- const CameraView = () => {
+ const CameraView = ({setCameraModalVisible}) => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
@@ -29,7 +29,6 @@ import { Button } from 'react-native-web';
 
   return (
     <View style={{ flex: 1 }}>
-      <Text>Try and Ignore ME!!!!!</Text>
       <View style={styles.cameraContainer}>
         <Camera ref={ref => setCamera(ref)}
         style={styles.fixedRatio}
@@ -37,13 +36,12 @@ import { Button } from 'react-native-web';
         ratio={'1:1'}
         />
       </View>
-        <Pressable
+        {/* <Pressable
         title= 'flip camera'
         onPress={() => {setType(type === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back)}}
-        ><Text> ♲  </Text></Pressable>
-        <Pressable onPress={() => takePicture()}><Text> 📸  </Text></Pressable>
-        
-        
+        ><Text style={styles.icon}> ♲  </Text></Pressable> */}
+        <Pressable onPress={() => takePicture()}><Text style={styles.icon}> 📸  </Text></Pressable>
+        <Pressable onPress={() => setCameraModalVisible(false)}><Text style={styles.icon}> ❌ </Text></Pressable>
         
         {image && <Image source={{uri: image}} style={{flex:1}} />}
     </View>
@@ -52,12 +50,18 @@ import { Button } from 'react-native-web';
 
 const styles = StyleSheet.create({
   cameraContainer: {
+    // height: 400,
+    width: 400,
     flex: 1,
     flexDirection: 'row',
   },
   fixedRatio: {
     flex: 1,
     aspectRatio: 1,
+  },
+  icon: {
+    fontSize: 40,
+    alignSelf: 'center',
   }
 })
 
