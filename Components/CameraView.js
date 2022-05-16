@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import { Button } from 'react-native-web';
+import { RadioButton } from 'react-native-paper';
 
  const CameraView = ({setCameraModalVisible}) => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);

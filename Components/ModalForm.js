@@ -10,6 +10,8 @@ import {
   TextInput,
 } from "react-native";
 import CameraModal from "./CameraModal";
+// import { RadioButton } from 'react-native-paper';
+import { CheckBox } from 'react-native-elements';
 
 export default function ModalForm({
   visible,
@@ -29,6 +31,8 @@ export default function ModalForm({
     { label: "clipping", value: "clipping" },
     { label: "seeds", value: "seeds" },
   ]);
+  const [rooted, setRooted] = useState(false);
+  const [indoor, setIndoor] = useState(false);
 
   const submitListing = () => {
     setModalVisible(false);
@@ -78,6 +82,31 @@ export default function ModalForm({
             setValue={setValue}
             setItems={setItems}
           />
+          <View>
+            <CheckBox
+            title='rooted'
+            center
+            checked={rooted}
+            checkedIcon='dot-circle-o'
+            unCheckedIcon='circle-o'
+             />
+          {/* <RadioButton
+            style={styles.radio}
+            uncheckedColor={'green'}
+            checkedColor={'red'}
+            value={true}
+            status={checked === true ? true : false}
+            onPress={() => setChecked(true)}
+          />
+          <RadioButton
+          style={styles.radio}
+            uncheckedColor={'green'}
+            checkedColor={'red'}
+            value={false}
+            status={checked === false ? false : true}
+            onPress={() => setChecked(false)}
+          /> */}
+          </View>
           <TextInput
             style={styles.input}
             onChangeText={setPlantName}
@@ -180,4 +209,16 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 1,
   },
+  radioContainer: {
+    border: 1,
+    borderColor: 'red',
+    borderWidth: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    
+  },
+  radio: {
+   buttonColor: 'black',
+  //  color: 'red'
+  }
 });

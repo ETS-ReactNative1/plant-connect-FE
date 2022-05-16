@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@expo/webpack-config": "~0.16.2",
+    "@rneui/base": "^4.0.0-rc.3",
+    "@rneui/themed": "^4.0.0-rc.3",
     "components": "^0.1.0",
     "expo": "~45.0.0",
     "expo-camera": "~12.2.0",
@@ -21,6 +23,8 @@
     "react-native-camera": "^4.2.1",
     "react-native-camera-hooks": "^0.5.3",
     "react-native-dropdown-picker": "^5.4.2",
+    "react-native-elements": "^3.4.2",
+    "react-native-paper": "^4.12.1",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-vision-camera": "^2.13.3",
     "react-native-web": "0.17.7",
