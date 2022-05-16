@@ -64,7 +64,7 @@ const Container = styled.View`
 `
 const PlantBackground = styled.ImageBackground`
 	width: 100%;
-	height: 90%;
+	height: 95%;
 `
 const Title = styled.Text`
 	font-family: 'AvenirNext-Regular';
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 22,
+		marginTop: 20,
 		backgroundColor: '#57784E',
 	},
 	dropdown: {
