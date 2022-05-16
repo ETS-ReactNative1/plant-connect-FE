@@ -101,10 +101,10 @@ const MyCarousel = () => {
 					resizeMode: 'cover',
 					justifyContent: 'center',
 					borderRadius: 11,
-					height: 100,
-					width: 100,
-					marginTop: 15,
-					padding: 15,
+					height: 200,
+					width: 200,
+					// marginTop: 15,
+					// padding: 15,
 				}}>
 				<ImageBackground
 					imageStyle={styles.cardBackground}
@@ -129,9 +129,9 @@ const MyCarousel = () => {
 			style={{
 				flex: 4,
 				backgroundColor: '#57784E',
-				margin: 100,
-				height: 500,
-				width: 350,
+				// margin: 100,
+				height: 100,
+				width: 375,
 			}}>
 			<View
 				style={{ flex: 0.5, flexDirection: 'row', justifyContent: 'center' }}>
@@ -139,12 +139,9 @@ const MyCarousel = () => {
 					layout={'default'}
 					ref={(ref) => (carousel = ref)}
 					data={plants}
-					sliderWidth={280}
-					itemWidth={110}
+					sliderWidth={100}
+					itemWidth={200}
 					padding={0}
-					paddingHorizontal={10}
-					// borderColor='red'
-					// borderWidth={10}
 					renderItem={_renderItem}
 					onSnapToItem={(index) => setActiveIndex(index)}
 				/>
@@ -156,7 +153,7 @@ const MyCarousel = () => {
 					ref={(ref) => (carousel = ref)}
 					data={seeds}
 					sliderWidth={100}
-					itemWidth={100}
+					itemWidth={200}
 					renderItem={_renderItem}
 					onSnapToItem={(index) => setActiveIndex(index)}
 				/>
@@ -168,7 +165,7 @@ const MyCarousel = () => {
 					ref={(ref) => (carousel = ref)}
 					data={clippings}
 					sliderWidth={100}
-					itemWidth={120}
+					itemWidth={200}
 					renderItem={_renderItem}
 					onSnapToItem={(index) => setActiveIndex(index)}
 				/>
@@ -178,14 +175,6 @@ const MyCarousel = () => {
 }
 
 const styles = StyleSheet.create({
-	centeredView: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginTop: 22,
-		borderColor: 'red',
-		borderWidth: 10,
-	},
 
 	textStyle: {
 		color: 'white',
@@ -194,14 +183,14 @@ const styles = StyleSheet.create({
 		//   marginBottom: 15,
 	},
 	imageStyle: {
-		height: 100,
+		height: 200,
 	},
 	cardBackground: {
-		width: 100,
+		width: 200,
 		flex: 1,
 		justifyContent: 'center',
-		height: 100,
-		borderRadius: 6,
+		height: 200,
+		// borderRadius: 6,
 	},
 })
 
