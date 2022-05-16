@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 import { Camera } from 'expo-camera';
-// import { RNCamera } from 'react-native-camera';
-// import { useCamera } from 'react-native-camera-hooks';
 import { Button } from 'react-native-web';
 
  const CameraView = () => {
@@ -31,6 +29,7 @@ import { Button } from 'react-native-web';
 
   return (
     <View style={{ flex: 1 }}>
+      <Text>Try and Ignore ME!!!!!</Text>
       <View style={styles.cameraContainer}>
         <Camera ref={ref => setCamera(ref)}
         style={styles.fixedRatio}
@@ -38,14 +37,14 @@ import { Button } from 'react-native-web';
         ratio={'1:1'}
         />
       </View>
-        <Button 
+        <Pressable
         title= 'flip camera'
         onPress={() => {setType(type === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back)}}
-        />
-        <Button 
-        title= 'take picture'
-        onPress={() => takePicture()}
-        />
+        ><Text> ♲  </Text></Pressable>
+        <Pressable onPress={() => takePicture()}><Text> 📸  </Text></Pressable>
+        
+        
+        
         {image && <Image source={{uri: image}} style={{flex:1}} />}
     </View>
   );

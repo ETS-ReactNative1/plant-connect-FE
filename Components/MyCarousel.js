@@ -100,7 +100,7 @@ const MyCarousel = () => {
 					flex: 1,
 					resizeMode: 'cover',
 					justifyContent: 'center',
-					borderRadius: 12,
+					borderRadius: 11,
 					height: 100,
 					width: 100,
 					marginTop: 15,
