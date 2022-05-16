@@ -60,7 +60,11 @@ export default function ModalForm({
 					<Text>description: {description}</Text>
 					<Text>quantity: {quantity}</Text>
 					{/* <Text>newListing: {submitListing()}</Text> */}
-
+					<Pressable
+						style={[styles.button, styles.buttonClose]}
+						onPress={() => submitListing()}>
+						<Text >📸</Text>
+					</Pressable>
 					<DropDownPicker
 						open={open}
 						style={styles.dropdown}
