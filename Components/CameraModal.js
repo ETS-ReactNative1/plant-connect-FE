@@ -14,6 +14,7 @@ export default function CameraModal({
 	visible,
 	setModalVisible,
 	createNewListing,
+    setCameraModalVisible,
 }) {
 
 	return (
@@ -25,9 +26,10 @@ export default function CameraModal({
 				Alert.alert('Modal has been closed.')
 				setModalVisible(false)
 			}}>
-                <CameraView />
+                
 			<View style={styles.centeredView}>
 				<View style={styles.modalView}>
+                <CameraView setCameraModalVisible={setCameraModalVisible}/>
 				</View>
 			</View>
 		</Modal>
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
 	modalView: {
 		margin: 20,
 		height: 500,
-		width: 300,
+		width: 400,
 		backgroundColor: '#FFF9EB',
 		borderRadius: 20,
 		alignContent: 'center',
