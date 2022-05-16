@@ -102,7 +102,7 @@ export default function ModalForm({
           >
             <Text style={styles.textStyle}>Take Picture</Text>
           </Pressable>
-		  {cameraModalVisible && <CameraModal />}
+		  {cameraModalVisible && <CameraModal setCameraModalVisible={setCameraModalVisible} />}
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => submitListing()}
