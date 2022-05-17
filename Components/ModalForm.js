@@ -10,8 +10,7 @@ import {
   TextInput,
 } from "react-native";
 import CameraModal from "./CameraModal";
-import { CheckBox } from 'react-native-elements';
-import RadioButtonRN from 'radio-buttons-react-native';
+import RadioButtons from './RadioButtons'
 
 export default function ModalForm({
   visible,
@@ -53,10 +52,10 @@ export default function ModalForm({
     setPlantName("");
   };
 
-const buttonList = [
-  {label: 'rooted'},
-  {label: 'unRooted'}
-]
+const data = [
+		{value: 'yes'},
+		{value: 'no'},
+	]
 
   const setRootedState = (status) => {
     status ? `set${{status}}`(false) : `set${status}`(true)
@@ -78,7 +77,7 @@ const buttonList = [
           <Text>name: {plantName}</Text>
           <Text>description: {description}</Text>
           <Text>quantity: {quantity}</Text>
-          <Text>rooted: {rooted}</Text>
+          
           <DropDownPicker
             open={open}
             style={styles.dropdown}
@@ -91,12 +90,11 @@ const buttonList = [
             setValue={setValue}
             setItems={setItems}
           />
-          <View>
-            <RadioButtonRN
-              name='Rooted'
-              data={buttonList}
-             />
+          <View style={styles.radioContainer}>
+            <Text style={styles.radioLabel}>Is cutting rooted?</Text>
+            <RadioButtons data={data} />
           </View>
+           
           <TextInput
             style={styles.input}
             onChangeText={setPlantName}
@@ -210,5 +208,8 @@ const styles = StyleSheet.create({
   radio: {
    buttonColor: 'black',
   //  color: 'red'
+  },
+  radioLabel: {
+
   }
 });
