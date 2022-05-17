@@ -30,15 +30,16 @@ export default function ModalForm({
     { label: "clipping", value: "clipping" },
     { label: "seeds", value: "seeds" },
   ]);
-  const [option, setOption] = useState('yes')
+  const [option, setOption] = useState(true)
+  const [indoor, setIndoor] = useState(null)
 
   const data = [
-		{value: 'yes'},
-		{value: 'no'},
+		{value: true, label:'true'},
+		{value: false, label: 'false'},
 	]
   const environment = [
-    {value: 'indoor'},
-    {value: 'outdoor'},
+    {value: true, label: 'indoor'},
+    {value: false, label: 'outdoor'}
   ]
 
   const submitListing = () => {
@@ -83,6 +84,7 @@ export default function ModalForm({
           <Text>catagory: {value}</Text>
           <Text>description: {description}</Text>
           <Text>quantity: {quantity}</Text>
+          <Text>indoor: {indoor}</Text>
          {value === 'clipping' && <Text>rooted: {option}</Text>}
           
           <DropDownPicker
@@ -119,7 +121,7 @@ export default function ModalForm({
           />
           <RadioButtons
            data={environment} 
-           onSelect={(value) => setOption(value)}/>
+           onSelect={(value) => setIndoor(value)}/>
           <Pressable
             style={[styles.button, styles.buttonOpen]}
             onPress={() => setCameraModalVisible(true)}
