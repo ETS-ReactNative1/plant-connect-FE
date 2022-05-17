@@ -12,7 +12,7 @@ import {
 import CameraModal from './CameraModal'
 import { CheckBox } from 'react-native-elements'
 import RadioButtonRN from 'radio-buttons-react-native'
-// HELLO BRENDA
+
 export default function ModalForm({
 	visible,
 	setModalVisible,
