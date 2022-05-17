@@ -10,8 +10,8 @@ import {
   TextInput,
 } from "react-native";
 import CameraModal from "./CameraModal";
-// import { RadioButton } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements';
+import RadioButtonRN from 'radio-buttons-react-native';
 
 export default function ModalForm({
   visible,
@@ -32,6 +32,7 @@ export default function ModalForm({
     { label: "seeds", value: "seeds" },
   ]);
   const [rooted, setRooted] = useState(false);
+  const [unRooted, setUnRooted] = useState(false);
   const [indoor, setIndoor] = useState(false);
 
   const submitListing = () => {
@@ -52,6 +53,15 @@ export default function ModalForm({
     setPlantName("");
   };
 
+const buttonList = [
+  {label: 'rooted'},
+  {label: 'unRooted'}
+]
+
+  const setRootedState = (status) => {
+    status ? `set${{status}}`(false) : `set${status}`(true)
+  }
+
   return (
     <Modal
       animationType="slide"
@@ -68,8 +78,7 @@ export default function ModalForm({
           <Text>name: {plantName}</Text>
           <Text>description: {description}</Text>
           <Text>quantity: {quantity}</Text>
-          {/* <Text>newListing: {submitListing()}</Text> */}
-          {/* <CameraView /> */}
+          <Text>rooted: {rooted}</Text>
           <DropDownPicker
             open={open}
             style={styles.dropdown}
@@ -83,29 +92,10 @@ export default function ModalForm({
             setItems={setItems}
           />
           <View>
-            <CheckBox
-            title='rooted'
-            center
-            checked={rooted}
-            checkedIcon='dot-circle-o'
-            unCheckedIcon='circle-o'
+            <RadioButtonRN
+              name='Rooted'
+              data={buttonList}
              />
-          {/* <RadioButton
-            style={styles.radio}
-            uncheckedColor={'green'}
-            checkedColor={'red'}
-            value={true}
-            status={checked === true ? true : false}
-            onPress={() => setChecked(true)}
-          />
-          <RadioButton
-          style={styles.radio}
-            uncheckedColor={'green'}
-            checkedColor={'red'}
-            value={false}
-            status={checked === false ? false : true}
-            onPress={() => setChecked(false)}
-          /> */}
           </View>
           <TextInput
             style={styles.input}
