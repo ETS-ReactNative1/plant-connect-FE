@@ -30,16 +30,16 @@ export default function ModalForm({
     { label: "clipping", value: "clipping" },
     { label: "seeds", value: "seeds" },
   ]);
-  const [option, setOption] = useState(true)
-  const [indoor, setIndoor] = useState(null)
+  const [option, setOption] = useState('yes')
+  const [indoor, setIndoor] = useState('')
 
   const data = [
-		{value: true, label:'true'},
-		{value: false, label: 'false'},
+		{value: 'yes'},
+		{value: 'no'},
 	]
   const environment = [
-    {value: true, label: 'indoor'},
-    {value: false, label: 'outdoor'}
+    {value: 'indoor'},
+    {value: 'outdoor'},
   ]
 
   const submitListing = () => {
