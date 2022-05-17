@@ -36,7 +36,10 @@ export default function ModalForm({
 		{value: 'yes'},
 		{value: 'no'},
 	]
-
+  const environment = [
+    {value: 'indoor'},
+    {value: 'outdoor'},
+  ]
 
   const submitListing = () => {
     setModalVisible(false);
@@ -114,6 +117,9 @@ export default function ModalForm({
             placeholder="Quantity"
             value={quantity}
           />
+          <RadioButtons
+           data={environment} 
+           onSelect={(value) => setOption(value)}/>
           <Pressable
             style={[styles.button, styles.buttonOpen]}
             onPress={() => setCameraModalVisible(true)}
