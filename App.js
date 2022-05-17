@@ -18,7 +18,7 @@ const App = () => {
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [allListings, setAllListings] = useState([])
-
+	
 	const createNewListing = (newListing) => {
 		console.log('newlistboi', newListing)
 		setAllListings([...allListings, newListing])

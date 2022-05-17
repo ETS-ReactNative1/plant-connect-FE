@@ -15,6 +15,8 @@ export default function CameraModal({
 	setModalVisible,
 	createNewListing,
     setCameraModalVisible,
+    setImage,
+    image
 }) {
 
 	return (
@@ -29,7 +31,7 @@ export default function CameraModal({
                 
 			<View style={styles.centeredView}>
 				<View style={styles.modalView}>
-                <CameraView setCameraModalVisible={setCameraModalVisible}/>
+                <CameraView setImage={setImage} image={image} setCameraModalVisible={setCameraModalVisible}/>
 				</View>
 			</View>
 		</Modal>

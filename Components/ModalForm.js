@@ -10,8 +10,7 @@ import {
   TextInput,
 } from "react-native";
 import CameraModal from "./CameraModal";
-import { CheckBox } from 'react-native-elements';
-import RadioButtonRN from 'radio-buttons-react-native';
+import RadioButtons from './RadioButtons'
 
 export default function ModalForm({
   visible,
@@ -25,25 +24,43 @@ export default function ModalForm({
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [quantity, setQuantity] = useState(0);
+  const [image, setImage] = useState(null);
   const [currentListing, setCurrentListing] = useState("");
   const [items, setItems] = useState([
     { label: "plant", value: "plant" },
     { label: "clipping", value: "clipping" },
     { label: "seeds", value: "seeds" },
   ]);
-  const [rooted, setRooted] = useState(false);
-  const [unRooted, setUnRooted] = useState(false);
-  const [indoor, setIndoor] = useState(false);
+  const [option, setOption] = useState('yes')
+  const [indoor, setIndoor] = useState('')
+
+  const data = [
+		{value: 'yes'},
+		{value: 'no'},
+	]
+  const environment = [
+    {value: 'indoor'},
+    {value: 'outdoor'},
+  ]
 
   const submitListing = () => {
     setModalVisible(false);
+    
     const newListing = {
-      listingID: Date.now(),
-      plantName: plantName,
+      id: Date.now(),
+      type: 'listing',
+      active: true,
+      quantity: parseInt(quantity),
       category: value,
+      isRooted: option === 'yes' ? true : false,
       description: description,
-      quantity: quantity,
+      userId: 1,
+      photo: image,
+      plantType: plantName,
+      indoor: indoor === 'indoor' ? true : false,
     };
+
+    console.log(newListing)
     createNewListing(newListing);
     clearInputs();
   };
@@ -53,14 +70,11 @@ export default function ModalForm({
     setPlantName("");
   };
 
-const buttonList = [
-  {label: 'rooted'},
-  {label: 'unRooted'}
-]
-
-  const setRootedState = (status) => {
-    status ? `set${{status}}`(false) : `set${status}`(true)
-  }
+  const displayOptionButtons = () => {
+    //if the dropdown value is 'cutting',
+    //display radio buttons : don't
+   
+  };
 
   return (
     <Modal
@@ -74,11 +88,8 @@ const buttonList = [
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Post a Plant!</Text>
-          <Text>name: {plantName}</Text>
-          <Text>description: {description}</Text>
-          <Text>quantity: {quantity}</Text>
-          <Text>rooted: {rooted}</Text>
+         {value === 'clipping' && <Text>rooted: {option}</Text>}
+          
           <DropDownPicker
             open={open}
             style={styles.dropdown}
@@ -89,14 +100,10 @@ const buttonList = [
             items={items}
             setOpen={setOpen}
             setValue={setValue}
-            setItems={setItems}
+            // setItems={setItems(value)}
           />
-          <View>
-            <RadioButtonRN
-              name='Rooted'
-              data={buttonList}
-             />
-          </View>
+          {value === 'clipping' && <RadioButtons data={data} onSelect={(value) => setOption(value)}/>}
+           
           <TextInput
             style={styles.input}
             onChangeText={setPlantName}
@@ -115,13 +122,16 @@ const buttonList = [
             placeholder="Quantity"
             value={quantity}
           />
+          <RadioButtons
+           data={environment} 
+           onSelect={(value) => setIndoor(value)}/>
           <Pressable
             style={[styles.button, styles.buttonOpen]}
             onPress={() => setCameraModalVisible(true)}
           >
             <Text style={styles.textStyle}>Take Picture</Text>
           </Pressable>
-		  {cameraModalVisible && <CameraModal setCameraModalVisible={setCameraModalVisible} />}
+		  {cameraModalVisible && <CameraModal setImage={setImage} image={image} setCameraModalVisible={setCameraModalVisible} />}
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => submitListing()}
@@ -210,5 +220,8 @@ const styles = StyleSheet.create({
   radio: {
    buttonColor: 'black',
   //  color: 'red'
+  },
+  radioLabel: {
+
   }
 });
