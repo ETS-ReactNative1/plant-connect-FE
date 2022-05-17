@@ -30,9 +30,13 @@ export default function ModalForm({
     { label: "clipping", value: "clipping" },
     { label: "seeds", value: "seeds" },
   ]);
-  const [rooted, setRooted] = useState(false);
-  const [unRooted, setUnRooted] = useState(false);
-  const [indoor, setIndoor] = useState(false);
+  const [option, setOption] = useState('yes')
+
+  const data = [
+		{value: 'yes'},
+		{value: 'no'},
+	]
+
 
   const submitListing = () => {
     setModalVisible(false);
@@ -40,6 +44,7 @@ export default function ModalForm({
       listingID: Date.now(),
       plantName: plantName,
       category: value,
+      isRooted: option,
       description: description,
       quantity: quantity,
     };
@@ -52,14 +57,11 @@ export default function ModalForm({
     setPlantName("");
   };
 
-const data = [
-		{value: 'yes'},
-		{value: 'no'},
-	]
-
-  const setRootedState = (status) => {
-    status ? `set${{status}}`(false) : `set${status}`(true)
-  }
+  const displayOptionButtons = () => {
+    //if the dropdown value is 'cutting',
+    //display radio buttons : don't
+   
+  };
 
   return (
     <Modal
@@ -75,8 +77,10 @@ const data = [
         <View style={styles.modalView}>
           <Text style={styles.modalText}>Post a Plant!</Text>
           <Text>name: {plantName}</Text>
+          <Text>catagory: {value}</Text>
           <Text>description: {description}</Text>
           <Text>quantity: {quantity}</Text>
+         {value === 'clipping' && <Text>rooted: {option}</Text>}
           
           <DropDownPicker
             open={open}
@@ -88,12 +92,9 @@ const data = [
             items={items}
             setOpen={setOpen}
             setValue={setValue}
-            setItems={setItems}
+            // setItems={setItems(value)}
           />
-          <View style={styles.radioContainer}>
-            <Text style={styles.radioLabel}>Is cutting rooted?</Text>
-            <RadioButtons data={data} />
-          </View>
+          {value === 'clipping' && <RadioButtons data={data} onSelect={(value) => setOption(value)}/>}
            
           <TextInput
             style={styles.input}
