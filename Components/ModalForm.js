@@ -24,6 +24,7 @@ export default function ModalForm({
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [quantity, setQuantity] = useState(0);
+  const [image, setImage] = useState(null);
   const [currentListing, setCurrentListing] = useState("");
   const [items, setItems] = useState([
     { label: "plant", value: "plant" },
@@ -44,14 +45,22 @@ export default function ModalForm({
 
   const submitListing = () => {
     setModalVisible(false);
+    
     const newListing = {
-      listingID: Date.now(),
-      plantName: plantName,
+      id: Date.now(),
+      type: 'listing',
+      active: true,
+      quantity: parseInt(quantity),
       category: value,
-      isRooted: option,
+      isRooted: option === 'yes' ? true : false,
       description: description,
-      quantity: quantity,
+      userId: 1,
+      photo: image,
+      plantType: plantName,
+      indoor: indoor === 'indoor' ? true : false,
     };
+
+    console.log(newListing)
     createNewListing(newListing);
     clearInputs();
   };
@@ -79,12 +88,6 @@ export default function ModalForm({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Post a Plant!</Text>
-          <Text>name: {plantName}</Text>
-          <Text>catagory: {value}</Text>
-          <Text>description: {description}</Text>
-          <Text>quantity: {quantity}</Text>
-          <Text>indoor: {indoor}</Text>
          {value === 'clipping' && <Text>rooted: {option}</Text>}
           
           <DropDownPicker
@@ -128,7 +131,7 @@ export default function ModalForm({
           >
             <Text style={styles.textStyle}>Take Picture</Text>
           </Pressable>
-		  {cameraModalVisible && <CameraModal setCameraModalVisible={setCameraModalVisible} />}
+		  {cameraModalVisible && <CameraModal setImage={setImage} image={image} setCameraModalVisible={setCameraModalVisible} />}
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => submitListing()}

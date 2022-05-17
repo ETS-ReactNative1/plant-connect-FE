@@ -4,10 +4,9 @@ import { Camera } from 'expo-camera';
 import { Button } from 'react-native-web';
 import { RadioButton } from 'react-native-paper';
 
- const CameraView = ({setCameraModalVisible}) => {
+ const CameraView = ({setImage, image, setCameraModalVisible}) => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
-  const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
   useEffect(() => {
@@ -44,7 +43,7 @@ import { RadioButton } from 'react-native-paper';
         <Pressable onPress={() => takePicture()}><Text style={styles.icon}> 📸  </Text></Pressable>
         <Pressable onPress={() => setCameraModalVisible(false)}><Text style={styles.icon}> ❌ </Text></Pressable>
         
-        {image && <Image source={{uri: image}} style={{flex:1}} />}
+        {{image} && <Image source={{uri: image}} style={{flex:1}} />}
     </View>
   );
 };
