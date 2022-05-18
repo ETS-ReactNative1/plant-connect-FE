@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { listings } from '../apiCalls'
 import {
 	Text,
 	View,
@@ -15,6 +16,7 @@ const url = {
 import styled from 'styled-components'
 
 import Carousel from 'react-native-snap-carousel'
+
 
 const MyCarousel = () => {
 	const [activeIndex, setActiveIndex] = useState(0)
@@ -88,6 +90,13 @@ const MyCarousel = () => {
 		},
 	])
 	const [modalVisible, setModalVisible] = useState(false)
+
+	useEffect(() => {
+		// console.log("LISTINGS", listings)
+		listings
+		.then(data => console.log("DATA", data) )
+	}, []);
+
 
 	const hideModal = () => {
 		setModalVisible(false)
