@@ -20,96 +20,36 @@ import Carousel from 'react-native-snap-carousel'
 const MyCarousel = () => {
 	const [activeIndex, setActiveIndex] = useState(0)
 	const [allData, setAllData] = useState([])
-	const [plants, setPlants] = useState([
-		{
-			title: 'Monsterra',
-			text: 'Text 1',
-			image:
-				'https://upload.wikimedia.org/wikipedia/commons/1/1c/Monstera_Adansonii.jpg',
-		},
-		{
-			title: 'Snake Plant',
-			text: 'Text 2',
-		},
-		{
-			title: 'Swiss Cheese Plant',
-			text: 'Text 3',
-		},
-		{
-			title: 'Egg Plant',
-			text: 'Text 4',
-		},
-		{
-			title: 'Banana Ficus',
-			text: 'Text 5',
-		},
-	])
-	const [clippings, setClippings] = useState([
-		{
-			title: 'Spider',
-			text: 'Text 1',
-		},
-		{
-			title: 'Ivy',
-			text: 'Text 2',
-		},
-		{
-			title: 'Other',
-			text: 'Text 3',
-		},
-		{
-			title: 'Another other',
-			text: 'Text 4',
-		},
-		{
-			title: 'Potato',
-			text: 'Text 5',
-		},
-	])
-	const [seeds, setSeeds] = useState([
-		{
-			title: 'Papaya',
-			text: 'Text 1',
-		},
-		{
-			title: 'Tomato',
-			text: 'Text 2',
-		},
-		{
-			title: 'Apple',
-			text: 'Text 3',
-		},
-		{
-			title: 'Poppy',
-			text: 'Text 4',
-		},
-
-		{
-			title: 'Pumpkin',
-			text: 'Text 5',
-		},
-	])
+	const [plants, setPlants] = useState([])
+	const [clippings, setClippings] = useState([])
+	const [seeds, setSeeds] = useState([])
 	const [modalVisible, setModalVisible] = useState(false)
 
 	useEffect(() => {
 		listings
 			// .then((data) => console.log('is it data?', data))
-			.then((data) => setAllData(data.data.attributes))
+			// .then((data) => setAllData(data.data.attributes))
+			.then((data) => setCategories(data.data.attributes))
 	}, [])
 	/// sort into the three categories map? filter?
 	/// set each listing to the corresponding cat
-	const setCategories = (category) => {
-		allData.filter((listing) => {
-			if (listing.category === 'plant') {
-				setPlants([...plants, listing])
+	const setCategories = (data) => {
+		console.log('dataaa', data)
+		data.filter((listing) => {
+			console.log('listing', listing)
+			// if (listing.category == 'plant') {
+			// 	setPlants([...plants, listing])
+			// }
+			if (listing.category == 'seeds') {
+				setSeeds(...seeds, listing)
 			}
-			if (listing.category === 'seeds') {
-				setSeeds([...seeds, listing])
-			}
-			if (listing.category === 'clippings') {
-				setClippings([...clippings, listing])
-			}
+			// if (listing.category == 'clippings') {
+			// 	setClippings([...clippings, listing])
+			// }
+			console.log('seeds', seeds)
 		})
+		console.log('plants', plants)
+		console.log('clippings', clippings)
 	}
 
 	const hideModal = () => {
