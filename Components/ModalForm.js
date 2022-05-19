@@ -29,7 +29,7 @@ export default function ModalForm({
   const [currentListing, setCurrentListing] = useState("");
   const [items, setItems] = useState([
     { label: "plant", value: "plant" },
-    { label: "clipping", value: "clipping" },
+    { label: "clippings", value: "clippings" },
     { label: "seeds", value: "seeds" },
   ]);
   const [option, setOption] = useState('yes')
@@ -59,9 +59,7 @@ export default function ModalForm({
     };
 
     console.log("NEWLISITN", newListing)
-    // setNewListing(newListing)
     postData(newListing)
-    // createNewListing(newListing);
     clearInputs();
   };
 
@@ -90,7 +88,7 @@ export default function ModalForm({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-         {value === 'clipping' && <Text>rooted: {option}</Text>}
+         {value === 'clippings' && <Text>rooted: {option}</Text>}
 
           <DropDownPicker
             open={open}
@@ -104,7 +102,7 @@ export default function ModalForm({
             setValue={setValue}
             // setItems={setItems(value)}
           />
-          {value === 'clipping' && <RadioButtons data={data} onSelect={(value) => setOption(value)}/>}
+          {value === 'clippings' && <RadioButtons data={data} onSelect={(value) => setOption(value)}/>}
 
           <TextInput
             style={styles.input}
