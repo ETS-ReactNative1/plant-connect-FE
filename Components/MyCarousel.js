@@ -36,18 +36,17 @@ const MyCarousel = () => {
 	const setCategories = (data) => {
 		console.log('dataaa', data)
 		data.filter((listing) => {
-			console.log('listing', listing)
-			// if (listing.category == 'plant') {
-			// 	setPlants([...plants, listing])
-			// }
-			if (listing.category == 'seeds') {
-				setSeeds(...seeds, listing)
+			if (listing.category == 'plant') {
+				setPlants([...plants, listing])
 			}
-			// if (listing.category == 'clippings') {
-			// 	setClippings([...clippings, listing])
-			// }
-			console.log('seeds', seeds)
+			if (listing.category == 'seeds') {
+				setSeeds([...seeds, listing])
+			}
+			if (listing.category == 'clippings') {
+				setClippings([...clippings, listing])
+			}
 		})
+		console.log('THE seeds', seeds)
 		console.log('plants', plants)
 		console.log('clippings', clippings)
 	}
