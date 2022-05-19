@@ -92,9 +92,8 @@ const MyCarousel = () => {
 	const [modalVisible, setModalVisible] = useState(false)
 
 	useEffect(() => {
-		// console.log("LISTINGS", listings)
 		listings
-		.then(data => console.log("DATA", data) )
+		.then(data => (data.data))
 	}, []);
 
 
