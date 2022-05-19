@@ -18,11 +18,10 @@ const App = () => {
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [allListings, setAllListings] = useState([])
-	
-	const createNewListing = (newListing) => {
-		console.log('newlistboi', newListing)
-		setAllListings([...allListings, newListing])
-	}
+
+	// const createNewListing = (newListing) => {
+	// 	setAllListings([...allListings, newListing])
+	// }
 
 	return (
 		<View style={styles.centeredView}>
@@ -44,7 +43,7 @@ const App = () => {
 				setModalVisible={setModalVisible}
 				cameraModalVisible={cameraModalVisible}
 				setCameraModalVisible={setCameraModalVisible}
-				createNewListing={createNewListing}
+				// createNewListing={createNewListing}
 			/>
 			<MyCarousel />
 			<Pressable
@@ -52,8 +51,8 @@ const App = () => {
 				onPress={() => setModalVisible(true)}>
 				<Text style={styles.textStyle}>Post Your Plant!</Text>
 			</Pressable>
-			
-			
+
+
 		</View>
 	)
 }
