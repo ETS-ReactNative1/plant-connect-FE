@@ -10,6 +10,7 @@ import {
   TextInput,
 } from "react-native";
 import CameraModal from "./CameraModal";
+import { postData } from '../apiCalls'
 import RadioButtons from './RadioButtons'
 
 export default function ModalForm({
@@ -45,25 +46,26 @@ export default function ModalForm({
 
   const submitListing = () => {
     setModalVisible(false);
-    
+
     const newListing = {
-      id: Date.now(),
-      type: 'listing',
-      active: true,
       quantity: parseInt(quantity),
       category: value,
-      isRooted: option === 'yes' ? true : false,
+      rooted: option === 'yes' ? true : false,
       description: description,
-      userId: 1,
+      user_id: 1,
       photo: image,
-      plantType: plantName,
-      indoor: indoor === 'indoor' ? true : false,
+      plant_type: plantName,
+      indoor: indoor === 'indoor' ? true : false
     };
 
-    console.log(newListing)
-    createNewListing(newListing);
+    console.log("NEWLISITN", newListing)
+    // setNewListing(newListing)
+    postData(newListing)
+    // createNewListing(newListing);
     clearInputs();
   };
+
+
   const clearInputs = () => {
     setDescription("");
     setQuantity(0);
@@ -73,8 +75,8 @@ export default function ModalForm({
   const displayOptionButtons = () => {
     //if the dropdown value is 'cutting',
     //display radio buttons : don't
-   
   };
+
 
   return (
     <Modal
@@ -89,7 +91,7 @@ export default function ModalForm({
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
          {value === 'clipping' && <Text>rooted: {option}</Text>}
-          
+
           <DropDownPicker
             open={open}
             style={styles.dropdown}
@@ -103,7 +105,7 @@ export default function ModalForm({
             // setItems={setItems(value)}
           />
           {value === 'clipping' && <RadioButtons data={data} onSelect={(value) => setOption(value)}/>}
-           
+
           <TextInput
             style={styles.input}
             onChangeText={setPlantName}
@@ -123,7 +125,7 @@ export default function ModalForm({
             value={quantity}
           />
           <RadioButtons
-           data={environment} 
+           data={environment}
            onSelect={(value) => setIndoor(value)}/>
           <Pressable
             style={[styles.button, styles.buttonOpen]}
@@ -215,7 +217,7 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-    
+
   },
   radio: {
    buttonColor: 'black',
