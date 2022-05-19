@@ -17,9 +17,9 @@ import styled from 'styled-components'
 
 import Carousel from 'react-native-snap-carousel'
 
-
 const MyCarousel = () => {
 	const [activeIndex, setActiveIndex] = useState(0)
+	const [allData, setAllData] = useState([])
 	const [plants, setPlants] = useState([
 		{
 			title: 'Monsterra',
@@ -93,9 +93,24 @@ const MyCarousel = () => {
 
 	useEffect(() => {
 		listings
-		.then(data => (data.data))
-	}, []);
-
+			// .then((data) => console.log('is it data?', data))
+			.then((data) => setAllData(data.data.attributes))
+	}, [])
+	/// sort into the three categories map? filter?
+	/// set each listing to the corresponding cat
+	const setCategories = (category) => {
+		allData.filter((listing) => {
+			if (listing.category === 'plant') {
+				setPlants([...plants, listing])
+			}
+			if (listing.category === 'seeds') {
+				setSeeds([...seeds, listing])
+			}
+			if (listing.category === 'clippings') {
+				setClippings([...clippings, listing])
+			}
+		})
+	}
 
 	const hideModal = () => {
 		setModalVisible(false)
@@ -183,7 +198,6 @@ const MyCarousel = () => {
 }
 
 const styles = StyleSheet.create({
-
 	textStyle: {
 		color: 'white',
 		fontWeight: 'bold',
