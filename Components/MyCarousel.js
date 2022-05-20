@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { listings } from '../apiCalls'
+import { listings, getData } from '../apiCalls'
 import {
 	Text,
 	View,
@@ -26,28 +26,27 @@ const MyCarousel = () => {
 	const [modalVisible, setModalVisible] = useState(false)
 
 	useEffect(() => {
-		listings
-			// .then((data) => console.log('is it data?', data))
-			// .then((data) => setAllData(data.data.attributes))
-			.then((data) => setCategories(data.data.attributes))
+		getData().then((data) => setCategories(data.data.attributes))
 	}, [])
-	/// sort into the three categories map? filter?
-	/// set each listing to the corresponding cat
+
 	const setCategories = (data) => {
-		console.log('dataaa', data)
-		data.filter((listing) => {
-			if (listing.category == 'plant') {
-				setPlants([...plants, listing])
-			}
-			if (listing.category == 'seeds') {
-				setSeeds([...seeds, listing])
-			}
-			if (listing.category == 'clippings') {
+		data &&
+			data.filter(
+				(listing) =>
+					listing.category === 'plant' && setPlants([...plants, listing])
+			)
+		data.filter(
+			(listing) => listing.category === 'seeds' && setSeeds([...seeds, listing])
+		)
+		data.filter(
+			(listing) =>
+				listing.category === 'clippings' &&
 				setClippings([...clippings, listing])
-			}
-		})
-		console.log('THE seeds', seeds)
+		)
+		console.log('listinnnng', listing)
+		console.log('seeds', seeds)
 		console.log('plants', plants)
+
 		console.log('clippings', clippings)
 	}
 
@@ -73,7 +72,7 @@ const MyCarousel = () => {
 					source={url}
 					resizeMode='cover'
 					style={styles.cardBackground}>
-					<Text style={{ fontSize: 20 }}>{item.title}</Text>
+					<Text style={{ fontSize: 20 }}>{item.plant.plant_type}</Text>
 					<Text>{item.text}</Text>
 					<Pressable
 						style={[styles.button, styles.buttonOpen]}

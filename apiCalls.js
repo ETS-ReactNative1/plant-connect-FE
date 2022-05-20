@@ -16,10 +16,8 @@ const postData = (listing) => {
 				listing: listing,
 			}),
 		}
-	)
-		.then((response) => response.json())
-		.then((data) => console.log(data))
+	).then((response) => response.json())
 }
 
 const listings = getData()
-export { listings, postData }
+export { listings, postData, getData }
