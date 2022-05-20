@@ -26,7 +26,14 @@ const MyCarousel = () => {
 	const [modalVisible, setModalVisible] = useState(false)
 
 	useEffect(() => {
-		getData().then((data) => setCategories(data.data.attributes))
+		getData().then((data) => setAllData(data.data.attributes))
+	}, [])
+
+	// three use effects to 'catch' the changes in the three states
+	// Initially set all data and then iterate over it?
+	// maybe a second useEffect that sets the data after it has been move to AllData?
+	useEffect(() => {
+		allData && setCategories(allData)
 	}, [])
 
 	const setCategories = (data) => {
@@ -43,11 +50,6 @@ const MyCarousel = () => {
 				listing.category === 'clippings' &&
 				setClippings([...clippings, listing])
 		)
-		console.log('listinnnng', listing)
-		console.log('seeds', seeds)
-		console.log('plants', plants)
-
-		console.log('clippings', clippings)
 	}
 
 	const hideModal = () => {
