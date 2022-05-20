@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
 	StyleSheet,
 	SafeAreaView,
@@ -12,16 +12,38 @@ import MyCarousel from './Components/MyCarousel'
 import { AntDesign } from '@expo/vector-icons'
 import styled from 'styled-components'
 import ModalForm from './Components/ModalForm'
-
+import { getData } from './apiCalls'
 
 const App = () => {
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [allListings, setAllListings] = useState([])
-
+	const [allData, setAllData] = useState([])
+	const [plants, setPlants] = useState([])
+	const [clippings, setClippings] = useState([])
+	const [seeds, setSeeds] = useState([])
 	// const createNewListing = (newListing) => {
 	// 	setAllListings([...allListings, newListing])
 	// }
+	useEffect(() => {
+		getData().then((data) => setAllData(data.data.attributes))
+	}, [])
+
+	const setCategories = (data) => {
+		data &&
+			data.filter(
+				(listing) =>
+					listing.category === 'plant' && setPlants([...plants, listing])
+			)
+		data.filter(
+			(listing) => listing.category === 'seeds' && setSeeds([...seeds, listing])
+		)
+		data.filter(
+			(listing) =>
+				listing.category === 'clippings' &&
+				setClippings([...clippings, listing])
+		)
+	}
 
 	return (
 		<View style={styles.centeredView}>
@@ -51,8 +73,6 @@ const App = () => {
 				onPress={() => setModalVisible(true)}>
 				<Text style={styles.textStyle}>Post Your Plant!</Text>
 			</Pressable>
-
-
 		</View>
 	)
 }
