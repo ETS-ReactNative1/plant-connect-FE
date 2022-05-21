@@ -58,7 +58,6 @@ export default function ModalForm({
       indoor: indoor === 'indoor' ? true : false
     };
 
-    console.log("NEWLISITN", newListing)
     postData(newListing)
     clearInputs();
   };
