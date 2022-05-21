@@ -10,9 +10,9 @@ import {
 	Image,
 	ImageBackground,
 } from 'react-native'
-const url = {
-	uri: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Monstera_Adansonii.jpg',
-}
+// const url = {
+// 	// uri: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Monstera_Adansonii.jpg',
+// }
 import styled from 'styled-components'
 
 import Carousel from 'react-native-snap-carousel'
@@ -23,7 +23,6 @@ const MyCarousel = () => {
 	const [clippings, setClippings] = useState([])
 	const [seeds, setSeeds] = useState([])
 	const [modalVisible, setModalVisible] = useState(false)
-
 
 	useEffect(() => {
 		getData().then((data) => {
@@ -45,6 +44,7 @@ const MyCarousel = () => {
 		setModalVisible(false)
 	}
 	const _renderItem = ({ item, index }) => {
+		const image = { uri: item.plant.photo }
 		return (
 			<View
 				style={{
@@ -60,7 +60,7 @@ const MyCarousel = () => {
 				}}>
 				<ImageBackground
 					imageStyle={styles.cardBackground}
-					source={url}
+					source={image}
 					resizeMode='cover'
 					style={styles.cardBackground}>
 					<Text style={{ fontSize: 20 }}>{item.plant.plant_type}</Text>
