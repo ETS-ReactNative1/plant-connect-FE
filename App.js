@@ -73,7 +73,10 @@ const App = () => {
 				cameraModalVisible={plantModalVisible}
 				setCameraModalVisible={setPlantModalVisible}
 			/>
-			<MyCarousel />
+			<MyCarousel 
+				plantModalVisible={plantModalVisible}
+				setPlantModalVisible={setPlantModalVisible}
+			/>
 			<Pressable
 				style={[styles.button, styles.buttonOpen]}
 				onPress={() => setModalVisible(true)}>

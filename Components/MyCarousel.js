@@ -14,7 +14,7 @@ import {
 
 import Carousel from "react-native-snap-carousel";
 
-const MyCarousel = () => {
+const MyCarousel = ({plantModalVisible, setPlantModalVisible}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [plants, setPlants] = useState([]);
   const [clippings, setClippings] = useState([]);
@@ -43,9 +43,12 @@ const MyCarousel = () => {
     setClippings(filteredClippings);
   };
 
-  const hideModal = () => {
-    setModalVisible(false);
-  };
+//   const hideModal = () => {
+//     setModalVisible(false);
+//   };
+
+
+
   const _renderItem = ({ item, index }) => {
     const image = { uri: item.plant.photo };
     return (
@@ -71,7 +74,7 @@ const MyCarousel = () => {
 		  <View style={styles.learnMore}>
 		  <Pressable
             style={[styles.button, styles.buttonOpen]}
-            // onPress={() => this.setState({modalVisible: true})}
+            onPress={() => setPlantModalVisible(true)}
           >
             <Text style={styles.textStyle}>learn more!</Text>
           </Pressable>
