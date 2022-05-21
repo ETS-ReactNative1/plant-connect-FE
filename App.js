@@ -9,14 +9,15 @@ import {
 	TextInput,
 } from 'react-native'
 import MyCarousel from './Components/MyCarousel'
-import { AntDesign } from '@expo/vector-icons'
 import styled from 'styled-components'
 import ModalForm from './Components/ModalForm'
 import { getData } from './apiCalls'
+import PlantModal from './Components/PlantModal'
 
 const App = () => {
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
+	const [plantModalVisible, setPlantModalVisible] = useState(false)
 	const [allListings, setAllListings] = useState([])
 	const [allData, setAllData] = useState([])
 	const [plants, setPlants] = useState([])
@@ -53,8 +54,7 @@ const App = () => {
 						source={require('./creative-pastel-green-monstera-leaves-abstract-pattern-mykola-tsap.png')}>
 						<MenuBar>
 							<Back>
-								<AntDesign name='arrowleft' size={24} color='#fff' />
-								<Title>Planty Dropper</Title>
+								<Title>planty dropper</Title>
 							</Back>
 						</MenuBar>
 					</PlantBackground>
@@ -66,6 +66,12 @@ const App = () => {
 				cameraModalVisible={cameraModalVisible}
 				setCameraModalVisible={setCameraModalVisible}
 				// createNewListing={createNewListing}
+			/>
+			<PlantModal 
+				visible={modalVisible}
+				setModalVisible={setModalVisible}
+				cameraModalVisible={plantModalVisible}
+				setCameraModalVisible={setPlantModalVisible}
 			/>
 			<MyCarousel />
 			<Pressable
@@ -83,13 +89,13 @@ const Container = styled.View`
 `
 const PlantBackground = styled.ImageBackground`
 	width: 100%;
-	height: 95%;
+	height: 88%;
 `
 const Title = styled.Text`
 	font-family: 'AvenirNext-Regular';
-	color: '#ffffff';
-	font-size: 26;
-	padding: 4px;
+	// font-color: '';
+	font-size: 30;
+	padding: 3px;
 	font-weight: 700;
 `
 const MenuBar = styled.View`

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import CameraView from './CameraView'
 
 import {
 	Modal,
@@ -10,13 +9,9 @@ import {
 	TextInput,
 } from 'react-native'
 
-export default function CameraModal({
+export default function PlantModal({
 	visible,
-	setModalVisible,
-	createNewListing,
-    setCameraModalVisible,
-    setImage,
-    image
+    setPlantModalVisible,
 }) {
 
 	return (
@@ -26,13 +21,11 @@ export default function CameraModal({
 			visible={visible}
 			onRequestClose={() => {
 				Alert.alert('Modal has been closed.')
-				setModalVisible(false)
+				setPlantModalVisible(false)
 			}}>
                 
 			<View style={styles.centeredView}>
-				<View style={styles.modalView}>
-                <CameraView setImage={setImage} image={image} setCameraModalVisible={setCameraModalVisible}/>
-				</View>
+				
 			</View>
 		</Modal>
 	)
