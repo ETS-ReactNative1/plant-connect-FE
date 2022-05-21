@@ -18,14 +18,12 @@ const App = () => {
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [plantModalVisible, setPlantModalVisible] = useState(false)
-	const [allListings, setAllListings] = useState([])
+	const [currentListing, setCurrentListing] =useState([])
 	const [allData, setAllData] = useState([])
-	const [plants, setPlants] = useState([])
+	const [plants, setPlants] = useState(null)
 	const [clippings, setClippings] = useState([])
 	const [seeds, setSeeds] = useState([])
-	// const createNewListing = (newListing) => {
-	// 	setAllListings([...allListings, newListing])
-	// }
+	
 	useEffect(() => {
 		getData().then((data) => setAllData(data.data.attributes))
 	}, [])
@@ -65,15 +63,19 @@ const App = () => {
 				setModalVisible={setModalVisible}
 				cameraModalVisible={cameraModalVisible}
 				setCameraModalVisible={setCameraModalVisible}
-				// createNewListing={createNewListing}
 			/>
 			<PlantModal 
-				visible={modalVisible}
-				setModalVisible={setModalVisible}
-				cameraModalVisible={plantModalVisible}
-				setCameraModalVisible={setPlantModalVisible}
+				visible={plantModalVisible}
+				setModalVisible={setPlantModalVisible}
+				plantModalVisible={plantModalVisible}
+				setPlantModalVisible={setPlantModalVisible}
+				currentListing={currentListing}
 			/>
-			<MyCarousel />
+			<MyCarousel 
+				plantModalVisible={plantModalVisible}
+				setPlantModalVisible={setPlantModalVisible}
+				setCurrentListing={setCurrentListing}
+			/>
 			<Pressable
 				style={[styles.button, styles.buttonOpen]}
 				onPress={() => setModalVisible(true)}>

@@ -16,7 +16,7 @@ import RadioButtons from './RadioButtons'
 export default function ModalForm({
   visible,
   setModalVisible,
-  createNewListing,
+  // createNewListing,
   cameraModalVisible,
   setCameraModalVisible,
 }) {
