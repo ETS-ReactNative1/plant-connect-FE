@@ -10,52 +10,41 @@ import {
 	Image,
 	ImageBackground,
 } from 'react-native'
-const url = {
-	uri: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Monstera_Adansonii.jpg',
-}
+// const url = {
+// 	// uri: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Monstera_Adansonii.jpg',
+// }
 import styled from 'styled-components'
 
 import Carousel from 'react-native-snap-carousel'
 
 const MyCarousel = () => {
 	const [activeIndex, setActiveIndex] = useState(0)
-	const [allData, setAllData] = useState([])
 	const [plants, setPlants] = useState([])
 	const [clippings, setClippings] = useState([])
 	const [seeds, setSeeds] = useState([])
 	const [modalVisible, setModalVisible] = useState(false)
 
 	useEffect(() => {
-		getData().then((data) => setAllData(data.data.attributes))
-	}, [])
-
-	// three use effects to 'catch' the changes in the three states
-	// Initially set all data and then iterate over it?
-	// maybe a second useEffect that sets the data after it has been move to AllData?
-	useEffect(() => {
-		allData && setCategories(allData)
+		getData().then((data) => {
+			setCategories(data.data.attributes)
+		})
 	}, [])
 
 	const setCategories = (data) => {
-		data &&
-			data.filter(
-				(listing) =>
-					listing.category === 'plant' && setPlants([...plants, listing])
-			)
-		data.filter(
-			(listing) => listing.category === 'seeds' && setSeeds([...seeds, listing])
-		)
-		data.filter(
-			(listing) =>
-				listing.category === 'clippings' &&
-				setClippings([...clippings, listing])
-		)
+		const filteredPlants = data.filter((listing) => listing.category === 'plant')
+		const filteredSeeds = data.filter((listing) => listing.category === 'seeds')
+		const filteredClippings = data.filter((listing) => listing.category === 'clippings')
+
+		setPlants(filteredPlants)
+		setSeeds(filteredSeeds)
+		setClippings(filteredClippings)
 	}
 
 	const hideModal = () => {
 		setModalVisible(false)
 	}
 	const _renderItem = ({ item, index }) => {
+		const image = { uri: item.plant.photo }
 		return (
 			<View
 				style={{
@@ -71,7 +60,7 @@ const MyCarousel = () => {
 				}}>
 				<ImageBackground
 					imageStyle={styles.cardBackground}
-					source={url}
+					source={image}
 					resizeMode='cover'
 					style={styles.cardBackground}>
 					<Text style={{ fontSize: 20 }}>{item.plant.plant_type}</Text>
