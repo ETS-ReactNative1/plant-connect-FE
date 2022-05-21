@@ -14,12 +14,12 @@ import {
 
 import Carousel from "react-native-snap-carousel";
 
-const MyCarousel = ({plantModalVisible, setPlantModalVisible}) => {
+const MyCarousel = ({setPlantModalVisible, setCurrentListing}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [plants, setPlants] = useState([]);
   const [clippings, setClippings] = useState([]);
   const [seeds, setSeeds] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);  
+//   const [modalVisible, setModalVisible] = useState(false);  
 
   useEffect(() => {
     getData().then((data) => {
@@ -43,9 +43,11 @@ const MyCarousel = ({plantModalVisible, setPlantModalVisible}) => {
     setClippings(filteredClippings);
   };
 
-//   const hideModal = () => {
-//     setModalVisible(false);
-//   };
+  const showPlantModal = (item) => {
+	  
+	setCurrentListing(item)
+    setPlantModalVisible(true);
+  };
 
 
 
@@ -69,12 +71,12 @@ const MyCarousel = ({plantModalVisible, setPlantModalVisible}) => {
           style={styles.cardBackground}
         >
           <View style={styles.titleContainer}>
-            <Text style={styles.plantName}>{item.plant.plant_type}</Text>
+            <Text style={styles.plantName}>{item.plant.plant_type.toLowerCase()}</Text>
           </View>
 		  <View style={styles.learnMore}>
 		  <Pressable
-            style={[styles.button, styles.buttonOpen]}
-            onPress={() => setPlantModalVisible(true)}
+            // style={[styles.button, styles.buttonOpen]}
+            onPress={() => showPlantModal(item)}
           >
             <Text style={styles.textStyle}>learn more!</Text>
           </Pressable>
@@ -90,7 +92,6 @@ const MyCarousel = ({plantModalVisible, setPlantModalVisible}) => {
       style={{
         flex: 4,
         backgroundColor: "#57784E",
-        // margin: 100,
         height: 100,
         width: 375,
       }}
