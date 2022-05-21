@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		padding: 10,
 		elevation: 2,
+		margin: 10,
 	},
 	buttonOpen: {
 		backgroundColor: '#545454',
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontWeight: 'bold',
 		textAlign: 'center',
+		margin: 0,
 	},
 })
 
