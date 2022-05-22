@@ -16,7 +16,7 @@ import PlantModal from './Components/PlantModal'
 import MessageModal from './Components/MessageModal'
 
 const App = () => {
-	const [messageModalVisible, setMessageModalVisible] = useState(true)
+	const [messageModalVisible, setMessageModalVisible] = useState(null)
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [plantModalVisible, setPlantModalVisible] = useState(false)
@@ -91,8 +91,8 @@ const App = () => {
 				setMessageModalVisible={setMessageModalVisible}
 			/>
 			<MessageModal
-				visible={messageModalVisible}
-				setModalVisible={setMessageModalVisible}
+				messageModalVisible={messageModalVisible}
+				setMessageModalVisible={setMessageModalVisible}
 				currentListing={currentListing}
 			/>
 			<MyCarousel
@@ -157,10 +157,6 @@ const styles = StyleSheet.create({
 	buttonOpen: {
 		backgroundColor: '#545454',
 	},
-	// buttonClose: {
-	//   backgroundColor: "#F194FF",
-	//   width: 160,
-	// },
 	textStyle: {
 		color: 'white',
 		fontWeight: 'bold',

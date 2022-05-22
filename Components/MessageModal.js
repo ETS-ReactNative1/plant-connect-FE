@@ -6,11 +6,12 @@ import {
 	Pressable,
 	View,
 	TextInput,
+	Image,
 } from 'react-native'
 
 export default function MessageModal({
-	visible,
-	setModalVisible,
+	setMessageModalVisible,
+	messageModalVisible,
 	currentListing,
 }) {
 	const [currentMessage, setCurrentMessage] = useState('')
@@ -19,18 +20,23 @@ export default function MessageModal({
 		<Modal
 			animationType='slide'
 			transparent={true}
-			visible={visible}
+			visible={messageModalVisible}
 			onRequestClose={() => {
 				Alert.alert('Modal has been closed.')
 				setModalVisible(false)
 			}}>
 			<View style={styles.modalView}>
-				<Text>Send a Message</Text>
+				<Pressable onPress={() => setMessageModalVisible(false)}>
+					<Image
+						source={require('../close.png')}
+						style={styles.closeButton}></Image>
+				</Pressable>
+				<Text style={styles.textStyle}>send a message</Text>
 				<View>
 					<TextInput
 						style={styles.input}
 						onChangeText={setCurrentMessage}
-						placeholder={`I want your ${currentListing.plant.plant_type} bro...`}
+						placeholder={`I want your ${currentListing.plant.plant_type.toLowerCase()} bro...`}
 						value={currentMessage}
 						multiline={true}
 						numberOfLines={5}
@@ -39,17 +45,33 @@ export default function MessageModal({
 						autoCorrect
 					/>
 				</View>
+				<Pressable style={styles.submitBtn}>
+					<Text style={styles.submitText}>submit message</Text>
+				</Pressable>
 			</View>
 		</Modal>
 	)
 }
 
 const styles = StyleSheet.create({
+	submitBtn: {
+		backgroundColor: '#545454',
+		padding: 7,
+		borderRadius: 10,
+		marginTop: 2,
+	},
+	closeButton: {
+		marginLeft: 220,
+		height: 12.5,
+		width: 12.5,
+	},
+	submitText: {
+		color: '#FFF9EB',
+	},
 	centeredView: {
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 22,
 		borderWidth: 10,
 		borderColor: 'red',
 	},
@@ -60,9 +82,9 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 	},
 	modalView: {
-		margin: 40,
-		height: 500,
-		width: 300,
+		margin: 30,
+		height: 600,
+		width: 320,
 		backgroundColor: '#FFF9EB',
 		borderRadius: 20,
 		alignContent: 'center',
@@ -91,7 +113,9 @@ const styles = StyleSheet.create({
 		width: 160,
 	},
 	textStyle: {
-		color: 'white',
+		color: '#545454',
+		padding: 1,
+		fontSize: 20,
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
@@ -103,8 +127,10 @@ const styles = StyleSheet.create({
 		minWidth: 50,
 		maxWidth: 250,
 		borderWidth: 1,
-		padding: 10,
-		backgroundColor: '#C4C4C4',
+		borderRadius: 4,
+		paddingTop: 10,
+		padding: 15,
+		backgroundColor: '#e1ead3',
 		width: 260,
 		height: 400,
 		margin: 1,

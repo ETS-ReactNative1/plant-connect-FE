@@ -18,7 +18,10 @@ export default function PlantModal({
 	currentListing,
 }) {
 	const image = { uri: currentListing.plant.photo }
-
+	const showMsg = () => {
+		setMessageModalVisible(true)
+		setPlantModalVisible(false)
+	}
 	return (
 		<Modal
 			animationType='slide'
@@ -30,6 +33,11 @@ export default function PlantModal({
 			}}>
 			<View style={styles.centeredView}>
 				<View style={styles.modalView}>
+					<Pressable onPress={() => setPlantModalVisible(false)}>
+						<Image
+							source={require('../close.png')}
+							style={styles.closeButton}></Image>
+					</Pressable>
 					<ImageBackground
 						imageStyle={styles.cardBackground}
 						source={image && image}
@@ -44,13 +52,8 @@ export default function PlantModal({
 							{currentListing.description}
 						</Text>
 					</View>
-					<Pressable onPress={() => setPlantModalVisible(false)}>
-						<Image
-							source={require('../close.png')}
-							style={styles.closeButton}></Image>
-					</Pressable>
-					<Pressable onPress={() => setMessageModalVisible(true)}>
-						<Text>Gimme! Gimme! Gimme!</Text>
+					<Pressable style={styles.gimmeBtn} onPress={() => showMsg()}>
+						<Text style={styles.gimmeText}>Gimme! Gimme! Gimme!</Text>
 					</Pressable>
 				</View>
 			</View>
@@ -65,9 +68,21 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		marginTop: 22,
 	},
+	gimmeBtn: {
+		borderRadius: 20,
+		padding: 10,
+		elevation: 2,
+		backgroundColor: '#545454',
+	},
+	gimmeText: {
+		color: '#FFF9EB',
+	},
 	closeButton: {
 		height: 20,
 		width: 20,
+		marginBottom: 10,
+		marginTop: -20,
+		marginLeft: 250,
 	},
 	imageStyle: {
 		height: 200,
@@ -99,7 +114,7 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		alignContent: 'center',
 		justifyContent: 'space-between',
-		padding: 35,
+		padding: 25,
 		alignItems: 'center',
 		shadowColor: '#000',
 		shadowOffset: {

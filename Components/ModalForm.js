@@ -88,7 +88,6 @@ export default function ModalForm({
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
          {value === 'clippings' && <Text>rooted: {option}</Text>}
-
           <DropDownPicker
             open={open}
             style={styles.dropdown}
