@@ -119,7 +119,6 @@ const PlantBackground = styled.ImageBackground`
 `
 const Title = styled.Text`
 	font-family: 'AvenirNext-Regular';
-	// font-color: '';
 	font-size: 30;
 	padding: 3px;
 	font-weight: 700;
@@ -142,14 +141,8 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		backgroundColor: '#57784E',
 	},
-	dropdown: {
-		height: 20,
-		width: 160,
-		marginLeft: 31,
-		borderWidth: 1,
-	},
-
 	button: {
+		margin: 10,
 		borderRadius: 20,
 		padding: 10,
 		elevation: 2,

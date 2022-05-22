@@ -46,32 +46,21 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 	}
 
 	const _renderItem = ({ item, index }) => {
-		console.log('adfjk', item)
 		const image = { uri: item.plant.photo }
 		return (
 			<View
 				style={{
 					flex: 1,
-					resizeMode: 'cover',
 					justifyContent: 'center',
-					borderRadius: 11,
-					height: 200,
-					width: 200,
 				}}>
-				<ImageBackground
-					imageStyle={styles.cardBackground}
-					source={image}
-					resizeMode='cover'
-					style={styles.cardBackground}>
+				<ImageBackground source={image} style={styles.cardBackground}>
 					<View style={styles.titleContainer}>
 						<Text style={styles.plantName}>
 							{item.plant.plant_type.toLowerCase()}
 						</Text>
 					</View>
 					<View style={styles.learnMore}>
-						<Pressable
-							// style={[styles.button, styles.buttonOpen]}
-							onPress={() => showPlantModal(item)}>
+						<Pressable onPress={() => showPlantModal(item)}>
 							<Text style={styles.textStyle}>learn more!</Text>
 						</Pressable>
 					</View>
@@ -83,13 +72,17 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 	return (
 		<SafeAreaView
 			style={{
-				flex: 4,
+				flex: 5,
 				backgroundColor: '#57784E',
-				height: 100,
-				width: 375,
+				width: 370,
 			}}>
 			<View
-				style={{ flex: 0.5, flexDirection: 'row', justifyContent: 'center' }}>
+				style={{
+					flex: 0.5,
+					flexDirection: 'row',
+					justifyContent: 'center',
+					padding: 9,
+				}}>
 				<Carousel
 					layout={'default'}
 					ref={(ref) => (carousel = ref)}
@@ -102,7 +95,13 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 				/>
 			</View>
 			<View
-				style={{ flex: 0.5, flexDirection: 'row', justifyContent: 'center' }}>
+				style={{
+					flex: 0.5,
+					flexDirection: 'row',
+					justifyContent: 'center',
+					padding: 9,
+					paddingTop: 0,
+				}}>
 				<Carousel
 					layout={'default'}
 					ref={(ref) => (carousel = ref)}
@@ -114,7 +113,13 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 				/>
 			</View>
 			<View
-				style={{ flex: 0.4, flexDirection: 'row', justifyContent: 'center' }}>
+				style={{
+					flex: 0.4,
+					flexDirection: 'row',
+					justifyContent: 'center',
+					padding: 9,
+					paddingTop: 0,
+				}}>
 				<Carousel
 					layout={'default'}
 					ref={(ref) => (carousel = ref)}
@@ -135,15 +140,10 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
-	imageStyle: {
-		height: 200,
-	},
 	cardBackground: {
-		width: 200,
 		flex: 1,
 		justifyContent: 'center',
-		height: 200,
-		// borderRadius: 6,
+		height: 157,
 	},
 	titleContainer: {
 		backgroundColor: '#fff4f570',
