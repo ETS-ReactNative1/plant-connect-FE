@@ -16,6 +16,16 @@ export default function MessageModal({
 }) {
 	const [currentMessage, setCurrentMessage] = useState('')
 
+	const clearInputs = () => {
+		setCurrentMessage('')
+	}
+
+	const submitMessage = () => {
+		setMessageModalVisible(false)
+
+		clearInputs()
+	}
+
 	return (
 		<Modal
 			animationType='slide'
@@ -45,7 +55,7 @@ export default function MessageModal({
 						autoCorrect
 					/>
 				</View>
-				<Pressable style={styles.submitBtn}>
+				<Pressable style={styles.submitBtn} onPress={() => submitMessage()} >
 					<Text style={styles.submitText}>submit message</Text>
 				</Pressable>
 			</View>
