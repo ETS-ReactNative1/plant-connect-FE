@@ -119,7 +119,6 @@ const PlantBackground = styled.ImageBackground`
 `
 const Title = styled.Text`
 	font-family: 'AvenirNext-Regular';
-	// font-color: '';
 	font-size: 30;
 	padding: 3px;
 	font-weight: 700;

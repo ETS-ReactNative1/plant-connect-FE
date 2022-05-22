@@ -53,11 +53,7 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 					flex: 1,
 					justifyContent: 'center',
 				}}>
-				<ImageBackground
-					imageStyle={styles.cardBackground}
-					source={image}
-					resizeMode='cover'
-					style={styles.cardBackground}>
+				<ImageBackground source={image} style={styles.cardBackground}>
 					<View style={styles.titleContainer}>
 						<Text style={styles.plantName}>
 							{item.plant.plant_type.toLowerCase()}
@@ -76,7 +72,7 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 	return (
 		<SafeAreaView
 			style={{
-				flex: 4,
+				flex: 5,
 				backgroundColor: '#57784E',
 				width: 370,
 			}}>
@@ -144,15 +140,10 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
-	imageStyle: {
-		height: 200,
-	},
 	cardBackground: {
-		width: 200,
 		flex: 1,
 		justifyContent: 'center',
-		height: 200,
-		// borderRadius: 6,
+		height: 157,
 	},
 	titleContainer: {
 		backgroundColor: '#fff4f570',
