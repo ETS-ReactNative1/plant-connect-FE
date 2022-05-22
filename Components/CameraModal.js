@@ -19,6 +19,8 @@ export default function CameraModal({
     image
 }) {
 
+const [cameraViewVisible, setCameraViewVisible] = useState(true);
+
 	return (
 		<Modal
 			animationType='slide'
@@ -28,10 +30,10 @@ export default function CameraModal({
 				Alert.alert('Modal has been closed.')
 				setModalVisible(false)
 			}}>
-                
+
 			<View style={styles.centeredView}>
 				<View style={styles.modalView}>
-                <CameraView setImage={setImage} image={image} setCameraModalVisible={setCameraModalVisible}/>
+                <CameraView setImage={setImage} image={image} setCameraViewVisible={setCameraViewVisible} setCameraModalVisible={setCameraModalVisible}/>
 				</View>
 			</View>
 		</Modal>
@@ -46,6 +48,8 @@ const styles = StyleSheet.create({
 		marginTop: 22,
 	},
 	modalView: {
+		borderWidth: 10,
+		borderColor: "red",
 		margin: 20,
 		height: 500,
 		width: 400,
@@ -84,6 +88,6 @@ const styles = StyleSheet.create({
 	},
 	modalText: {
 		textAlign: 'center',
-		
+
 	},
 })
