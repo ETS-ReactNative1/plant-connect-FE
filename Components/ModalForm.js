@@ -8,6 +8,7 @@ import {
 	Pressable,
 	View,
 	TextInput,
+  Image
 } from 'react-native'
 import CameraModal from './CameraModal'
 import { postData } from '../apiCalls'
@@ -78,6 +79,11 @@ export default function ModalForm({
 			}}>
 			<View style={styles.centeredView}>
 				<View style={styles.modalView}>
+        <Pressable onPress={() => setModalVisible(false)}>
+					<Image
+						source={require('../close.png')}
+						style={styles.closeButton}></Image>
+				</Pressable>
 					{value === 'clippings' && <Text>rooted: {option}</Text>}
 					<DropDownPicker
 						open={open}
@@ -152,6 +158,13 @@ const styles = StyleSheet.create({
 		width: 160,
 		marginLeft: 31,
 		borderWidth: 1,
+	},
+  closeButton: {
+		height: 20,
+		width: 20,
+		marginBottom: 10,
+		marginTop: -20,
+		marginLeft: 250,
 	},
 	modalView: {
 		margin: 20,
