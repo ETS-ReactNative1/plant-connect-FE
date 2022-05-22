@@ -23,7 +23,6 @@ export default function MessageModal({
 	const submitMessage = () => {
 		setMessageModalVisible(false)
 
-
 		clearInputs()
 	}
 
@@ -42,7 +41,7 @@ export default function MessageModal({
 						source={require('../close.png')}
 						style={styles.closeButton}></Image>
 				</Pressable>
-				<Text style={styles.textStyle}>send a message{currentMessage}</Text>
+				<Text style={styles.textStyle}>send a message</Text>
 				<View>
 					<TextInput
 						style={styles.input}
