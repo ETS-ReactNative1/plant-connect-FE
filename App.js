@@ -13,17 +13,35 @@ import styled from 'styled-components'
 import ModalForm from './Components/ModalForm'
 import { getData } from './apiCalls'
 import PlantModal from './Components/PlantModal'
+import MessageModal from './Components/MessageModal'
 
 const App = () => {
+	const [messageModalVisible, setMessageModalVisible] = useState(null)
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [plantModalVisible, setPlantModalVisible] = useState(false)
-	const [currentListing, setCurrentListing] =useState([])
+	const [currentListing, setCurrentListing] = useState({
+		'listing_id': 57,
+		'active': true,
+		'quantity': 1,
+		'category': 'plant',
+		'rooted': true,
+		'plant_id': 60,
+		'user_id': 17,
+		'description':
+			'I named this Planty McPlantface and it refuses to come when called. Free to a good home.',
+		'plant': {
+			'photo':
+				'https://user-images.githubusercontent.com/91357724/168396277-da1c9486-fbe9-4e9f-8fb7-68ed88e42489.jpeg',
+			'plant_type': 'Snake Plant',
+			'indoor': true,
+		},
+	})
 	const [allData, setAllData] = useState([])
 	const [plants, setPlants] = useState(null)
 	const [clippings, setClippings] = useState([])
 	const [seeds, setSeeds] = useState([])
-	
+
 	useEffect(() => {
 		getData().then((data) => setAllData(data.data.attributes))
 	}, [])
@@ -64,14 +82,20 @@ const App = () => {
 				cameraModalVisible={cameraModalVisible}
 				setCameraModalVisible={setCameraModalVisible}
 			/>
-			<PlantModal 
+			<PlantModal
 				visible={plantModalVisible}
 				setModalVisible={setPlantModalVisible}
 				plantModalVisible={plantModalVisible}
 				setPlantModalVisible={setPlantModalVisible}
 				currentListing={currentListing}
+				setMessageModalVisible={setMessageModalVisible}
 			/>
-			<MyCarousel 
+			<MessageModal
+				messageModalVisible={messageModalVisible}
+				setMessageModalVisible={setMessageModalVisible}
+				currentListing={currentListing}
+			/>
+			<MyCarousel
 				plantModalVisible={plantModalVisible}
 				setPlantModalVisible={setPlantModalVisible}
 				setCurrentListing={setCurrentListing}
@@ -133,10 +157,6 @@ const styles = StyleSheet.create({
 	buttonOpen: {
 		backgroundColor: '#545454',
 	},
-	// buttonClose: {
-	//   backgroundColor: "#F194FF",
-	//   width: 160,
-	// },
 	textStyle: {
 		color: 'white',
 		fontWeight: 'bold',
