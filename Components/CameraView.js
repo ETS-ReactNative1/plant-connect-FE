@@ -101,17 +101,12 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   closeButton: {
-    marginLeft: 300,
-    marginBottom: 10,
-    height: 12.5,
-    width: 12.5,
-  },
-  closeButton2: {
-    // marginLeft: 220,
-    // alignSelf: "center",
-    height: 60,
-    width: 22.5,
-  },
+		height: 20,
+		width: 20,
+		marginBottom: 8,
+		marginTop: -15,
+		marginLeft: 280,
+	},
   icon: {
     fontSize: 40,
     alignSelf: "center",
