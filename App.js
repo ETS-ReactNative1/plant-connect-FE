@@ -70,7 +70,11 @@ const App = () => {
 						source={require('./creative-pastel-green-monstera-leaves-abstract-pattern-mykola-tsap.png')}>
 						<MenuBar>
 							<Back>
-								<Title>planty swapper</Title>
+							<Pressable>
+					<Image
+						source={require('./planty_swapper.png')}
+						style={styles.logo}></Image>
+				</Pressable>
 							</Back>
 						</MenuBar>
 					</PlantBackground>
@@ -115,18 +119,18 @@ const Container = styled.View`
 `
 const PlantBackground = styled.ImageBackground`
 	width: 100%;
-	height: 88%;
+	height: 95%;
 `
-const Title = styled.Text`
-	font-family: 'AvenirNext-Regular';
-	font-size: 30;
-	padding: 3px;
-	font-weight: 700;
-`
+// const Title = styled.Text`
+// 	font-family: 'AvenirNext-Regular';
+// 	font-size: 30;
+// 	padding: 3px;
+// 	font-weight: 700;
+// `
 const MenuBar = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
-	padding: 18px;
+	padding: 16px;
 `
 const Back = styled.View`
 	flex-direction: row;
@@ -138,8 +142,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 20,
+		marginTop: 17,
 		backgroundColor: '#57784E',
+	},
+	logo: {
+		marginTop: 1,
+		width: 220,
+		height: 60,
 	},
 	button: {
 		margin: 10,

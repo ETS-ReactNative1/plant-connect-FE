@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
-import CameraView from './CameraView'
+// import CameraView from './CameraView'
 import {
 	Modal,
 	StyleSheet,
@@ -11,7 +11,7 @@ import {
   Image
 } from 'react-native'
 import CameraModal from './CameraModal'
-import { postData } from '../apiCalls'
+import { postData, postPhoto } from '../apiCalls'
 import RadioButtons from './RadioButtons'
 
 export default function ModalForm({
@@ -27,6 +27,7 @@ export default function ModalForm({
 	const [value, setValue] = useState(null)
 	const [quantity, setQuantity] = useState(0)
 	const [image, setImage] = useState(null)
+  const [photo, setPhoto] = useState()
 	const [currentListing, setCurrentListing] = useState('')
 	const [items, setItems] = useState([
 		{ label: 'plant', value: 'plant' },
@@ -41,6 +42,25 @@ export default function ModalForm({
 
 	const submitListing = () => {
 		setModalVisible(false)
+    clearInputs()
+    let photoPath = image.split('/')
+    let index = photoPath.length - 1
+    let cloudPhoto = photoPath[index]
+
+      const data = new FormData()
+      data.append('file', cloudPhoto);
+      data.append('upload_preset', 'd7dyers2');
+      data.append("cloud_name", "plantconnect");
+
+      console.log(data)
+   
+    postPhoto(data, setPhoto)
+    setImage(null)
+  }
+
+  
+
+  const sendListing = () => {
 
 		const newListing = {
 			quantity: parseInt(quantity),
@@ -48,13 +68,13 @@ export default function ModalForm({
 			rooted: option === 'yes' ? true : false,
 			description: description,
 			user_id: 1,
-			photo: image,
+			photo: 'banana',
 			plant_type: plantName,
 			indoor: indoor === 'indoor' ? true : false,
 		}
 
 		postData(newListing)
-		clearInputs()
+		
 	}
 
 	const clearInputs = () => {
@@ -63,10 +83,6 @@ export default function ModalForm({
 		setPlantName('')
 	}
 
-	const displayOptionButtons = () => {
-		//if the dropdown value is 'cutting',
-		//display radio buttons : don't
-	}
 
 	return (
 		<Modal

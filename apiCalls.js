@@ -1,3 +1,6 @@
+
+import React, {useState} from "react"
+
 const getData = () => {
 	return fetch(
 		'https://plant-connect-be.herokuapp.com/api/v1/listings?user_id=1'
@@ -19,5 +22,22 @@ const postData = (listing) => {
 	).then((response) => response.json())
 }
 
+
+
+const postPhoto = (data, setPhoto) => {
+	fetch('https://api.cloudinary.com/v1_1/plantconnect/upload', {
+	body: data,
+	headers: {
+	  'content-type': 'multipart/form-data'
+	},
+	method: 'POST',
+  }).then(async r => {
+	let data = await r.json()
+	.then(data => console.log(data))
+//    setPhoto(data.url);
+  }).catch(err => console.log(err))
+};
+
+
 const listings = getData()
-export { listings, postData, getData }
+export { listings, postData, getData, postPhoto }
