@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, Image } from "react-native";
+import * as ImagePicker from 'expo-image-picker';
 import { Camera } from "expo-camera";
 
 const CameraView = ({
@@ -22,6 +23,15 @@ const CameraView = ({
   const takePicture = async () => {
     if (camera) {
       const data = await camera.takePictureAsync(null);
+      /*
+      take only data.uri filepath
+      remove .jpg
+      content type needs to be form data... 'Content-Type': 'multipart/form-data'
+      let index = photo.split('/').length - 1
+
+        console.log(photo.split('/')[index])
+      */
+      console.log(data)
       setImage(data.uri);
       setCameraViewVisible(false);
     }
