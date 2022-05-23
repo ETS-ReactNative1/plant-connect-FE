@@ -23,14 +23,6 @@ const CameraView = ({
   const takePicture = async () => {
     if (camera) {
       const data = await camera.takePictureAsync(null);
-      /*
-      take only data.uri filepath
-      remove .jpg
-      content type needs to be form data... 'Content-Type': 'multipart/form-data'
-      let index = photo.split('/').length - 1
-
-        console.log(photo.split('/')[index])
-      */
       console.log(data)
       setImage(data.uri);
       setCameraViewVisible(false);
