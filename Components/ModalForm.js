@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
-import CameraView from './CameraView'
+// import CameraView from './CameraView'
 import {
 	Modal,
 	StyleSheet,
@@ -55,6 +55,7 @@ export default function ModalForm({
       console.log(data)
    
     postPhoto(data, setPhoto)
+    setImage(null)
   }
 
   
