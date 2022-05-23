@@ -43,7 +43,10 @@
     "@cypress/request": "2.88.10",
     "@cypress/request-promise": "4.2.6",
     "@testing-library/cypress": "^8.0.2",
-    "cypress": "^9.6.1"
+    "cypress": "^9.6.1",
+    "detox": "^19.6.9",
+    "detox-recorder": "^1.0.151",
+    "jest": "^28.1.0"
   },
   "private": true
 }
