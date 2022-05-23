@@ -70,7 +70,7 @@ const App = () => {
 						source={require('./creative-pastel-green-monstera-leaves-abstract-pattern-mykola-tsap.png')}>
 						<MenuBar>
 							<Back>
-								<Title>planty dropper</Title>
+								<Title>planty swapper</Title>
 							</Back>
 						</MenuBar>
 					</PlantBackground>
