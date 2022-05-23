@@ -26,7 +26,7 @@ const postData = (listing) => {
 
 const postPhoto = (data, setPhoto) => {
 	fetch('https://api.cloudinary.com/v1_1/plantconnect/upload', {
-	body: JSON.stringify(data),
+	body: data,
 	headers: {
 	  'content-type': 'multipart/form-data'
 	},
