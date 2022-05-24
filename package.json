@@ -35,7 +35,8 @@
     "react-router-dom": "^6.3.0",
     "styled": "^1.0.0",
     "styled-components": "^5.3.5",
-    "webpack-dev-server": "~3.11.0"
+    "webpack-dev-server": "~3.11.0",
+    "expo-image-picker": "~13.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
