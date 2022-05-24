@@ -44,11 +44,6 @@ const handleSubmit = (newMessage) => {
 	}
 }
 
-const listings = getData()
-export { listings, postData, getData, handleSubmit }
-
-
-
 const postPhoto = (data, setPhoto) => {
 	fetch('https://api.cloudinary.com/v1_1/plantconnect/upload', {
 	body: data,
@@ -65,5 +60,5 @@ const postPhoto = (data, setPhoto) => {
 
 
 const listings = getData()
-export { listings, postData, getData, postPhoto }
+export { listings, postData, getData, postPhoto, handleSubmit }
 
