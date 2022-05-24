@@ -27,10 +27,16 @@ export default function ConversationModal({
     if (!cable.current) {
       cable.current = createConsumer("ws://localhost:3000/cable")
     }
+
+    const paramsToSend = {
+      channel: "ConversationChannel",
+      id: params.id
+    }
     
     const handlers = {
       received(data) {
         setMessages([...messages, data])
+        console.log("HANDLERS", data);
       },
       connected() {
         console.log("connected")
@@ -41,7 +47,9 @@ export default function ConversationModal({
       }
     }
 
-    // const subscription = cable.subscriptions.create(handlers)
+    console.log("USE EFFECT LOG");
+
+    // const subscription = cable.subscriptions.create(paramsToSend, handlers)
     // return function cleanup() {
     //   cable.current = null
     //   subscription.unsubscribe()
@@ -53,7 +61,6 @@ export default function ConversationModal({
 	}
 
   const sendMessage = () => {
-    console.log("CL", currentListing);
     handleSubmit(thread, currentListing, setCurrentConversation)
     clearInputs()
   }
@@ -75,7 +82,7 @@ export default function ConversationModal({
 				</Pressable>
 				<Text style={styles.textStyle}>send a message</Text>
         <View style={styles.messageBoard}>
-          <Text style={styles.textStyle}>{console.log(currentListing)}</Text>
+          <Text style={styles.textStyle}>{}</Text>
         </View>
 				<View>
 					<TextInput
