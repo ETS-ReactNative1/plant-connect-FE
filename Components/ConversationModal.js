@@ -63,7 +63,10 @@ export default function ConversationModal({
   const sendMessage = () => {
     handleSubmit(thread, currentListing, setCurrentConversation)
     getMessages()
-    .then(data => console.log(data.data.attributes.messages))
+    .then(data => {
+      const messageContent = data.data.attributes.messages.map(message => message.content)
+      setMessages(messageContent);
+    })
     clearInputs()
   }
 
