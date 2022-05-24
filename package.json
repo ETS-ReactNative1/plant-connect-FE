@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@expo/webpack-config": "~0.16.2",
+    "@rails/actioncable": "^6.0.5",
     "@rneui/base": "^4.0.0-rc.3",
     "@rneui/themed": "^4.0.0-rc.3",
     "components": "^0.1.0",
@@ -43,7 +44,7 @@
     "@cypress/request": "2.88.10",
     "@cypress/request-promise": "4.2.6",
     "@testing-library/cypress": "^8.0.2",
-    "cypress": "^9.6.1"
+    "cypress": "^9.7.0"
   },
   "private": true
 }
