@@ -10,6 +10,7 @@ import {
 	TextInput,
 	Image,
 } from 'react-native'
+import { handleSubmit } from '../apiCalls'
 
 export default function ConversationModal({
 	setConversationModalVisible,
@@ -46,6 +47,15 @@ export default function ConversationModal({
     // }
   }, [messages])
 
+  const clearInputs = () => {
+		setThread('')
+	}
+
+  const sendMessage = () => {
+    handleSubmit(thread)
+    clearInputs()
+  }
+
   return (
 		<Modal
 		animationType='slide'
@@ -63,7 +73,7 @@ export default function ConversationModal({
 				</Pressable>
 				<Text style={styles.textStyle}>send a message</Text>
         <View style={styles.messageBoard}>
-          <Text style={styles.textStyle}>{thread}</Text>
+          <Text style={styles.textStyle}>{messages}</Text>
         </View>
 				<View>
 					<TextInput
@@ -78,8 +88,8 @@ export default function ConversationModal({
 						autoCorrect
 					/>
 				</View>
-				<Pressable style={styles.submitBtn} onPress={() => submitMessage()} >
-					<Text style={styles.submitText}>submit message</Text>
+				<Pressable style={styles.submitBtn} onPress={() => sendMessage()} >
+					<Text style={styles.submitText}>send message</Text>
 				</Pressable>
 			</View>
 		</Modal>
