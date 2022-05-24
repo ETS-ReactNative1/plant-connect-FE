@@ -27,9 +27,11 @@ const handleSubmit = (newMessage) => {
 				'content-type': 'application/json'
 			},
 			body: JSON.stringify({
+				listing_id: 1,
+				user_id: 1,
 				message: {
-					content: newMessage,
 					user_id: 1,
+					content: newMessage,
 				},
 			}),
 		})
