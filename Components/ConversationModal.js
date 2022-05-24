@@ -9,6 +9,7 @@ import {
 	View,
 	TextInput,
 	Image,
+  ScrollView
 } from 'react-native'
 import { getMessages, handleSubmit } from '../apiCalls'
 
@@ -24,30 +25,30 @@ export default function ConversationModal({
   const cable = useRef()
 
   useEffect(() => {
-    if (!cable.current) {
-      cable.current = createConsumer("ws://localhost:3000/cable")
-    }
-
-    const paramsToSend = {
-      channel: "ConversationChannel",
-      id: params.id
-    }
+    getMessages()
     
-    const handlers = {
-      received(data) {
-        setMessages([...messages, data])
-        console.log("HANDLERS", data);
-      },
-      connected() {
-        console.log("connected")
-      },
-      disconnected() {
-        console.log("disconnected")
-        cable.current = null
-      }
-    }
+    // if (!cable.current) {
+    //   cable.current = createConsumer("ws://localhost:3000/cable")
+    // }
 
-    console.log("USE EFFECT LOG");
+    // const paramsToSend = {
+    //   channel: "ConversationChannel",
+    //   id: params.id
+    // }
+    
+    // const handlers = {
+    //   received(data) {
+    //     setMessages([...messages, data])
+    //     console.log("HANDLERS", data);
+    //   },
+    //   connected() {
+    //     console.log("connected")
+    //   },
+    //   disconnected() {
+    //     console.log("disconnected")
+    //     cable.current = null
+    //   }
+    // }
 
     // const subscription = cable.subscriptions.create(paramsToSend, handlers)
     // return function cleanup() {
@@ -88,11 +89,17 @@ export default function ConversationModal({
 						source={require('../close.png')}
 						style={styles.closeButton}></Image>
 				</Pressable>
-				<Text style={styles.textStyle}>Send a message</Text>
-        <View style={styles.messageBoard}>
+				<Text style={styles.textStyle}>your conversation</Text>
+        <ScrollView style={styles.messageBoard}
+          multiline={true}
+					numberOfLines={5}
+					textAlignVertical={'top'}
+					textBreakStrategy={'highQuality'}
+					autoCorrect
+        >
           {messages}
           <Text style={styles.textStyle}></Text>
-        </View>
+        </ScrollView>
 				<View>
 					<TextInput
 						style={styles.input}
@@ -193,7 +200,7 @@ const styles = StyleSheet.create({
 		padding: 15,
 		backgroundColor: '#e1ead3',
 		width: 260,
-		height: 100,
+		height: 50,
 		margin: 1,
 	},
   messageBoard: {
@@ -206,7 +213,7 @@ const styles = StyleSheet.create({
 		padding: 15,
 		backgroundColor: '#e1ead3',
 		width: 260,
-		height: 300,
+		height: 400,
 		margin: 1,
 	}
 })
