@@ -64,7 +64,10 @@ export default function ConversationModal({
     handleSubmit(thread, currentListing, setCurrentConversation)
     getMessages()
     .then(data => {
-      const messageContent = data.data.attributes.messages.map(message => message.content)
+      const messageContent = data.data.attributes.messages.map(message => {
+        // message.content
+        return <Text>{message.content}</Text>
+      })
       setMessages(messageContent);
     })
     clearInputs()
@@ -85,9 +88,10 @@ export default function ConversationModal({
 						source={require('../close.png')}
 						style={styles.closeButton}></Image>
 				</Pressable>
-				<Text style={styles.textStyle}>send a message</Text>
+				<Text style={styles.textStyle}>Send a message</Text>
         <View style={styles.messageBoard}>
-          <Text style={styles.textStyle}>{messages}</Text>
+          {messages}
+          <Text style={styles.textStyle}></Text>
         </View>
 				<View>
 					<TextInput
