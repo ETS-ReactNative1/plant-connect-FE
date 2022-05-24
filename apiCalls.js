@@ -27,14 +27,17 @@ const handleSubmit = (newMessage) => {
 				'content-type': 'application/json'
 			},
 			body: JSON.stringify({
-				listing_id: 1,
 				user_id: 1,
-				message: {
-					user_id: 1,
-					content: newMessage,
-				},
+				listing_id: 2,
+				content: newMessage,
+				conversation_id: null
 			}),
 		})
+		.then(async r => {
+		let data = await r.json()
+		.then(data => console.log(data)) 
+		})
+		.catch(err => console.log(err))
 	}
 }
 
