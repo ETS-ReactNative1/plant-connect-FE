@@ -1,9 +1,16 @@
-
 import React, {useState} from "react"
 
 const getData = () => {
 	return fetch(
 		'https://plant-connect-be.herokuapp.com/api/v1/listings?user_id=1'
+	).then((response) => {
+		return response.json()
+	})
+}
+
+const getMessages = () => {
+	return fetch(
+		'https://plant-connect-be.herokuapp.com/api/v1/conversations/31?user_id=1'
 	).then((response) => {
 		return response.json()
 	})
@@ -33,7 +40,7 @@ const handleSubmit = (newMessage, currentListing, setCurrentConversation, curren
 				user_id: 1,
 				listing_id: currentListing.listing_id,
 				content: newMessage,
-				conversation_id: currentConversation,
+				conversation_id: 31,
 			}),
 		})
 		.then(async r => {
@@ -60,5 +67,5 @@ const postPhoto = (data, setPhoto) => {
 
 
 const listings = getData()
-export { listings, postData, getData, postPhoto, handleSubmit }
+export { listings, getMessages, postData, getData, postPhoto, handleSubmit }
 

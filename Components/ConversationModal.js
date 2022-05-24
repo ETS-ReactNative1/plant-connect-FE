@@ -10,7 +10,7 @@ import {
 	TextInput,
 	Image,
 } from 'react-native'
-import { handleSubmit } from '../apiCalls'
+import { getMessages, handleSubmit } from '../apiCalls'
 
 export default function ConversationModal({
 	setConversationModalVisible,
@@ -62,6 +62,8 @@ export default function ConversationModal({
 
   const sendMessage = () => {
     handleSubmit(thread, currentListing, setCurrentConversation)
+    getMessages()
+    .then(data => setMessages(data))
     clearInputs()
   }
 
