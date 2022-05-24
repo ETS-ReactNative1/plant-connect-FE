@@ -18,7 +18,7 @@ import ConversationModal from './Components/ConversationModal'
 
 const App = () => {
 	const [messageModalVisible, setMessageModalVisible] = useState(null)
-	const [conversationModalVisible, setConversationModalVisible] = useState(true)
+	const [conversationModalVisible, setConversationModalVisible] = useState()
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [plantModalVisible, setPlantModalVisible] = useState(false)

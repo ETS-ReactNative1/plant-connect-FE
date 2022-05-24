@@ -19,6 +19,7 @@ export default function ConversationModal({
 }) {
   const [messages, setMessages] = useState([])
   const [thread, setThread] = useState([])
+  const [currentConversation, setCurrentConversation] = useState(null)
   const params = useParams()
   const cable = useRef()
 
@@ -52,7 +53,8 @@ export default function ConversationModal({
 	}
 
   const sendMessage = () => {
-    handleSubmit(thread)
+    console.log("CL", currentListing);
+    handleSubmit(thread, currentListing, setCurrentConversation)
     clearInputs()
   }
 
@@ -73,7 +75,7 @@ export default function ConversationModal({
 				</Pressable>
 				<Text style={styles.textStyle}>send a message</Text>
         <View style={styles.messageBoard}>
-          <Text style={styles.textStyle}>{messages}</Text>
+          <Text style={styles.textStyle}>{console.log(currentListing)}</Text>
         </View>
 				<View>
 					<TextInput

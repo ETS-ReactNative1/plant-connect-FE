@@ -22,7 +22,7 @@ const postData = (listing) => {
 	).then((response) => response.json())
 }
 
-const handleSubmit = (newMessage) => {
+const handleSubmit = (newMessage, currentListing, setCurrentConversation, currentConversation) => {
 	if (newMessage !== '') {
 		fetch('https://plant-connect-be.herokuapp.com/api/v1/messages', {
 			method: 'POST',
@@ -31,14 +31,14 @@ const handleSubmit = (newMessage) => {
 			},
 			body: JSON.stringify({
 				user_id: 1,
-				listing_id: 2,
+				listing_id: currentListing.listing_id,
 				content: newMessage,
-				conversation_id: null
+				conversation_id: currentConversation,
 			}),
 		})
 		.then(async r => {
 		let data = await r.json()
-		.then(data => console.log(data)) 
+		.then(data => setCurrentConversation(data.conversation_id)) 
 		})
 		.catch(err => console.log(err))
 	}

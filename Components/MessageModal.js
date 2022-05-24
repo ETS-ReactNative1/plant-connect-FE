@@ -23,7 +23,7 @@ export default function MessageModal({
 
 	const submitMessage = () => {
 		setMessageModalVisible(false)
-		handleSubmit(currentMessage)
+		handleSubmit(currentMessage, currentListing)
 		clearInputs()
 	}
 
