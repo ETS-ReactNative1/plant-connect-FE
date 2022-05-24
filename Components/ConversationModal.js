@@ -17,6 +17,7 @@ export default function ConversationModal({
 	currentListing,
 }) {
   const [messages, setMessages] = useState([])
+  const [thread, setThread] = useState([])
   const params = useParams()
   const cable = useRef()
 
@@ -62,14 +63,14 @@ export default function ConversationModal({
 				</Pressable>
 				<Text style={styles.textStyle}>send a message</Text>
         <View style={styles.messageBoard}>
-          <Text style={styles.textStyle}>{messages}</Text>
+          <Text style={styles.textStyle}>{thread}</Text>
         </View>
 				<View>
 					<TextInput
 						style={styles.input}
-						onChangeText={setMessages}
+						onChangeText={setThread}
 						placeholder={`I want you bro...`}
-						value={messages}
+						value={thread}
 						multiline={true}
 						numberOfLines={5}
 						textAlignVertical={'top'}
