@@ -18,7 +18,7 @@ import ConversationModal from './Components/ConversationModal'
 
 const App = () => {
 	const [messageModalVisible, setMessageModalVisible] = useState(null)
-	const [conversationModalVisible, setConversationModalVisible] = useState()
+	const [conversationModalVisible, setConversationModalVisible] = useState(false)
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [plantModalVisible, setPlantModalVisible] = useState(false)
@@ -101,11 +101,11 @@ const App = () => {
 				setMessageModalVisible={setMessageModalVisible}
 				currentListing={currentListing}
 			/>
-			<ConversationModal
+			{conversationModalVisible && <ConversationModal
 				conversationModalVisible={conversationModalVisible}
 				setConversationModalVisible={setConversationModalVisible}
 				currentListing={currentListing}
-			/>
+			/>}
 			<MyCarousel
 				plantModalVisible={plantModalVisible}
 				setPlantModalVisible={setPlantModalVisible}
@@ -118,7 +118,7 @@ const App = () => {
 			</Pressable>
 			<Pressable
 				style={[styles.button, styles.buttonOpen]}
-				onPress={() => setModalVisible(true)}>
+				onPress={() => setConversationModalVisible(true)}>
 				<Text style={styles.textStyle}>💌</Text>
 			</Pressable>
 		</View>
