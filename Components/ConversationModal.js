@@ -62,7 +62,7 @@ export default function ConversationModal({
 				</Pressable>
 				<Text style={styles.textStyle}>send a message</Text>
         <View style={styles.messageBoard}>
-
+          <Text style={styles.textStyle}>{messages}</Text>
         </View>
 				<View>
 					<TextInput
