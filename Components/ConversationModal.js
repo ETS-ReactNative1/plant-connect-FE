@@ -63,7 +63,7 @@ export default function ConversationModal({
   const sendMessage = () => {
     handleSubmit(thread, currentListing, setCurrentConversation)
     getMessages()
-    .then(data => setMessages(data))
+    .then(data => console.log(data.data.attributes.messages))
     clearInputs()
   }
 
@@ -84,7 +84,7 @@ export default function ConversationModal({
 				</Pressable>
 				<Text style={styles.textStyle}>send a message</Text>
         <View style={styles.messageBoard}>
-          <Text style={styles.textStyle}>{}</Text>
+          <Text style={styles.textStyle}>{messages}</Text>
         </View>
 				<View>
 					<TextInput
