@@ -61,11 +61,14 @@ export default function ConversationModal({
 						style={styles.closeButton}></Image>
 				</Pressable>
 				<Text style={styles.textStyle}>send a message</Text>
+        <View style={styles.messageBoard}>
+
+        </View>
 				<View>
 					<TextInput
 						style={styles.input}
 						onChangeText={setMessages}
-						placeholder={`I want your ${currentListing.plant.plant_type.toLowerCase()} bro...`}
+						placeholder={`I want you bro...`}
 						value={messages}
 						multiline={true}
 						numberOfLines={5}
@@ -164,4 +167,17 @@ const styles = StyleSheet.create({
 		height: 100,
 		margin: 1,
 	},
+  messageBoard: {
+		flexWrap: 'wrap',
+		minWidth: 50,
+		maxWidth: 250,
+		borderWidth: 1,
+		borderRadius: 4,
+		paddingTop: 10,
+		padding: 15,
+		backgroundColor: '#e1ead3',
+		width: 260,
+		height: 300,
+		margin: 1,
+	}
 })
