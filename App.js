@@ -116,6 +116,11 @@ const App = () => {
 				onPress={() => setModalVisible(true)}>
 				<Text style={styles.textStyle}>Post Your Plant!</Text>
 			</Pressable>
+			<Pressable
+				style={[styles.button, styles.buttonOpen]}
+				onPress={() => setModalVisible(true)}>
+				<Text style={styles.textStyle}>💌</Text>
+			</Pressable>
 		</View>
 	)
 }
