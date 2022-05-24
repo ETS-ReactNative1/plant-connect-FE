@@ -14,9 +14,11 @@ import ModalForm from './Components/ModalForm'
 import { getData } from './apiCalls'
 import PlantModal from './Components/PlantModal'
 import MessageModal from './Components/MessageModal'
+import ConversationModal from './Components/ConversationModal'
 
 const App = () => {
 	const [messageModalVisible, setMessageModalVisible] = useState(null)
+	const [conversationModalVisible, setConversationModalVisible] = useState(true)
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [plantModalVisible, setPlantModalVisible] = useState(false)
@@ -97,6 +99,11 @@ const App = () => {
 			<MessageModal
 				messageModalVisible={messageModalVisible}
 				setMessageModalVisible={setMessageModalVisible}
+				currentListing={currentListing}
+			/>
+			<ConversationModal
+				conversationModalVisible={conversationModalVisible}
+				setConversationModalVisible={setConversationModalVisible}
 				currentListing={currentListing}
 			/>
 			<MyCarousel
