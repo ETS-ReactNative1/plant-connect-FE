@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ConverationPage from './ConversationPage'
 import {
 	Modal,
 	StyleSheet,
@@ -30,13 +29,13 @@ export default function MessageModal({
 
 	return (
 		<Modal
-			animationType='slide'
-			transparent={true}
-			visible={messageModalVisible}
-			onRequestClose={() => {
-				Alert.alert('Modal has been closed.')
-				setModalVisible(false)
-			}}>
+		animationType='slide'
+		transparent={true}
+		visible={messageModalVisible}
+		onRequestClose={() => {
+			Alert.alert('Modal has been closed.')
+			setModalVisible(false)
+		}}>
 			<View style={styles.modalView}>
 				<Pressable onPress={() => setMessageModalVisible(false)}>
 					<Image
