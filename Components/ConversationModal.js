@@ -26,7 +26,7 @@ export default function ConversationModal({
 
   useEffect(() => {
     getMessages()
-    
+
     // if (!cable.current) {
     //   cable.current = createConsumer("ws://localhost:3000/cable")
     // }
@@ -65,9 +65,9 @@ export default function ConversationModal({
     handleSubmit(thread, currentListing, setCurrentConversation)
     getMessages()
     .then(data => {
+      console.log("D.D.A", data.data.attributes);
       const messageContent = data.data.attributes.messages.map(message => {
-        // message.content
-        return <Text>{message.content}</Text>
+        return message.user_id === 1 ? <Text style={styles.yourMessages}>{message.content}</Text> : <Text style={styles.theirMessages}>{message.content}</Text>
       })
       setMessages(messageContent);
     })
@@ -215,5 +215,31 @@ const styles = StyleSheet.create({
 		width: 260,
 		height: 400,
 		margin: 1,
-	}
+	},
+  yourMessages: {
+    width: 185,
+		color: '#545454',
+		padding: 1,
+		fontSize: 20,
+		fontWeight: 'bold',
+		textAlign: 'right',
+    backgroundColor: '#f7e6f6',
+    margin: 4,
+    borderWidth: 1,
+    borderColor: '000000',
+    borderRadius: 6,
+  },
+  theirMessages: {
+    width: 185,
+		color: '#FFFFFF',
+		padding: 1,
+		fontSize: 20,
+		fontWeight: 'bold',
+		textAlign: 'right',
+    backgroundColor: '#545454',
+    margin: 4,
+    borderWidth: 1,
+    borderColor: '000000',
+    borderRadius: 6,
+  }
 })
