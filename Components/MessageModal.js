@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ConverationPage from './ConversationPage'
 import {
 	Modal,
 	StyleSheet,
@@ -8,6 +9,7 @@ import {
 	TextInput,
 	Image,
 } from 'react-native'
+import { handleSubmit } from '../apiCalls'
 
 export default function MessageModal({
 	setMessageModalVisible,
@@ -22,7 +24,7 @@ export default function MessageModal({
 
 	const submitMessage = () => {
 		setMessageModalVisible(false)
-
+		handleSubmit(currentMessage)
 		clearInputs()
 	}
 

@@ -11,11 +11,6 @@ function ConversationPage({ loggedInUser }) {
     if (!cable.current) {
       cable.current = createConsumer("ws://localhost:3000/cable")
     }
-    
-    const paramsToSend = {
-      channel: "ConversationChannel",
-      id: params.id
-    }
 
     const handlers = {
       received(data) {
@@ -29,11 +24,10 @@ function ConversationPage({ loggedInUser }) {
         cable.current = null
       }
     }
-    const subscription = cable.subscriptions.create(paramsToSend, handlers)
+    const subscription = cable.subscriptions.create(handlers)
     return function cleanup() {
-      console.log("unsubbing from ", params.id);
       cable.current = null
       subscription.unsubscribe()
     }
-  }, [params.id, messages])
+  }, [messages])
 }

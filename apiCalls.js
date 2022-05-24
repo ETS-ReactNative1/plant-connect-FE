@@ -19,7 +19,7 @@ const postData = (listing) => {
 	).then((response) => response.json())
 }
 
-const handleSubmit = () => {
+const handleSubmit = (newMessage) => {
 	if (newMessage !== '') {
 		fetch('https://plant-connect-be.herokuapp.com/api/v1/messages', {
 			method: 'POST',
@@ -27,9 +27,10 @@ const handleSubmit = () => {
 				'content-type': 'application/json'
 			},
 			body: JSON.stringify({
-				content: newMessage,
-				conversation_id: params.id,
-				user_id: loggedInUser.id,
+				message: {
+					content: newMessage,
+					user_id: 1,
+				},
 			}),
 		})
 	}
