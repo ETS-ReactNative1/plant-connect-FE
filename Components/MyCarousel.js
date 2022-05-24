@@ -53,7 +53,7 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 					flex: 1,
 					justifyContent: 'center',
 				}}>
-				<ImageBackground source={image} style={styles.cardBackground}>
+				<ImageBackground imageStyle={styles.cardImage} source={image} style={styles.cardBackground}>
 					<View style={styles.titleContainer}>
 						<Text style={styles.plantName}>
 							{item.plant.plant_type.toLowerCase()}
@@ -160,6 +160,9 @@ const styles = StyleSheet.create({
 		marginLeft: 10,
 		fontWeight: 'bold',
 		color: '#2d2d2d',
+	},
+	cardImage: {
+		borderRadius: 5,
 	},
 })
 
