@@ -24,7 +24,7 @@ const App = () => {
     useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [aboutModalVisible, setAboutModalVisible] = useState(false);
-  const [conversationMenuVisible, setConversationMenuVisible] = useState(false);
+  const [conversationMenuVisible, setConversationMenuVisible] = useState(true);
   const [cameraModalVisible, setCameraModalVisible] = useState(false);
   const [plantModalVisible, setPlantModalVisible] = useState(false);
   const [currentConversation, setCurrentConversation] = useState(null)
@@ -85,7 +85,7 @@ const App = () => {
   };
 
   const openConversations = () => {
-    setConversationModalVisible(true);
+    setConversationMenuVisible(true);
     retrieveConversations();
   };
 
@@ -134,6 +134,7 @@ const App = () => {
         <ConversationMenu
           conversationMenuVisible={conversationMenuVisible}
           setConversationMenuVisible={setConversationMenuVisible}
+          setConversationModalVisible={setConversationModalVisible}
           setCurrentConversation={setCurrentConversation}
           currentConversation={currentConversation}
         />
