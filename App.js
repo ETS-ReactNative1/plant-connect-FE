@@ -16,6 +16,7 @@ import PlantModal from "./Components/PlantModal";
 import MessageModal from "./Components/MessageModal";
 import About from "./Components/About";
 import ConversationModal from "./Components/ConversationModal";
+import ConversationMenu from "./Components/ConversationMenu";
 
 const App = () => {
   const [messageModalVisible, setMessageModalVisible] = useState(null);
@@ -23,6 +24,7 @@ const App = () => {
     useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [aboutModalVisible, setAboutModalVisible] = useState(false);
+  const [conversationMenuVisible, setConversationMenuVisible] = useState(false);
   const [cameraModalVisible, setCameraModalVisible] = useState(false);
   const [plantModalVisible, setPlantModalVisible] = useState(false);
   const [currentListing, setCurrentListing] = useState({
@@ -125,6 +127,12 @@ const App = () => {
         setMessageModalVisible={setMessageModalVisible}
         currentListing={currentListing}
       />
+	  {conversationMenuVisible && (
+        <ConversationMenu
+          conversationMenuVisible={conversationMenuVisible}
+          setConversationMenuVisible={setConversationMenuVisible}
+        />
+      )}
       {conversationModalVisible && (
         <ConversationModal
           conversationModalVisible={conversationModalVisible}
