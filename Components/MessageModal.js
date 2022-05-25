@@ -25,7 +25,7 @@ export default function MessageModal({
 
 	const submitMessage = () => {
 		setMessageModalVisible(false)
-		handleSubmit(currentMessage, currentListing)
+		handleSubmit(currentMessage, currentListing, setCurrentConversation)
 		clearInputs()
 	}
 
@@ -33,11 +33,7 @@ export default function MessageModal({
 		<Modal
 			animationType='slide'
 			transparent={true}
-			visible={messageModalVisible}
-			onRequestClose={() => {
-				Alert.alert('Modal has been closed.')
-				setModalVisible(false)
-			}}>
+			visible={messageModalVisible}>
 			<View style={styles.modalView}>
 				<Pressable onPress={() => setMessageModalVisible(false)}>
 					<Image
@@ -88,12 +84,6 @@ const styles = StyleSheet.create({
 		borderWidth: 10,
 		borderColor: 'red',
 	},
-	dropdown: {
-		height: 20,
-		width: 160,
-		marginLeft: 31,
-		borderWidth: 1,
-	},
 	modalView: {
 		margin: 30,
 		height: 600,
@@ -117,13 +107,6 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		padding: 10,
 		elevation: 2,
-	},
-	buttonOpen: {
-		backgroundColor: '#545454',
-	},
-	buttonClose: {
-		backgroundColor: '#545454',
-		width: 160,
 	},
 	textStyle: {
 		color: '#545454',

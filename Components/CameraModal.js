@@ -1,35 +1,27 @@
 import React, { useState } from 'react'
 import CameraView from './CameraView'
 
-import {
-	Modal,
-	StyleSheet,
-	View,
-} from 'react-native'
+import { Modal, StyleSheet, View } from 'react-native'
 
 export default function CameraModal({
 	visible,
 	setModalVisible,
-    setCameraModalVisible,
-    setImage,
-    image
+	setCameraModalVisible,
+	setImage,
+	image,
 }) {
-
-const [cameraViewVisible, setCameraViewVisible] = useState(true);
+	const [cameraViewVisible, setCameraViewVisible] = useState(true)
 
 	return (
-		<Modal
-			animationType='slide'
-			transparent={true}
-			visible={visible}
-			onRequestClose={() => {
-				Alert.alert('Modal has been closed.')
-				setModalVisible(false)
-			}}>
-
+		<Modal animationType='slide' transparent={true} visible={visible}>
 			<View style={styles.centeredView}>
 				<View style={styles.modalView}>
-                <CameraView setImage={setImage} image={image} setCameraViewVisible={setCameraViewVisible} setCameraModalVisible={setCameraModalVisible}/>
+					<CameraView
+						setImage={setImage}
+						image={image}
+						setCameraViewVisible={setCameraViewVisible}
+						setCameraModalVisible={setCameraModalVisible}
+					/>
 				</View>
 			</View>
 		</Modal>
@@ -62,18 +54,6 @@ const styles = StyleSheet.create({
 		shadowRadius: 5,
 		elevation: 9,
 	},
-	button: {
-		borderRadius: 20,
-		padding: 10,
-		elevation: 2,
-	},
-	buttonOpen: {
-		backgroundColor: '#545454',
-	},
-	buttonClose: {
-		backgroundColor: '#545454',
-		width: 160,
-	},
 	textStyle: {
 		color: 'white',
 		fontWeight: 'bold',
@@ -81,6 +61,5 @@ const styles = StyleSheet.create({
 	},
 	modalText: {
 		textAlign: 'center',
-
 	},
 })

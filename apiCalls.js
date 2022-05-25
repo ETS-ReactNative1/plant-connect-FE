@@ -15,6 +15,14 @@ const getMessages = (convo) => {
 	})
 }
 
+const getConversations = () => {
+	return fetch(
+		`https://plant-connect-be.herokuapp.com/api/v1/conversations/?user_id=1`
+	).then((response) => {
+		return response.json()
+	})
+}
+
 const postData = (listing) => {
 	return fetch(
 		'https://plant-connect-be.herokuapp.com/api/v1/listings?user_id=1',
@@ -73,4 +81,12 @@ const postPhoto = (data, setPhoto) => {
 
 const listings = getData()
 
-export { listings, getMessages, postData, getData, postPhoto, handleSubmit }
+export {
+	listings,
+	getMessages,
+	getConversations,
+	postData,
+	getData,
+	postPhoto,
+	handleSubmit,
+}

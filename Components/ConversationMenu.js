@@ -8,6 +8,7 @@ import {
 	Image,
 	ScrollView,
 } from 'react-native'
+import { getConversations } from '../apiCalls'
 
 export default function ConversationMenu({
 	setConversationMenuVisible,
@@ -16,14 +17,17 @@ export default function ConversationMenu({
 	setCurrentConversation,
 	currentConversation,
 }) {
-	const conversations = [
-		{ plantName: 'monsterra', conversation_id: 1 },
-		{ plantName: 'snake plant', conversation_id: 2 },
-	]
-	const [allConversations, setAllConversations] = useState([])
+	const [allConversations, setAllConversations] = useState([
+		// { name: 'snake plant', id: 3 },
+	])
+	// let conversations = getConversations()
 
 	useEffect(() => {
-		setAllConversations(conversations)
+		let con = getConversations()
+		console.log('adsfd', con)
+
+		// console.log('slkdjfaf', allConversations)
+		// setAllConversations(conversations)
 	}, [])
 
 	const goToConversation = (conversationId) => {
@@ -36,8 +40,8 @@ export default function ConversationMenu({
 		return (
 			<Pressable
 				style={styles.convoButton}
-				onPress={() => goToConversation(conversation.conversation_id)}>
-				<Text style={styles.convoText}>{conversation.plantName}</Text>
+				onPress={() => goToConversation(conversation.id)}>
+				<Text style={styles.convoText}>{conversation.name}</Text>
 			</Pressable>
 		)
 	})
@@ -57,7 +61,7 @@ export default function ConversationMenu({
 						source={require('../close.png')}
 						style={styles.closeButton}></Image>
 				</Pressable>
-				<Text style={styles.textStyle}>your conversation</Text>
+				<Text style={styles.textStyle}>your conversations</Text>
 				<ScrollView
 					style={styles.messageBoard}
 					multiline={true}
@@ -75,12 +79,6 @@ export default function ConversationMenu({
 }
 
 const styles = StyleSheet.create({
-	submitBtn: {
-		backgroundColor: '#545454',
-		padding: 7,
-		borderRadius: 10,
-		marginTop: 2,
-	},
 	convoButton: {
 		width: 200,
 		color: '#545454',
@@ -105,10 +103,6 @@ const styles = StyleSheet.create({
 		marginLeft: 255,
 		height: 12.5,
 		width: 12.5,
-	},
-	submitText: {
-		color: '#FFF9EB',
-		fontWeight: 'bold',
 	},
 	modalView: {
 		margin: 30,
@@ -135,20 +129,6 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontWeight: 'bold',
 		textAlign: 'center',
-	},
-	input: {
-		flexWrap: 'wrap',
-		minWidth: 50,
-		maxWidth: 270,
-		borderWidth: 1,
-		borderRadius: 4,
-		paddingTop: 10,
-		padding: 15,
-		backgroundColor: '#e1ead3',
-		width: 260,
-		height: 50,
-		margin: 1,
-		marginBottom: 10,
 	},
 	messageBoard: {
 		flexWrap: 'wrap',

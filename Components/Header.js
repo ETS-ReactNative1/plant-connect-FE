@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, Image } from 'react-native'
 import styled from 'styled-components'
 
