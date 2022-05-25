@@ -12,7 +12,6 @@
 
 ## Introduction
 
-This project
 
 ## Contributors
 - [Brenda Sotelo](https://gist.github.com/BrendaSotel0)
@@ -20,3 +19,27 @@ This project
 - [Katie Ammon]()
 - [Katie Toler]()
 - [Jerry Vohrer]()
+
+## Technologies
+- React Native
+- JavaScript
+- CSS
+
+## Illustrations
+![]()
+
+## Deploy Link
+
+## Set Up
+1. Fork this repo  
+2. Clone the repo to your local machine   
+3. Run `npm i`, then ` npm run build`, then `npm start`
+4. 
+
+
+## Wins
+
+## Challenges & Improvements
+
+
+## Future Additions
