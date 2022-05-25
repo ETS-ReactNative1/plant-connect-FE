@@ -17,16 +17,17 @@ export default function ConversationModal({
 	setConversationModalVisible,
 	conversationModalVisible,
 	currentListing,
+  messages,
+  setMessages,
+  retrieveConversations
 }) {
-  const [messages, setMessages] = useState([])
   const [thread, setThread] = useState([])
   const [currentConversation, setCurrentConversation] = useState(null)
   const params = useParams()
   const cable = useRef()
 
   useEffect(() => {
-    getMessages()
-
+    retrieveConversations()
     // if (!cable.current) {
     //   cable.current = createConsumer("ws://localhost:3000/cable")
     // }
@@ -63,15 +64,8 @@ export default function ConversationModal({
 
   const sendMessage = () => {
     handleSubmit(thread, currentListing, setCurrentConversation)
-    getMessages()
-    .then(data => {
-      console.log("D.D.A", data.data.attributes);
-      const messageContent = data.data.attributes.messages.map(message => {
-        return message.user_id === 1 ? <Text style={styles.yourMessages}>{message.content}</Text> : <Text style={styles.theirMessages}>{message.content}</Text>
-      })
-      setMessages(messageContent);
-    })
     clearInputs()
+    retrieveConversations()
   }
 
   return (
@@ -202,6 +196,7 @@ const styles = StyleSheet.create({
 		width: 260,
 		height: 50,
 		margin: 1,
+    marginBottom: 10,
 	},
   messageBoard: {
 		flexWrap: 'wrap',
@@ -215,31 +210,6 @@ const styles = StyleSheet.create({
 		width: 260,
 		height: 400,
 		margin: 1,
+    marginTop: 10,
 	},
-  yourMessages: {
-    width: 185,
-		color: '#545454',
-		padding: 1,
-		fontSize: 20,
-		fontWeight: 'bold',
-		textAlign: 'right',
-    backgroundColor: '#f7e6f6',
-    margin: 4,
-    borderWidth: 1,
-    borderColor: '000000',
-    borderRadius: 6,
-  },
-  theirMessages: {
-    width: 185,
-		color: '#FFFFFF',
-		padding: 1,
-		fontSize: 20,
-		fontWeight: 'bold',
-		textAlign: 'right',
-    backgroundColor: '#545454',
-    margin: 4,
-    borderWidth: 1,
-    borderColor: '000000',
-    borderRadius: 6,
-  }
 })
