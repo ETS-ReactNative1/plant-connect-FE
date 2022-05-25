@@ -5,18 +5,37 @@ import {
 	Text,
 	Pressable,
 	View,
-	TextInput,
 	Image,
   ScrollView
 } from 'react-native'
 
 export default function ConversationMenu({
 	setConversationMenuVisible,
+	setConversationModalVisible,
 	conversationMenuVisible,
 	setCurrentConversation,
 	currentConversation,
 }) {
+	const conversations = [{plantName: 'monsterra', conversation_id: 1}]
+const [allConversations, setAllConversations] = useState([])
 
+useEffect(() => {
+  setAllConversations(conversations)
+}, [])
+
+
+const goToConversation = () => {
+	setCurrentConversation()
+	setConversationMenuVisible(false)
+	setConversationModalVisible(true)
+
+}
+
+let conversationbuttons = allConversations.map(conversation => {
+	return <Pressable onPress={() => goToConversation(conversation.conversation_id)}>
+				<Text>{conversation.plantName}</Text>
+			</Pressable>
+})
 
   return (
 		<Modal
@@ -41,6 +60,7 @@ export default function ConversationMenu({
 					textBreakStrategy={'highQuality'}
 					autoCorrect
         >
+			{conversationbuttons}
           <Text style={styles.textStyle}></Text>
         </ScrollView>
 				<View>
