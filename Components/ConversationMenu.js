@@ -16,7 +16,7 @@ export default function ConversationMenu({
 	setCurrentConversation,
 	currentConversation,
 }) {
-	const conversations = [{plantName: 'monsterra', conversation_id: 1}]
+	const conversations = [{plantName: 'monsterra', conversation_id: 1}, {plantName: 'snake plant', conversation_id: 2}]
 const [allConversations, setAllConversations] = useState([])
 
 useEffect(() => {
@@ -24,16 +24,16 @@ useEffect(() => {
 }, [])
 
 
-const goToConversation = () => {
-	setCurrentConversation()
+const goToConversation = (conversationId) => {
+	setCurrentConversation(conversationId)
 	setConversationMenuVisible(false)
 	setConversationModalVisible(true)
 
 }
 
 let conversationbuttons = allConversations.map(conversation => {
-	return <Pressable onPress={() => goToConversation(conversation.conversation_id)}>
-				<Text>{conversation.plantName}</Text>
+	return <Pressable style={styles.convoButton} onPress={() => goToConversation(conversation.conversation_id)}>
+				<Text style={styles.convoText}  >{conversation.plantName}</Text>
 			</Pressable>
 })
 
@@ -76,6 +76,25 @@ const styles = StyleSheet.create({
 		padding: 7,
 		borderRadius: 10,
 		marginTop: 2,
+	},
+	convoButton: {
+		width: 200,
+		color: "#545454",
+		padding: 1,
+		fontSize: 20,
+		fontWeight: "bold",
+		backgroundColor: "#f7e6f6",
+		margin: 4,
+		borderWidth: 1,
+		borderColor: "000000",
+		borderRadius: 6,
+	  },
+	  convoText: {
+		color: '#545454',
+		padding: 1,
+		fontSize: 20,
+		fontWeight: 'bold',
+		textAlign: 'center',
 	},
 	closeButton: {
 		marginLeft: 255,
