@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
-// import CameraView from './CameraView'
 import {
 	Modal,
 	StyleSheet,
@@ -17,7 +16,6 @@ import RadioButtons from './RadioButtons'
 export default function ModalForm({
 	visible,
 	setModalVisible,
-	// createNewListing,
 	cameraModalVisible,
 	setCameraModalVisible,
 }) {
@@ -58,8 +56,6 @@ export default function ModalForm({
     setImage(null)
   }
 
-  
-
   const sendListing = () => {
 
 		const newListing = {
@@ -82,7 +78,6 @@ export default function ModalForm({
 		setQuantity(0)
 		setPlantName('')
 	}
-
 
 	return (
 		<Modal
@@ -242,7 +237,6 @@ const styles = StyleSheet.create({
 	},
 	radio: {
 		buttonColor: 'black',
-		//  color: 'red'
 	},
 	radioLabel: {},
 })
