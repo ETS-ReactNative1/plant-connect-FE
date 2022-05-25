@@ -27,6 +27,7 @@ const App = () => {
   const [conversationMenuVisible, setConversationMenuVisible] = useState(false);
   const [cameraModalVisible, setCameraModalVisible] = useState(false);
   const [plantModalVisible, setPlantModalVisible] = useState(false);
+  const [currentConversation, setCurrentConversation] = useState(null)
   const [currentListing, setCurrentListing] = useState({
     listing_id: 57,
     active: true,
@@ -71,7 +72,7 @@ const App = () => {
   };
 
   const retrieveConversations = () => {
-    getMessages().then((data) => {
+    getMessages(currentConversation).then((data) => {
       const messageContent = data.data.attributes.messages.map((message) => {
         return message.user_id === 1 ? (
           <Text style={styles.yourMessages}>{message.content}</Text>
@@ -126,11 +127,15 @@ const App = () => {
         messageModalVisible={messageModalVisible}
         setMessageModalVisible={setMessageModalVisible}
         currentListing={currentListing}
+        setCurrentConversation={setCurrentConversation}
+        currentConversation={currentConversation}
       />
 	  {conversationMenuVisible && (
         <ConversationMenu
           conversationMenuVisible={conversationMenuVisible}
           setConversationMenuVisible={setConversationMenuVisible}
+          setCurrentConversation={setCurrentConversation}
+          currentConversation={currentConversation}
         />
       )}
       {conversationModalVisible && (
@@ -141,6 +146,8 @@ const App = () => {
           messages={messages}
           setMessages={setMessages}
           retrieveConversations={retrieveConversations}
+          setCurrentConversation={setCurrentConversation}
+          currentConversation={currentConversation}
         />
       )}
 	  {aboutModalVisible && (

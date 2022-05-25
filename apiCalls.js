@@ -6,12 +6,15 @@ const getData = () => {
 	})
 }
 
-const getMessages = () => {
+const getMessages = (listing) => {
+	let currentListing = listing || 11
+	console.log(currentListing)
 	return fetch(
-		'https://plant-connect-be.herokuapp.com/api/v1/conversations/11?user_id=1'
+		`https://plant-connect-be.herokuapp.com/api/v1/conversations/${currentListing}?user_id=1`
 	).then((response) => {
 		return response.json()
 	})
+	
 }
 
 const postData = (listing) => {
