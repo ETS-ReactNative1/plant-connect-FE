@@ -4,7 +4,6 @@
   - [Contributors](#Contributors)
   - [Technologies](#Technologies)
   - [Illustrations](#Illustrations)
-  - [Deployed Link](#Deployed-Page)
   - [Set Up](#Set-Up)
   - [Wins](#Wins)
   - [Challenges & Improvements](#Challenges-&-Improvements)
@@ -14,21 +13,20 @@
 
 
 ## Contributors
-- [Brenda Sotelo](https://gist.github.com/BrendaSotel0)
-- [Emily Corcoran]()
-- [Katie Ammon]()
-- [Katie Toler]()
-- [Jerry Vohrer]()
+- [Brenda Sotelo](https://github.com/BrendaSotel0)
+- [Emily Corcoran](https://github.com/Emily-Cathleen)
+- [Katie Ammon](https://github.com/kammon10)
+- [Katie Toler](https://github.com/KATIETOLER)
+- [Jerry Vohrer](https://github.com/Jerry-Vrrr)
 
 ## Technologies
 - React Native
+- Expo
 - JavaScript
 - CSS
 
 ## Illustrations
 ![]()
-
-## Deploy Link
 
 ## Set Up
 1. Fork this repo  
@@ -36,10 +34,12 @@
 3. Run `npm i`, then ` npm run build`, then `npm start`
 4. 
 
-
 ## Wins
+- Sucessfully worked with the back end to build an application from concept 
+- Self taught React Native in two weeks
 
 ## Challenges & Improvements
-
+- 
 
 ## Future Additions
+- 
