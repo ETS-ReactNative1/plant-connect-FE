@@ -21,7 +21,8 @@
 
 ## Technologies           
 - React Native
-- Expo      
+- Expo
+- Camera
 - JavaScript
 - CSS
 
@@ -29,10 +30,11 @@
 ![]()
 
 ## Set Up
-1. Fork this repo  
-2. Clone the repo to your local machine   
-3. Run `npm i`, then ` npm run build`, then `npm start`
-4. 
+- Fork this repo  
+- Clone the repo to your local machine   
+- Run `npm install` then `npm start`
+- Run `npm install -g expo-cli`
+- Run `npm start` then `i`
 
 ## Wins
 - Sucessfully worked with the backend to build an application completely from scratch
@@ -44,7 +46,7 @@
 - Not having access to the web browsers dev tools that we have more familiarity with
 - Learning how best to communicate and work with the backend
 - Integrating the mobile camera functionality
-- Testing ended up being               
+- Testing ended up being the one of the hardest things to implement        
 
 ## Future Additions
 - We would like to integrate a meetup's api in order for users to schedule group plant swapping  
