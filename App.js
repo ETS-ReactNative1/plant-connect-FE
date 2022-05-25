@@ -11,12 +11,14 @@ import {
 import MyCarousel from './Components/MyCarousel'
 import styled from 'styled-components'
 import ModalForm from './Components/ModalForm'
-import { getData } from './apiCalls'
+import { getData, getMessages } from './apiCalls'
 import PlantModal from './Components/PlantModal'
 import MessageModal from './Components/MessageModal'
+import ConversationModal from './Components/ConversationModal'
 
 const App = () => {
 	const [messageModalVisible, setMessageModalVisible] = useState(null)
+	const [conversationModalVisible, setConversationModalVisible] = useState(false)
 	const [modalVisible, setModalVisible] = useState(false)
 	const [cameraModalVisible, setCameraModalVisible] = useState(false)
 	const [plantModalVisible, setPlantModalVisible] = useState(false)
@@ -41,6 +43,7 @@ const App = () => {
 	const [plants, setPlants] = useState(null)
 	const [clippings, setClippings] = useState([])
 	const [seeds, setSeeds] = useState([])
+	const [messages, setMessages] = useState([])
 
 	useEffect(() => {
 		getData().then((data) => setAllData(data.data.attributes))
@@ -60,6 +63,21 @@ const App = () => {
 				listing.category === 'clippings' &&
 				setClippings([...clippings, listing])
 		)
+	}
+
+	const retrieveConversations = () => {
+		getMessages()
+    .then(data => {
+      const messageContent = data.data.attributes.messages.map(message => {
+        return message.user_id === 1 ? <Text style={styles.yourMessages}>{message.content}</Text> : <Text style={styles.theirMessages}>{message.content}</Text>
+      })
+      setMessages(messageContent);
+    })
+	}
+
+	const openConversations = () => {
+		setConversationModalVisible(true)
+		retrieveConversations()
 	}
 
 	return (
@@ -99,6 +117,14 @@ const App = () => {
 				setMessageModalVisible={setMessageModalVisible}
 				currentListing={currentListing}
 			/>
+			{conversationModalVisible && <ConversationModal
+				conversationModalVisible={conversationModalVisible}
+				setConversationModalVisible={setConversationModalVisible}
+				currentListing={currentListing}
+				messages={messages}
+				setMessages={setMessages}
+				retrieveConversations={retrieveConversations}
+			/>}
 			<MyCarousel
 				plantModalVisible={plantModalVisible}
 				setPlantModalVisible={setPlantModalVisible}
@@ -108,6 +134,11 @@ const App = () => {
 				style={[styles.button, styles.buttonOpen]}
 				onPress={() => setModalVisible(true)}>
 				<Text style={styles.textStyle}>Post Your Plant!</Text>
+			</Pressable>
+			<Pressable
+				style={[styles.button, styles.buttonOpen]}
+				onPress={() => openConversations()}>
+				<Text style={styles.textStyle}>💌</Text>
 			</Pressable>
 		</View>
 	)
@@ -121,12 +152,7 @@ const PlantBackground = styled.ImageBackground`
 	width: 100%;
 	height: 95%;
 `
-// const Title = styled.Text`
-// 	font-family: 'AvenirNext-Regular';
-// 	font-size: 30;
-// 	padding: 3px;
-// 	font-weight: 700;
-// `
+
 const MenuBar = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
@@ -164,6 +190,32 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
+	  yourMessages: {
+    width: 200,
+		color: '#545454',
+		padding: 1,
+		fontSize: 20,
+		fontWeight: 'bold',
+		textAlign: 'right',
+    backgroundColor: '#f7e6f6',
+    margin: 4,
+    borderWidth: 1,
+    borderColor: '000000',
+    borderRadius: 6,
+  },
+  theirMessages: {
+    width: 200,
+		color: '#f7e6f6',
+		padding: 1,
+		fontSize: 20,
+		fontWeight: 'bold',
+		textAlign: 'left',
+    backgroundColor: '#545454',
+    margin: 4,
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
+    borderRadius: 6,
+  }
 })
 
 export default App

@@ -1,9 +1,14 @@
-
-import React, {useState} from "react"
-
 const getData = () => {
 	return fetch(
 		'https://plant-connect-be.herokuapp.com/api/v1/listings?user_id=1'
+	).then((response) => {
+		return response.json()
+	})
+}
+
+const getMessages = () => {
+	return fetch(
+		'https://plant-connect-be.herokuapp.com/api/v1/conversations/11?user_id=1'
 	).then((response) => {
 		return response.json()
 	})
@@ -22,7 +27,7 @@ const postData = (listing) => {
 	).then((response) => response.json())
 }
 
-const handleSubmit = (newMessage) => {
+const handleSubmit = (newMessage, currentListing, setCurrentConversation, currentConversation) => {
 	if (newMessage !== '') {
 		fetch('https://plant-connect-be.herokuapp.com/api/v1/messages', {
 			method: 'POST',
@@ -31,23 +36,18 @@ const handleSubmit = (newMessage) => {
 			},
 			body: JSON.stringify({
 				user_id: 1,
-				listing_id: 2,
+				listing_id: currentListing.listing_id,
 				content: newMessage,
-				conversation_id: null
+				conversation_id: 11,
 			}),
 		})
 		.then(async r => {
 		let data = await r.json()
-		.then(data => console.log(data)) 
+		.then(data => setCurrentConversation(data.conversation_id)) 
 		})
 		.catch(err => console.log(err))
 	}
 }
-
-const listings = getData()
-export { listings, postData, getData, handleSubmit }
-
-
 
 const postPhoto = (data, setPhoto) => {
 	fetch('https://api.cloudinary.com/v1_1/plantconnect/upload', {
@@ -65,5 +65,5 @@ const postPhoto = (data, setPhoto) => {
 
 
 const listings = getData()
-export { listings, postData, getData, postPhoto }
+export { listings, getMessages, postData, getData, postPhoto, handleSubmit }
 
