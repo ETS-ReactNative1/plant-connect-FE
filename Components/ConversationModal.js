@@ -20,7 +20,7 @@ export default function ConversationModal({
 	currentConversation,
 	currentListing,
  	messages,
-  retrieveConversations
+  	retrieveConversations
 }) {
   const [thread, setThread] = useState([])
   

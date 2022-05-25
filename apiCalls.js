@@ -29,7 +29,7 @@ const postData = (listing) => {
 	).then((response) => response.json())
 }
 
-const handleSubmit = (newMessage, currentListing, setCurrentConversation, currentConversation) => {
+const handleSubmit = (newMessage, currentListing, setCurrentConversation) => {
 	if (newMessage !== '') {
 		fetch('https://plant-connect-be.herokuapp.com/api/v1/messages', {
 			method: 'POST',
@@ -61,11 +61,10 @@ const postPhoto = (data, setPhoto) => {
   }).then(async r => {
 	let data = await r.json()
 	.then(data => console.log(data))
-//    setPhoto(data.url);
   }).catch(err => console.log(err))
 };
 
-
 const listings = getData()
+
 export { listings, getMessages, postData, getData, postPhoto, handleSubmit }
 
