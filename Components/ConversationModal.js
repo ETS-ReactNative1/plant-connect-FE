@@ -11,18 +11,19 @@ import {
 	Image,
   ScrollView
 } from 'react-native'
-import { getMessages, handleSubmit } from '../apiCalls'
+import { handleSubmit } from '../apiCalls'
 
 export default function ConversationModal({
 	setConversationModalVisible,
 	conversationModalVisible,
+	setCurrentConversation,
+	currentConversation,
 	currentListing,
-  messages,
-  setMessages,
+ 	messages,
   retrieveConversations
 }) {
   const [thread, setThread] = useState([])
-  const [currentConversation, setCurrentConversation] = useState(null)
+  
 //   const params = useParams()
 //   const cable = useRef()
 

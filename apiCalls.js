@@ -6,9 +6,8 @@ const getData = () => {
 	})
 }
 
-const getMessages = (listing) => {
-	let currentListing = listing || 11
-	console.log(currentListing)
+const getMessages = (convo) => {
+	let currentListing = convo || 11
 	return fetch(
 		`https://plant-connect-be.herokuapp.com/api/v1/conversations/${currentListing}?user_id=1`
 	).then((response) => {

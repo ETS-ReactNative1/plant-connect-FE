@@ -13,6 +13,8 @@ import {
 export default function ConversationMenu({
 	setConversationMenuVisible,
 	conversationMenuVisible,
+	setCurrentConversation,
+	currentConversation,
 }) {
 
 
