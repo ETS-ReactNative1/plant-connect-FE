@@ -14,6 +14,7 @@ import ModalForm from "./Components/ModalForm";
 import { getData, getMessages } from "./apiCalls";
 import PlantModal from "./Components/PlantModal";
 import MessageModal from "./Components/MessageModal";
+import About from "./Components/About";
 import ConversationModal from "./Components/ConversationModal";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
   const [conversationModalVisible, setConversationModalVisible] =
     useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [aboutModalVisible, setAboutModalVisible] = useState(false);
   const [cameraModalVisible, setCameraModalVisible] = useState(false);
   const [plantModalVisible, setPlantModalVisible] = useState(false);
   const [currentListing, setCurrentListing] = useState({
@@ -133,6 +135,12 @@ const App = () => {
           retrieveConversations={retrieveConversations}
         />
       )}
+	  {aboutModalVisible && (
+        <About
+          aboutModalVisible={aboutModalVisible}
+          setAboutModalVisible={setAboutModalVisible}
+        />
+      )}
       <MyCarousel
         plantModalVisible={plantModalVisible}
         setPlantModalVisible={setPlantModalVisible}
@@ -151,7 +159,7 @@ const App = () => {
         >
           <Text style={styles.textStyle}>Post Your Plant!</Text>
         </Pressable>
-        <Pressable onPress={() => openConversations()}>
+        <Pressable onPress={() => setAboutModalVisible(true)}>
           <Image
             source={require("./plant-pngrepo-com.png")}
             style={styles.plant}
