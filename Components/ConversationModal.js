@@ -123,25 +123,13 @@ const styles = StyleSheet.create({
 		marginTop: 2,
 	},
 	closeButton: {
-		marginLeft: 220,
+		marginLeft: 255,
 		height: 12.5,
 		width: 12.5,
 	},
 	submitText: {
 		color: '#FFF9EB',
-	},
-	centeredView: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderWidth: 10,
-		borderColor: 'red',
-	},
-	dropdown: {
-		height: 20,
-		width: 160,
-		marginLeft: 31,
-		borderWidth: 1,
+		fontWeight: 'bold',
 	},
 	modalView: {
 		margin: 30,
@@ -162,18 +150,6 @@ const styles = StyleSheet.create({
 		shadowRadius: 5,
 		elevation: 9,
 	},
-	button: {
-		borderRadius: 20,
-		padding: 10,
-		elevation: 2,
-	},
-	buttonOpen: {
-		backgroundColor: '#545454',
-	},
-	buttonClose: {
-		backgroundColor: '#545454',
-		width: 160,
-	},
 	textStyle: {
 		color: '#545454',
 		padding: 1,
@@ -181,13 +157,10 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
-	modalText: {
-		textAlign: 'flex-start',
-	},
 	input: {
 		flexWrap: 'wrap',
 		minWidth: 50,
-		maxWidth: 250,
+		maxWidth: 270,
 		borderWidth: 1,
 		borderRadius: 4,
 		paddingTop: 10,
@@ -201,7 +174,7 @@ const styles = StyleSheet.create({
   messageBoard: {
 		flexWrap: 'wrap',
 		minWidth: 50,
-		maxWidth: 250,
+		maxWidth: 270,
 		borderWidth: 1,
 		borderRadius: 4,
 		paddingTop: 10,
