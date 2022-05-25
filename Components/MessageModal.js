@@ -13,6 +13,8 @@ import { handleSubmit } from '../apiCalls'
 export default function MessageModal({
 	setMessageModalVisible,
 	messageModalVisible,
+	setCurrentConversation,
+	currentConversation,
 	currentListing,
 }) {
 	const [currentMessage, setCurrentMessage] = useState('')

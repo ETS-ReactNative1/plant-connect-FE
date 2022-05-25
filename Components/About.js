@@ -15,6 +15,8 @@ export default function About({
 	aboutModalVisible,
 }) {
 
+const intro = 'planty swapper is a fun and useful mobile service that connects plant lovers to help them trade seeds, propogated clippings and fully grown plants with other plant lovers near and far to expand thir collection and to keep heirloom plant varietals from endangerment and extinction. Scroll down for tips, tutorials and other fun plant related material!'
+
   return (
 		<Modal
 		animationType='slide'
@@ -38,7 +40,7 @@ export default function About({
 					textBreakStrategy={'highQuality'}
 					autoCorrect
         >
-          <Text style={styles.textStyle}></Text>
+          <Text style={styles.intro}>{intro}</Text>
         </ScrollView>
 			</View>
 		</Modal>
@@ -90,6 +92,13 @@ const styles = StyleSheet.create({
 		color: '#545454',
 		padding: 1,
 		fontSize: 20,
+		fontWeight: 'bold',
+		textAlign: 'center',
+	},
+	intro: {
+		color: '#545454',
+		padding: 1,
+		fontSize: 16,
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},

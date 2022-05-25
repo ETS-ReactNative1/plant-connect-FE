@@ -24,9 +24,10 @@ const App = () => {
     useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [aboutModalVisible, setAboutModalVisible] = useState(false);
-  const [conversationMenuVisible, setConversationMenuVisible] = useState(false);
+  const [conversationMenuVisible, setConversationMenuVisible] = useState(true);
   const [cameraModalVisible, setCameraModalVisible] = useState(false);
   const [plantModalVisible, setPlantModalVisible] = useState(false);
+  const [currentConversation, setCurrentConversation] = useState(null)
   const [currentListing, setCurrentListing] = useState({
     listing_id: 57,
     active: true,
@@ -71,7 +72,7 @@ const App = () => {
   };
 
   const retrieveConversations = () => {
-    getMessages().then((data) => {
+    getMessages(currentConversation).then((data) => {
       const messageContent = data.data.attributes.messages.map((message) => {
         return message.user_id === 1 ? (
           <Text style={styles.yourMessages}>{message.content}</Text>
@@ -84,7 +85,7 @@ const App = () => {
   };
 
   const openConversations = () => {
-    setConversationModalVisible(true);
+    setConversationMenuVisible(true);
     retrieveConversations();
   };
 
@@ -126,11 +127,16 @@ const App = () => {
         messageModalVisible={messageModalVisible}
         setMessageModalVisible={setMessageModalVisible}
         currentListing={currentListing}
+        setCurrentConversation={setCurrentConversation}
+        currentConversation={currentConversation}
       />
 	  {conversationMenuVisible && (
         <ConversationMenu
           conversationMenuVisible={conversationMenuVisible}
           setConversationMenuVisible={setConversationMenuVisible}
+          setConversationModalVisible={setConversationModalVisible}
+          setCurrentConversation={setCurrentConversation}
+          currentConversation={currentConversation}
         />
       )}
       {conversationModalVisible && (
@@ -141,6 +147,8 @@ const App = () => {
           messages={messages}
           setMessages={setMessages}
           retrieveConversations={retrieveConversations}
+          setCurrentConversation={setCurrentConversation}
+          currentConversation={currentConversation}
         />
       )}
 	  {aboutModalVisible && (
