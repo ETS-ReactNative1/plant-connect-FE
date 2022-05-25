@@ -9,6 +9,7 @@ import {
 	SafeAreaView,
 	Image,
 	ImageBackground,
+	ScrollView,
 } from 'react-native'
 
 import Carousel from 'react-native-snap-carousel'
@@ -53,7 +54,10 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 					flex: 1,
 					justifyContent: 'center',
 				}}>
-				<ImageBackground imageStyle={styles.cardImage} source={image} style={styles.cardBackground}>
+				<ImageBackground
+					imageStyle={styles.cardImage}
+					source={image}
+					style={styles.cardBackground}>
 					<View style={styles.titleContainer}>
 						<Text style={styles.plantName}>
 							{item.plant.plant_type.toLowerCase()}
@@ -70,12 +74,16 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 	}
 
 	return (
-		<SafeAreaView
+		<ScrollView
 			style={{
-				flex: 5,
 				backgroundColor: '#57784E',
 				width: 370,
+				paddingTop: 15,
+				marginTop: 40,
 			}}>
+			{/* <View style={styles.learnMore}> */}
+			{/* </View> */}
+			<Text style={styles.topLabel}>plants</Text>
 			<View
 				style={{
 					flex: 0.5,
@@ -94,6 +102,7 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 					onSnapToItem={(index) => setActiveIndex(index)}
 				/>
 			</View>
+			<Text style={styles.label}>seeds</Text>
 			<View
 				style={{
 					flex: 0.5,
@@ -112,6 +121,7 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 					onSnapToItem={(index) => setActiveIndex(index)}
 				/>
 			</View>
+			<Text style={styles.label}>clippings</Text>
 			<View
 				style={{
 					flex: 0.4,
@@ -130,7 +140,7 @@ const MyCarousel = ({ setPlantModalVisible, setCurrentListing }) => {
 					onSnapToItem={(index) => setActiveIndex(index)}
 				/>
 			</View>
-		</SafeAreaView>
+		</ScrollView>
 	)
 }
 
@@ -139,6 +149,28 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontWeight: 'bold',
 		textAlign: 'center',
+	},
+	label: {
+		zIndex: 1,
+		paddingTop: -6,
+		marginBottom: -20,
+		marginLeft: 13,
+		color: 'white',
+		paddingLeft: 10,
+		backgroundColor: '#2d2d2d70',
+		width: 80,
+		fontWeight: 'bold',
+	},
+	topLabel: {
+		zIndex: 1,
+		paddingTop: -6,
+		marginBottom: -31,
+		marginLeft: 13,
+		color: 'white',
+		paddingLeft: 10,
+		backgroundColor: '#2d2d2d70',
+		width: 80,
+		fontWeight: 'bold',
 	},
 	cardBackground: {
 		flex: 1,
@@ -149,6 +181,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff4f570',
 	},
 	learnMore: {
+		zIndex: 1,
 		backgroundColor: '#2d2d2d50',
 		width: 95,
 		marginLeft: 10,

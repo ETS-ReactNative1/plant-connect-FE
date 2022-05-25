@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 import {
 	Modal,
 	StyleSheet,
@@ -7,41 +7,39 @@ import {
 	View,
 	TextInput,
 	Image,
-  ScrollView
+	ScrollView,
 } from 'react-native'
 
-export default function About({
-	setAboutModalVisible,
-	aboutModalVisible,
-}) {
+export default function About({ setAboutModalVisible, aboutModalVisible }) {
+	const intro =
+		'planty swapper is a fun and useful mobile service that connects plant lovers to help them trade seeds, propogated clippings and fully grown plants with other plant lovers near and far to expand thir collection and to keep heirloom plant varietals from endangerment and extinction. Scroll down for tips, tutorials and other fun plant related material!'
 
-const intro = 'planty swapper is a fun and useful mobile service that connects plant lovers to help them trade seeds, propogated clippings and fully grown plants with other plant lovers near and far to expand thir collection and to keep heirloom plant varietals from endangerment and extinction. Scroll down for tips, tutorials and other fun plant related material!'
-
-  return (
+	return (
 		<Modal
-		animationType='slide'
-		transparent={true}
-		visible={aboutModalVisible}
-		onRequestClose={() => {
-			Alert.alert('Modal has been closed.')
-			setAboutModalVisible(false)
-		}}>
+			animationType='slide'
+			transparent={true}
+			visible={aboutModalVisible}
+			onRequestClose={() => {
+				Alert.alert('Modal has been closed.')
+				setAboutModalVisible(false)
+			}}>
 			<View style={styles.modalView}>
 				<Pressable onPress={() => setAboutModalVisible(false)}>
 					<Image
 						source={require('../close.png')}
 						style={styles.closeButton}></Image>
 				</Pressable>
-				<Text style={styles.textStyle}>about planty swapper & other plantyful recources</Text>
-        <ScrollView style={styles.messageBoard}
-          multiline={true}
+				<Text style={styles.textStyle}>about planty swapper</Text>
+				<Text style={styles.byline}>& other plantyful recources</Text>
+				<ScrollView
+					style={styles.messageBoard}
+					multiline={true}
 					numberOfLines={5}
 					textAlignVertical={'top'}
 					textBreakStrategy={'highQuality'}
-					autoCorrect
-        >
-          <Text style={styles.intro}>{intro}</Text>
-        </ScrollView>
+					autoCorrect>
+					<Text style={styles.intro}>{intro}</Text>
+				</ScrollView>
 			</View>
 		</Modal>
 	)
@@ -62,10 +60,11 @@ const styles = StyleSheet.create({
 	submitText: {
 		color: '#FFF9EB',
 	},
+	byline: {
+		fontStyle: 'italic',
+	},
 	centeredView: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
 		borderWidth: 10,
 		borderColor: 'red',
 	},
@@ -100,16 +99,14 @@ const styles = StyleSheet.create({
 		padding: 1,
 		fontSize: 16,
 		fontWeight: 'bold',
-		textAlign: 'center',
 	},
 	modalText: {
 		textAlign: 'flex-start',
 	},
-  messageBoard: {
+	messageBoard: {
 		flexWrap: 'wrap',
 		minWidth: 50,
 		maxWidth: 270,
-		borderWidth: 1,
 		borderRadius: 4,
 		paddingTop: 10,
 		padding: 15,
@@ -117,6 +114,6 @@ const styles = StyleSheet.create({
 		width: 260,
 		height: 400,
 		margin: 1,
-    marginTop: 10,
+		marginTop: 10,
 	},
 })

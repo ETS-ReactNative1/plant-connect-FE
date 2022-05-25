@@ -7,13 +7,12 @@ const getData = () => {
 }
 
 const getMessages = (convo) => {
-	let currentListing = convo || 11
+	let currentConvoId = convo || 11
 	return fetch(
-		`https://plant-connect-be.herokuapp.com/api/v1/conversations/${currentListing}?user_id=1`
+		`https://plant-connect-be.herokuapp.com/api/v1/conversations/${currentConvoId}?user_id=1`
 	).then((response) => {
 		return response.json()
 	})
-	
 }
 
 const postData = (listing) => {
@@ -29,42 +28,49 @@ const postData = (listing) => {
 	).then((response) => response.json())
 }
 
-const handleSubmit = (newMessage, currentListing, setCurrentConversation) => {
+const handleSubmit = (
+	newMessage,
+	currentListing,
+	setCurrentConversation,
+	conversationId
+) => {
+	let currentConvoId = conversationId || 11
 	if (newMessage !== '') {
 		fetch('https://plant-connect-be.herokuapp.com/api/v1/messages', {
 			method: 'POST',
 			headers: {
-				'content-type': 'application/json'
+				'content-type': 'application/json',
 			},
 			body: JSON.stringify({
 				user_id: 1,
 				listing_id: currentListing.listing_id,
 				content: newMessage,
-				conversation_id: 11,
+				conversation_id: currentConvoId,
 			}),
 		})
-		.then(async r => {
-		let data = await r.json()
-		.then(data => setCurrentConversation(data.conversation_id)) 
-		})
-		.catch(err => console.log(err))
+			.then(async (r) => {
+				let data = await r
+					.json()
+					.then((data) => setCurrentConversation(data.conversation_id))
+			})
+			.catch((err) => console.log(err))
 	}
 }
 
 const postPhoto = (data, setPhoto) => {
 	fetch('https://api.cloudinary.com/v1_1/plantconnect/upload', {
-	body: data,
-	headers: {
-	  'content-type': 'multipart/form-data'
-	},
-	method: 'POST',
-  }).then(async r => {
-	let data = await r.json()
-	.then(data => console.log(data))
-  }).catch(err => console.log(err))
-};
+		body: data,
+		headers: {
+			'content-type': 'multipart/form-data',
+		},
+		method: 'POST',
+	})
+		.then(async (r) => {
+			let data = await r.json().then((data) => console.log(data))
+		})
+		.catch((err) => console.log(err))
+}
 
 const listings = getData()
 
 export { listings, getMessages, postData, getData, postPhoto, handleSubmit }
-

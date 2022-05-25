@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 import {
 	Modal,
 	StyleSheet,
@@ -6,7 +6,7 @@ import {
 	Pressable,
 	View,
 	Image,
-  ScrollView
+	ScrollView,
 } from 'react-native'
 
 export default function ConversationMenu({
@@ -16,36 +16,41 @@ export default function ConversationMenu({
 	setCurrentConversation,
 	currentConversation,
 }) {
-	const conversations = [{plantName: 'monsterra', conversation_id: 1}, {plantName: 'snake plant', conversation_id: 2}]
-const [allConversations, setAllConversations] = useState([])
+	const conversations = [
+		{ plantName: 'monsterra', conversation_id: 1 },
+		{ plantName: 'snake plant', conversation_id: 2 },
+	]
+	const [allConversations, setAllConversations] = useState([])
 
-useEffect(() => {
-  setAllConversations(conversations)
-}, [])
+	useEffect(() => {
+		setAllConversations(conversations)
+	}, [])
 
+	const goToConversation = (conversationId) => {
+		setCurrentConversation(conversationId)
+		setConversationMenuVisible(false)
+		setConversationModalVisible(true)
+	}
 
-const goToConversation = (conversationId) => {
-	setCurrentConversation(conversationId)
-	setConversationMenuVisible(false)
-	setConversationModalVisible(true)
-
-}
-
-let conversationbuttons = allConversations.map(conversation => {
-	return <Pressable style={styles.convoButton} onPress={() => goToConversation(conversation.conversation_id)}>
-				<Text style={styles.convoText}  >{conversation.plantName}</Text>
+	let conversationbuttons = allConversations.map((conversation) => {
+		return (
+			<Pressable
+				style={styles.convoButton}
+				onPress={() => goToConversation(conversation.conversation_id)}>
+				<Text style={styles.convoText}>{conversation.plantName}</Text>
 			</Pressable>
-})
+		)
+	})
 
-  return (
+	return (
 		<Modal
-		animationType='slide'
-		transparent={true}
-		visible={conversationMenuVisible}
-		onRequestClose={() => {
-			Alert.alert('Modal has been closed.')
-			setModalVisible(false)
-		}}>
+			animationType='slide'
+			transparent={true}
+			visible={conversationMenuVisible}
+			onRequestClose={() => {
+				Alert.alert('Modal has been closed.')
+				setModalVisible(false)
+			}}>
 			<View style={styles.modalView}>
 				<Pressable onPress={() => setConversationMenuVisible(false)}>
 					<Image
@@ -53,18 +58,17 @@ let conversationbuttons = allConversations.map(conversation => {
 						style={styles.closeButton}></Image>
 				</Pressable>
 				<Text style={styles.textStyle}>your conversation</Text>
-        <ScrollView style={styles.messageBoard}
-          multiline={true}
+				<ScrollView
+					style={styles.messageBoard}
+					multiline={true}
 					numberOfLines={5}
 					textAlignVertical={'top'}
 					textBreakStrategy={'highQuality'}
-					autoCorrect
-        >
-			{conversationbuttons}
-          <Text style={styles.textStyle}></Text>
-        </ScrollView>
-				<View>
-				</View>
+					autoCorrect>
+					{conversationbuttons}
+					<Text style={styles.textStyle}></Text>
+				</ScrollView>
+				<View></View>
 			</View>
 		</Modal>
 	)
@@ -79,17 +83,18 @@ const styles = StyleSheet.create({
 	},
 	convoButton: {
 		width: 200,
-		color: "#545454",
+		color: '#545454',
 		padding: 1,
+		marginLeft: 13,
 		fontSize: 20,
-		fontWeight: "bold",
-		backgroundColor: "#f7e6f6",
+		fontWeight: 'bold',
+		backgroundColor: '#ffe8e9',
 		margin: 4,
 		borderWidth: 1,
-		borderColor: "000000",
+		borderColor: '000000',
 		borderRadius: 6,
-	  },
-	  convoText: {
+	},
+	convoText: {
 		color: '#545454',
 		padding: 1,
 		fontSize: 20,
@@ -143,13 +148,12 @@ const styles = StyleSheet.create({
 		width: 260,
 		height: 50,
 		margin: 1,
-    marginBottom: 10,
+		marginBottom: 10,
 	},
-  messageBoard: {
+	messageBoard: {
 		flexWrap: 'wrap',
 		minWidth: 50,
 		maxWidth: 270,
-		borderWidth: 1,
 		borderRadius: 4,
 		paddingTop: 10,
 		padding: 15,
@@ -157,6 +161,6 @@ const styles = StyleSheet.create({
 		width: 260,
 		height: 400,
 		margin: 1,
-    marginTop: 10,
+		marginTop: 10,
 	},
 })

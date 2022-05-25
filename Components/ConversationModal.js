@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from 'react'
 // import { useParams } from "react-router"
 // import { createConsumer } from "@rails/actioncable"
 import {
@@ -9,7 +9,7 @@ import {
 	View,
 	TextInput,
 	Image,
-  ScrollView
+	ScrollView,
 } from 'react-native'
 import { handleSubmit } from '../apiCalls'
 
@@ -19,65 +19,70 @@ export default function ConversationModal({
 	setCurrentConversation,
 	currentConversation,
 	currentListing,
- 	messages,
-  	retrieveConversations
+	messages,
+	retrieveConversations,
 }) {
-  const [thread, setThread] = useState([])
-  
-//   const params = useParams()
-//   const cable = useRef()
+	const [thread, setThread] = useState([])
 
-  useEffect(() => {
-    retrieveConversations()
-    // if (!cable.current) {
-    //   cable.current = createConsumer("ws://localhost:3000/cable")
-    // }
+	//   const params = useParams()
+	//   const cable = useRef()
 
-    // const paramsToSend = {
-    //   channel: "ConversationChannel",
-    //   id: params.id
-    // }
-    
-    // const handlers = {
-    //   received(data) {
-    //     setMessages([...messages, data])
-    //     console.log("HANDLERS", data);
-    //   },
-    //   connected() {
-    //     console.log("connected")
-    //   },
-    //   disconnected() {
-    //     console.log("disconnected")
-    //     cable.current = null
-    //   }
-    // }
+	useEffect(() => {
+		retrieveConversations()
+		// if (!cable.current) {
+		//   cable.current = createConsumer("ws://localhost:3000/cable")
+		// }
 
-    // const subscription = cable.subscriptions.create(paramsToSend, handlers)
-    // return function cleanup() {
-    //   cable.current = null
-    //   subscription.unsubscribe()
-    // }
-  }, [messages])
+		// const paramsToSend = {
+		//   channel: "ConversationChannel",
+		//   id: params.id
+		// }
 
-  const clearInputs = () => {
+		// const handlers = {
+		//   received(data) {
+		//     setMessages([...messages, data])
+		//     console.log("HANDLERS", data);
+		//   },
+		//   connected() {
+		//     console.log("connected")
+		//   },
+		//   disconnected() {
+		//     console.log("disconnected")
+		//     cable.current = null
+		//   }
+		// }
+
+		// const subscription = cable.subscriptions.create(paramsToSend, handlers)
+		// return function cleanup() {
+		//   cable.current = null
+		//   subscription.unsubscribe()
+		// }
+	}, [messages])
+
+	const clearInputs = () => {
 		setThread('')
 	}
 
-  const sendMessage = () => {
-    handleSubmit(thread, currentListing, setCurrentConversation)
-    clearInputs()
-    retrieveConversations()
-  }
+	const sendMessage = () => {
+		handleSubmit(
+			thread,
+			currentListing,
+			setCurrentConversation,
+			currentConversation
+		)
+		clearInputs()
+		retrieveConversations()
+	}
 
-  return (
+	return (
 		<Modal
-		animationType='slide'
-		transparent={true}
-		visible={conversationModalVisible}
-		onRequestClose={() => {
-			Alert.alert('Modal has been closed.')
-			setModalVisible(false)
-		}}>
+			animationType='slide'
+			transparent={true}
+			visible={conversationModalVisible}
+			onRequestClose={() => {
+				Alert.alert('Modal has been closed.')
+				setModalVisible(false)
+			}}>
 			<View style={styles.modalView}>
 				<Pressable onPress={() => setConversationModalVisible(false)}>
 					<Image
@@ -85,16 +90,16 @@ export default function ConversationModal({
 						style={styles.closeButton}></Image>
 				</Pressable>
 				<Text style={styles.textStyle}>your conversation</Text>
-        <ScrollView style={styles.messageBoard}
-          multiline={true}
+				<ScrollView
+					style={styles.messageBoard}
+					multiline={true}
 					numberOfLines={5}
 					textAlignVertical={'top'}
 					textBreakStrategy={'highQuality'}
-					autoCorrect
-        >
-          {messages}
-          <Text style={styles.textStyle}></Text>
-        </ScrollView>
+					autoCorrect>
+					{messages}
+					<Text style={styles.textStyle}></Text>
+				</ScrollView>
 				<View>
 					<TextInput
 						style={styles.input}
@@ -108,7 +113,7 @@ export default function ConversationModal({
 						autoCorrect
 					/>
 				</View>
-				<Pressable style={styles.submitBtn} onPress={() => sendMessage()} >
+				<Pressable style={styles.submitBtn} onPress={() => sendMessage()}>
 					<Text style={styles.submitText}>send message</Text>
 				</Pressable>
 			</View>
@@ -170,13 +175,13 @@ const styles = StyleSheet.create({
 		width: 260,
 		height: 50,
 		margin: 1,
-    marginBottom: 10,
+		marginBottom: 10,
 	},
-  messageBoard: {
+	messageBoard: {
 		flexWrap: 'wrap',
 		minWidth: 50,
 		maxWidth: 270,
-		borderWidth: 1,
+		marginBottom: 10,
 		borderRadius: 4,
 		paddingTop: 10,
 		padding: 15,
@@ -184,6 +189,6 @@ const styles = StyleSheet.create({
 		width: 260,
 		height: 400,
 		margin: 1,
-    marginTop: 10,
+		marginTop: 10,
 	},
 })

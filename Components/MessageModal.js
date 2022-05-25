@@ -31,13 +31,13 @@ export default function MessageModal({
 
 	return (
 		<Modal
-		animationType='slide'
-		transparent={true}
-		visible={messageModalVisible}
-		onRequestClose={() => {
-			Alert.alert('Modal has been closed.')
-			setModalVisible(false)
-		}}>
+			animationType='slide'
+			transparent={true}
+			visible={messageModalVisible}
+			onRequestClose={() => {
+				Alert.alert('Modal has been closed.')
+				setModalVisible(false)
+			}}>
 			<View style={styles.modalView}>
 				<Pressable onPress={() => setMessageModalVisible(false)}>
 					<Image
@@ -58,7 +58,7 @@ export default function MessageModal({
 						autoCorrect
 					/>
 				</View>
-				<Pressable style={styles.submitBtn} onPress={() => submitMessage()} >
+				<Pressable style={styles.submitBtn} onPress={() => submitMessage()}>
 					<Text style={styles.submitText}>submit message</Text>
 				</Pressable>
 			</View>
