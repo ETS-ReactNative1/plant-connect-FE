@@ -64,7 +64,12 @@ export default function ConversationModal({
 	}
 
 	const sendMessage = () => {
-		handleSubmit(thread, currentListing, setCurrentConversation)
+		handleSubmit(
+			thread,
+			currentListing,
+			setCurrentConversation,
+			currentConversation
+		)
 		clearInputs()
 		retrieveConversations()
 	}
