@@ -4,16 +4,12 @@ import CameraView from './CameraView'
 import {
 	Modal,
 	StyleSheet,
-	Text,
-	Pressable,
 	View,
-	TextInput,
 } from 'react-native'
 
 export default function CameraModal({
 	visible,
 	setModalVisible,
-	createNewListing,
     setCameraModalVisible,
     setImage,
     image
@@ -82,7 +78,6 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontWeight: 'bold',
 		textAlign: 'center',
-		// marginBottom: 15,
 	},
 	modalText: {
 		textAlign: 'center',

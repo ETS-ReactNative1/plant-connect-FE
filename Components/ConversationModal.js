@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import { useParams } from "react-router"
-import { createConsumer } from "@rails/actioncable"
+// import { useParams } from "react-router"
+// import { createConsumer } from "@rails/actioncable"
 import {
 	Modal,
 	StyleSheet,
@@ -23,8 +23,8 @@ export default function ConversationModal({
 }) {
   const [thread, setThread] = useState([])
   const [currentConversation, setCurrentConversation] = useState(null)
-  const params = useParams()
-  const cable = useRef()
+//   const params = useParams()
+//   const cable = useRef()
 
   useEffect(() => {
     retrieveConversations()
