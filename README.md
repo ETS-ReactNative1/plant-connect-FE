@@ -49,6 +49,8 @@ What if you had an easy way to swap plants and clippings with your friends? Plan
 
 #### You can click on the `messaging` icon, on the bottom left, to see all of your active conversations then click on any conversation to review or continue said conversation.
 
+![allMessages](https://user-images.githubusercontent.com/92649050/170576492-3c9f7cae-4368-4642-becf-1e4ef97e4617.gif)
+
 
 #### You can click on the `plant` icon, on the bottom right, to learn more about the Planty Swapper application, as well as resources for planting, propagating, and shipping your plants.
 
