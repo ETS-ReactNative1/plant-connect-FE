@@ -37,7 +37,6 @@ What if you had an easy way to swap plants and clippings with your friends? Plan
 ![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white)
 ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
 
-- React Testing Library
 - React Native Snap Carousel
 - Expo Simulator
 - Expo Camera
