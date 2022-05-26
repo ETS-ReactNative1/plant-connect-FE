@@ -1,4 +1,4 @@
-# 🌿 Planty Swapper 🌱
+# 🌿Planty Swapper
 ## Table of Contents
   - [Introduction](#Introduction)
   - [Contributors](#Contributors)
