@@ -18,9 +18,12 @@ const getMessages = (convo) => {
 const getConversations = () => {
 	return fetch(
 		`https://plant-connect-be.herokuapp.com/api/v1/conversations/?user_id=1`
-	).then((response) => {
-		return response.json()
-	})
+	)
+		.then((response) => {
+			return response.json()
+		})
+		.then((res) => console.log('all conversations:', res.data.data))
+		.catch((error) => console.log('error', error))
 }
 
 const postData = (listing) => {

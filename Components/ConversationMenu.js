@@ -17,35 +17,31 @@ export default function ConversationMenu({
 	setCurrentConversation,
 	currentConversation,
 }) {
-	const [allConversations, setAllConversations] = useState([
-		// { name: 'snake plant', id: 3 },
-	])
-	// let conversations = getConversations()
 
-	useEffect(() => {
-		let con = getConversations()
-		console.log('adsfd', con)
-
-		// console.log('slkdjfaf', allConversations)
-		// setAllConversations(conversations)
-	}, [])
+	let conversationbuttons
+	useEffect(() => {}, [])
 
 	const goToConversation = (conversationId) => {
+		// getConversations()
+		// 	.then((res) => res.json())
+		// 	.then((data) => setAllConversations(data.data))
+		// console.log('cons', allConversations)
 		setCurrentConversation(conversationId)
 		setConversationMenuVisible(false)
 		setConversationModalVisible(true)
 	}
 
-	let conversationbuttons = allConversations.map((conversation) => {
-		return (
-			<Pressable
-				style={styles.convoButton}
-				onPress={() => goToConversation(conversation.id)}>
-				<Text style={styles.convoText}>{conversation.name}</Text>
-			</Pressable>
-		)
-	})
-
+	const createConversations = () => {
+		conversationbuttons = allConversations.map((conversation) => {
+			return (
+				<Pressable
+					style={styles.convoButton}
+					onPress={() => goToConversation(conversation.id)}>
+					<Text style={styles.convoText}>{conversation.name}</Text>
+				</Pressable>
+			)
+		})
+	}
 	return (
 		<Modal
 			animationType='slide'
@@ -69,7 +65,7 @@ export default function ConversationMenu({
 					textAlignVertical={'top'}
 					textBreakStrategy={'highQuality'}
 					autoCorrect>
-					{conversationbuttons}
+					{conversationbuttons && conversationbuttons}
 					<Text style={styles.textStyle}></Text>
 				</ScrollView>
 				<View></View>

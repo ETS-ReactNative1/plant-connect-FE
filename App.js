@@ -3,7 +3,7 @@ import { StyleSheet, Text, Pressable, View, Image } from 'react-native'
 import MyCarousel from './Components/MyCarousel'
 import styled from 'styled-components'
 import ModalForm from './Components/ModalForm'
-import { getData, getMessages } from './apiCalls'
+import { getConversations, getData, getMessages } from './apiCalls'
 import PlantModal from './Components/PlantModal'
 import MessageModal from './Components/MessageModal'
 import About from './Components/About'
@@ -15,6 +15,7 @@ const App = () => {
 	const [messageModalVisible, setMessageModalVisible] = useState(null)
 	const [conversationModalVisible, setConversationModalVisible] =
 		useState(false)
+	const [allConversations, setAllConversations] = useState([])
 	const [modalVisible, setModalVisible] = useState(false)
 	const [aboutModalVisible, setAboutModalVisible] = useState(false)
 	const [conversationMenuVisible, setConversationMenuVisible] = useState(true)
@@ -73,11 +74,13 @@ const App = () => {
 					<Text style={styles.theirMessages}>{message.content}</Text>
 				)
 			})
+
 			setMessages(messageContent)
 		})
 	}
 
 	const openConversations = () => {
+		getConversations().then((data) => setAllConversations(data.data.attributes))
 		setConversationMenuVisible(true)
 		retrieveConversations()
 	}
@@ -115,6 +118,7 @@ const App = () => {
 					setConversationModalVisible={setConversationModalVisible}
 					setCurrentConversation={setCurrentConversation}
 					currentConversation={currentConversation}
+					allConversations={allConversations}
 				/>
 			)}
 			{conversationModalVisible && (
