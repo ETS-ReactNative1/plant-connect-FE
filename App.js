@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-	StyleSheet,
-	SafeAreaView,
-	Text,
-	Pressable,
-	View,
-	Image,
-	TextInput,
-} from 'react-native'
+import { StyleSheet, Text, Pressable, View, Image } from 'react-native'
 import MyCarousel from './Components/MyCarousel'
 import styled from 'styled-components'
 import ModalForm from './Components/ModalForm'

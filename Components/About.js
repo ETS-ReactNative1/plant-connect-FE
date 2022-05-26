@@ -5,7 +5,6 @@ import {
 	Text,
 	Pressable,
 	View,
-	TextInput,
 	Image,
 	ScrollView,
 } from 'react-native'
