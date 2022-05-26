@@ -11,7 +11,9 @@
   - [Back End Repo](#Back-End-Repo)   
 
 ## Introduction
-What if you had an easy way to swap plants and clippings with your friends? Planty Swapper is a fun and useful mobile service that connects plant lovers to help them trade seeds, propogated clippings and fully grown plants with other plant lovers near and far to expand thir collection and to keep heirloom plant varietals from endangerment and extinction. 
+What if you had an easy way to swap plants and clippings with your friends? Planty Swapper is a fun and useful mobile service that connects plant lovers. Whether you're Ava Gardner or just an avid gardener, you can trade seeds, propagate clippings, and fully grown plants. Expand your collection and keep heirloom plant varietals from endangerment and extinction with Planty Swapper today!
+
+
 
 ## Contributors
 - [Brenda Sotelo](https://github.com/BrendaSotel0)
@@ -50,7 +52,7 @@ What if you had an easy way to swap plants and clippings with your friends? Plan
 ![Xcode](https://img.shields.io/badge/Xcode-007ACC?style=for-the-badge&logo=Xcode&logoColor=white)
 ![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
 
-
+### Dependencies
 - React Native Snap Carousel
 - Expo Simulator
 - Expo Camera
