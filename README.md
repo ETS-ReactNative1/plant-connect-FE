@@ -20,6 +20,11 @@ Planty Swapper is a fun and useful mobile service that connects plant lovers to 
 - [Katie Toler](https://github.com/KATIETOLER)
 - [Jerry Vohrer](https://github.com/Jerry-Vrrr)
 
+
+- Project Manager [Scott Ertmer](https://github.com/sertmer)
+- Project Mentor [Khoa Nguyen](https://github.com/Omegaeye)
+
+
 ## Technologies           
 - React Native
 - React Testing Library
