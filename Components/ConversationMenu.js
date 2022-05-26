@@ -8,6 +8,7 @@ import {
 	Image,
 	ScrollView,
 } from 'react-native'
+import { getConversations } from '../apiCalls'
 
 export default function ConversationMenu({
 	setConversationMenuVisible,
@@ -17,13 +18,14 @@ export default function ConversationMenu({
 	currentConversation,
 }) {
 	const conversations = [
-		{ plantName: 'monsterra', conversation_id: 1 },
-		{ plantName: 'snake plant', conversation_id: 2 },
+		// { name: 'monsterra', id: 13243 },
+		// { name: 'snake plant', id: 243243 },
 	]
 	const [allConversations, setAllConversations] = useState([])
 
 	useEffect(() => {
 		setAllConversations(conversations)
+		getConversations().then((res) => setAllConversations(res.data))
 	}, [])
 
 	const goToConversation = (conversationId) => {
@@ -33,11 +35,15 @@ export default function ConversationMenu({
 	}
 
 	let conversationbuttons = allConversations.map((conversation) => {
+		console.log('connnn', conversation)
 		return (
 			<Pressable
 				style={styles.convoButton}
-				onPress={() => goToConversation(conversation.conversation_id)}>
-				<Text style={styles.convoText}>{conversation.plantName}</Text>
+				onPress={() => goToConversation(conversation.id)}
+				key={conversation.id}>
+				<Text style={styles.convoText} key={conversation.id}>
+					{conversation.attributes.name}
+				</Text>
 			</Pressable>
 		)
 	})
