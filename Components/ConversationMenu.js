@@ -35,7 +35,6 @@ export default function ConversationMenu({
 	}
 
 	let conversationbuttons = allConversations.map((conversation) => {
-		console.log('connnn', conversation)
 		return (
 			<Pressable
 				style={styles.convoButton}

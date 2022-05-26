@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-// import { useParams } from "react-router"
-// import { createConsumer } from "@rails/actioncable"
 import {
 	Modal,
 	StyleSheet,
@@ -24,39 +22,8 @@ export default function ConversationModal({
 }) {
 	const [thread, setThread] = useState([])
 
-	//   const params = useParams()
-	//   const cable = useRef()
-
 	useEffect(() => {
 		retrieveConversations()
-		// if (!cable.current) {
-		//   cable.current = createConsumer("ws://localhost:3000/cable")
-		// }
-
-		// const paramsToSend = {
-		//   channel: "ConversationChannel",
-		//   id: params.id
-		// }
-
-		// const handlers = {
-		//   received(data) {
-		//     setMessages([...messages, data])
-		//     console.log("HANDLERS", data);
-		//   },
-		//   connected() {
-		//     console.log("connected")
-		//   },
-		//   disconnected() {
-		//     console.log("disconnected")
-		//     cable.current = null
-		//   }
-		// }
-
-		// const subscription = cable.subscriptions.create(paramsToSend, handlers)
-		// return function cleanup() {
-		//   cable.current = null
-		//   subscription.unsubscribe()
-		// }
 	}, [messages])
 
 	const clearInputs = () => {
@@ -104,7 +71,7 @@ export default function ConversationModal({
 					<TextInput
 						style={styles.input}
 						onChangeText={setThread}
-						placeholder={`I want you bro...`}
+						placeholder={`I want your plant bro...`}
 						value={thread}
 						multiline={true}
 						numberOfLines={5}
